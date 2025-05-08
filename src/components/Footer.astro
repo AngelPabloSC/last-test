@@ -1,0 +1,73 @@
+---
+import { footer } from "../data/footter.ts";
+---
+
+<footer
+  class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-white bg-primary-second p-10"
+>
+  {
+    footer.map((item) => {
+      if (item.type === "contact") {
+        return (
+          <div>
+            <h3 class="font-bold text-xl">{item.tile}</h3>
+            <p>{item.number}</p>
+            <p>{item.direction}</p>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.2836642714856!2d-73.78406582251819!3d42.655343871167084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89de0a44e842d437%3A0xe0a4d4c58fccc801!2s520%20Warren%20St%2C%20Albany%2C%20NY%2012208!5e0!3m2!1ses-419!2sus!4v1745812732846!5m2!1ses-419!2sus"
+              width="100%"
+              height="150"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        );
+      }
+
+      if (item.type === "offices") {
+        return (
+          <div>
+            <h3 class="font-bold text-xl">{item.tile}</h3>
+            <ul>
+              {item.offices.map((office) => (
+                <li>
+                  <a href={office.link} class="hover:underline">
+                    {office.direction}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      if (item.type === "section") {
+        return (
+          <div>
+            <h3 class="font-bold text-xl flex gap-2 items-center">
+              {item.icon && <iconify-icon icon={item.icon} />}
+              {item.title}
+            </h3>
+            <ul class="mt-2 space-y-1">
+              {item.services.map((service) => (
+                <li>
+                  <a href={service.link} class="hover:underline text-sm">
+                    {service.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+    })
+  }
+</footer>
+<div
+  class="bg-black text-white text-center py-4 text-sm flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2"
+>
+  <span class="text-primary">© All rights reserved by Nova Solutions</span>
+  <a href="/privacy-policy" class="hover:text-primary">Privacy Policy</a>
+</div>

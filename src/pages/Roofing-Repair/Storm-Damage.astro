@@ -1,0 +1,113 @@
+---
+import SectionInfo from "../../components/SectionInfo.astro";
+import Layout from "../../layouts/Layout.astro";
+import suppliers from "../../json/suppliers.json";
+import Footer from "../../components/Footer.astro";
+
+import BuutonMovil from "../../components/ButtonMovil.astro";
+import MoreServices from "../../components/moreServices.astro";
+import RelationServices from "../../components/relationServices.astro";
+import TrustOur from "../../components/trustOur.astro";
+import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
+import { LinkServicesRoofingRepair } from "../../data/LinkServicesRoffingRepair";
+---
+
+<Layout
+  title="Storm Damage in Albany | Nova Solution"
+  description="Expert storm damage roof repair in Albany by Nova Solution. Free inspections, local BBB A+ rated roofing specialists you can trust."
+/>
+<BuutonMovil class="fixed bottom-4 right-4 z-50" />
+<div class="mt-[130px] md:mt-[95px]">
+  <SectionInfo heading={"Storm Damage"} sliders={suppliers} />
+</div>
+
+<div class="max-w-6xl mx-auto px-4 my-16">
+  <div class="breadcrumb text-sm text-gray-600 flex items-center">
+    <a href="/" class="hover:text-primary">Home</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+
+    <a href="/Roofing-Repair" class="hover:text-primary">Roofing Repair</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <span class="font-semibold text-black">Storm Damage</span>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-3xl font-bold text-black text-center lg:text-left mt-10">
+        Nova Solution Albany Storm Damage Repair Services
+      </h1>
+
+      <p class="text-black leading-relaxed mt-4">
+        After a windstorm or hail, it’s essential to get a professional roofing
+        inspection from a trusted local roofer. At <strong>Nova Solution</strong
+        >, we’re here to help with expert <strong
+          >storm damage repairs in Albany</strong
+        >.
+      </p>
+      <p class="text-gray-700 leading-relaxed mt-4">We are:</p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2 mt-4">
+        <li><strong>BBB A+ rated</strong></li>
+        <li>
+          <strong>Locally based in Albany</strong> with years of experience
+        </li>
+      </ul>
+    </div>
+    <section class="flex-1 text-black mt-10">
+      <CertificatesAffiliations />
+    </section>
+  </div>
+</div>
+
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold text-black">
+      Why Choose Nova Solution for Albany Storm Damage Repair
+    </h2>
+    <p class="text-black leading-relaxed mt-4">
+      Reinstalling or repairing your roof after a storm is a significant
+      investment. Your roof protects your home from hail, strong winds, and
+      extreme weather. Additionally, your roof plays a crucial role in
+      safeguarding your home from fire and lightning risks. Considering all the
+      vital functions your roof serves, it’s clear you need the most skilled
+      roofers to handle storm damage repairs.
+    </p>
+    <p class="text-black leading-relaxed mt-4">
+      Ready to start or have concerns about your roof maintenance? We’re here to
+      help! Call <strong>Nova Solution</strong> today for a <strong
+        >free shingle inspection</strong
+      > and a no-obligation estimate. Let us provide you with professional, reliable
+      storm damage repairs in Albany.
+    </p>
+  </div>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1744940052/20231124_164824_pbq8zx.jpg"
+    alt="Roofing Installation"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto"
+  />
+</section>
+
+<!-- Sección 2: Imagen a la izquierda + texto -->
+<section class="mx-auto px-4 my-16 items-center">
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1745296100/GAF-Layer-lock-Dynamic-Restoration_hodwla.jpg"
+    alt="Certified Roofing Process"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto order-1 md:order-none"
+  />
+  \
+</section>
+
+<TrustOur />
+
+<RelationServices
+  title="Related Roofing Services"
+  services={LinkServicesRoofingRepair}
+/>
+<MoreServices />
+
+<Footer />

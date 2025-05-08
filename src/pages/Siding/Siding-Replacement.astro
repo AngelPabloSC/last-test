@@ -1,0 +1,141 @@
+---
+import SectionInfo from "../../components/SectionInfo.astro";
+import Layout from "../../layouts/Layout.astro";
+import suppliers from "../../json/suppliers.json";
+import Footer from "../../components/Footer.astro";
+
+import BuutonMovil from "../../components/ButtonMovil.astro";
+import MoreServices from "../../components/moreServices.astro";
+import RelationServices from "../../components/relationServices.astro";
+import TrustOur from "../../components/trustOur.astro";
+import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
+import { LinkServicesSiding } from "../../data/LinkServicesSiding";
+---
+
+<Layout
+  title="Siding Replacement - Nova Solution in Albany"
+  description="Upgrade your home’s exterior with expert siding replacement in Albany by Nova Solution. We offer affordable vinyl, fiber cement, and weather-insulated siding options backed by top warranties. Trust our 5-star rated local contractors for long-lasting, professional installation—get a free inspection today!"
+/>
+<BuutonMovil class="fixed bottom-4 right-4 z-50" />
+<div class="mt-[130px] md:mt-[95px]">
+  <SectionInfo heading={"Siding Replacement"} sliders={suppliers} />
+</div>
+
+<div class="max-w-6xl mx-auto px-4 my-16">
+  <div class="breadcrumb text-sm text-gray-600 flex items-center">
+    <a href="/" class="hover:text-primary">Home</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+
+    <a href="/Siding" class="hover:text-primary">Siding</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <span class="font-semibold text-black">Siding Replacement</span>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-3xl font-bold text-black text-center lg:text-left mt-10">
+        Your Albany Siding Replacement
+      </h1>
+
+      <p class="text-black leading-relaxed text-justify mt-4">
+        Want to start building new siding for your property in your Albany
+        neighbourhood? Our <strong>Nova Solution</strong> team in Albany is ready
+        to work! Our specialists in <strong>siding installation</strong> are trustworthy
+        and dependable, so we can beautifully hang your <strong
+          >Albany siding</strong
+        >.
+      </p>
+    </div>
+    <section class="flex-1 text-black mt-10">
+      <CertificatesAffiliations />
+    </section>
+  </div>
+</div>
+
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold text-black">
+      Top-Rated Siding Replacement Contracto
+    </h2>
+
+    <p class="text-black leading-relaxed text-justify mt-4">
+      Our team of <strong>siding contractors</strong> at <strong
+        >Nova Solution</strong
+      > in Albany provides <strong>first-rate replacement siding</strong>. The
+      new siding we carry is the <strong
+        >best and longest-lasting product</strong
+      >, and with the most credible warranty offered on the market today. You’ll
+      enjoy how your home looks after our <strong>siding installers</strong> add
+      the high-quality siding. It’s not hard to see why our clients award us 5 stars
+      as the <strong>top-rated Albany siding contractor</strong>.
+    </p>
+  </div>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1744940052/20231124_164824_pbq8zx.jpg"
+    alt="Roofing Installation"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto"
+  />
+</section>
+
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1745296100/GAF-Layer-lock-Dynamic-Restoration_hodwla.jpg"
+    alt="Certified Roofing Process"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto order-1 md:order-none"
+  />
+  <div class="space-y-4">
+    <section class="max-w-6xl mx-auto px-4 my-16">
+      <h2 class="text-2xl font-bold text-black mb-4 text-center lg:text-left">
+        Our Siding Services Include
+      </h2>
+      <p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2">
+          <li>
+            <strong>Budget-friendly siding installation</strong> and siding replacement
+          </li>
+          <li><strong>Excellent residential siding repair</strong></li>
+          <li>
+            <strong>Huge variety</strong> of replacement siding ready to install,
+            such as <strong>vinyl siding</strong> and <strong
+              >weather-insulated siding</strong
+            >
+          </li>
+          <li><strong>Fiber Cement Board Siding</strong> by James Hardie</li>
+          <li>
+            <strong>Brand-name new siding</strong> for Albany homes and businesses
+          </li>
+        </ul>
+      </p>
+      <p>
+        Let us show you why we're the trusted choice for <strong
+          >Siding in Albany</strong
+        >. Contact us today to schedule your free inspection!
+      </p>
+      <p class="text-gray-700 mt-4">
+        Questions?
+        <a href="/About/Contact-us" class="text-black font-bold text-base">
+          Contact us
+        </a>
+        today!
+      </p>
+    </section>
+  </div>
+</section>
+
+<TrustOur />
+
+<RelationServices
+  title="Related Siding Services"
+  services={LinkServicesSiding}
+/>
+<MoreServices />
+
+<Footer />

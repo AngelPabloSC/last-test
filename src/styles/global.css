@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import 'tailwindcss/utilities';
+@import 'swiper/css';
+@import 'swiper/css/effect-cards';
+
+@font-face {
+    font-family: 'Azonix';
+    src: url('../assets/fonts/Azonix.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    
+  }
+@font-face {
+    font-family: 'Futurist';
+    src: url('../assets/fonts/FUTRFW.TTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    
+  }
+  
+
+@theme {
+
+   
+    --color-primary: #FFEC00;
+    --color-primary-second: #424769;
+    --color-primary-light: #4b6ed4;
+    --color-primary-dark: #7077A1;
+    --color-primary-Backgroundblue:#F6B17A;
+    --color-secondary: #41D4ff;
+    --color-secondary-light: #000;
+    --color-secondary-dark: #997300;
+
+    --color-accent: rgba(0,0,255,0.5);
+    --color-background: #f8f9ff;
+    --color-background-light: #eef1ff;
+    --color-background-dark: #000;
+    
+    --color-headline: #1a1f3c;
+    --color-headline-light: #1a1f3c;
+    --color-headline-dark: #ffffff;
+    
+    --color-eyebrow: #1e3c8c;
+    --color-eyebrow-light: #1e3c8c;
+    --color-eyebrow-dark: #e6b800;
+    
+    --color-body-base: #1a1f3c;
+    --color-body-light: #1a1f3c;
+    --color-body-dark: #ffffff;
+    
+    --color-input-text: #fff;
+   
+    --color-nav-text: var(--color-body-base);
+    --color-nav-textprimary: #fff;
+    
+    --color-nav-text-hover: var(--color-primary);
+    --color-nav-text-active: var(--color-primary);
+    --color-nav-text-current: var(--color-primary);
+    --color-nav-submenu-bg: var(--color-background-light);
+    --color-nav-mobile-text: #ffffff;
+    --color-nav-mobile-text-hover: #e6b800;
+    --color-nav-mobile-text-active: #41d4ff;
+    --color-nav-mobile-text-current: #ffffff;
+    
+    --color-header-logo: var(--color-primary);
+    --color-footer-logo: var(--color-primary);
+    
+
+    --text-xsmall: clamp(0.625rem, 1.5vw + 0.0625rem, 0.75rem);
+    --text-small: clamp(0.875rem, 1.5vw + 0.0625rem, 1rem);
+    --text-base: clamp(1rem, 2vw + 0.125rem, 1.25rem);
+    --text-large: clamp(1.25rem, 3vw + 0.25rem, 1.5rem);
+    --text-xlarge: clamp(2rem, 5vw + 1rem, 4rem);
+
+    --color-primary-100: #FFF9B0;
+    --color-primary-300: #FFF066;
+    --color-primary-600: #E5D400;
+    --color-primary-700: #BBAA00;
+    --color-primary-800: #8C7F00;
+    --color-primary-900: #5D5500;
+ 
+}
+

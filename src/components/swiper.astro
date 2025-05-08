@@ -1,0 +1,63 @@
+---
+import swiper from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Definir el tipo explícito para los elementos de slides
+type Slide = {
+  imgUrl: string;
+  alt: string;
+};
+
+// Definir el tipo de las propiedades pasadas a Astro
+interface Props {
+  slides: Slide[];
+}
+
+const { slides }: Props = Astro.props;
+---
+
+<script>
+  // Core de Swiper y estilos
+  import Swiper from "swiper";
+  import "swiper/css";
+  // Módulo Navigation de Swiper y estilos
+  import { Autoplay, Navigation } from "swiper/modules";
+
+  // Configurar Swiper
+  const swiper = new Swiper(".swiper", {
+    modules: [Navigation, Autoplay],
+    loop: true, // definir si los slides estarán en bucle
+
+    breakpoints: {
+      0: { slidesPerView: 2, spaceBetween: 10 }, // Para móviles pequeños (<640px)
+      640: { slidesPerView: 2, spaceBetween: 30 }, // Para móviles grandes (>=640px)
+      768: { slidesPerView: 2, spaceBetween: 40 }, // Tablets (>=768px)
+      1024: { slidesPerView: 3, spaceBetween: 50 }, // Laptops (>=1024px)
+      1280: { slidesPerView: 3, spaceBetween: 200 }, // Pantallas grandes (>=1280px)
+    },
+    autoplay: {
+      delay: 1000,
+    },
+    speed: 3000,
+    centeredSlides: true,
+  });
+</script>
+
+<div class="swiper -slide">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    {
+      slides.map((item) => (
+        <div class="swiper-slide ">
+          <img
+            src={item.imgUrl}
+            alt={item.alt}
+            class="h-24 w-auto object-contain mx-auto"
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>

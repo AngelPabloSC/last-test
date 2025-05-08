@@ -1,0 +1,166 @@
+---
+import SectionInfo from "../../components/SectionInfo.astro";
+import Layout from "../../layouts/Layout.astro";
+import suppliers from "../../json/suppliers.json";
+import Footer from "../../components/Footer.astro";
+import { LinkServices } from "../../data/LinkServicesRoffing";
+import BuutonMovil from "../../components/ButtonMovil.astro";
+import MoreServices from "../../components/moreServices.astro";
+import RelationServices from "../../components/relationServices.astro";
+import TrustOur from "../../components/trustOur.astro";
+import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
+---
+
+<Layout
+  title="Roofing in Albany | Nova Solutions"
+  description="Looking for reliable  roofing in Albany? Nova Solutions offers expert roof repair, replacement, and installation using high-quality materials and certified contractors you can trust."
+/>
+<BuutonMovil class="fixed bottom-4 right-4 z-50" />
+<div class="mt-[130px] md:mt-[95px]">
+  <SectionInfo sliders={suppliers} />
+</div>
+
+<div class="max-w-6xl mx-auto px-4 my-16">
+  <div class="breadcrumb text-sm text-gray-600 flex items-center">
+    <a href="/" class="hover:text-primary">Home</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <span class="font-semibold text-black">Roofing</span>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-3xl font-bold text-black text-center lg:text-left mt-10">
+        Trusted Roofing Company in Albany
+      </h1>
+      <div class="text-black leading-relaxed text-justify space-y-4">
+        <p>
+          At <strong>Nova Solutions</strong>, we proudly serve Albany homeowners
+          with expert roofing services you can trust. Unlike some companies that
+          install new shingles over old ones — a shortcut that can
+          <strong> void your manufacturer's warranty</strong> — we follow exact manufacturer
+          specifications to ensure your roof is built to last. Our commitment to
+          quality means your investment is protected and your home stays structurally
+          sound.
+        </p>
+
+        <p>
+          For years, our experienced team has delivered
+          <strong> professional roof repair and roof replacement</strong>
+          services across Albany and the surrounding areas. We don’t stop until your
+          roof is stronger than ever and you're fully satisfied with the results.
+          Don’t just take our word for it — check out our online reviews! You'll
+          see we’re known for
+          <strong> fast service, excellent customer care</strong>, and getting
+          the job done right the first time.
+        </p>
+
+        <p>
+          Call us today and discover how easy and stress-free your
+          <strong> Albany roofing project</strong> can be!
+        </p>
+      </div>
+    </div>
+    <section class="flex-1 text-black">
+      <CertificatesAffiliations />
+    </section>
+  </div>
+</div>
+
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold text-black">
+      Albany Roofing Contractors for Your Home
+    </h2>
+    <p class="text-gray-700 leading-relaxed text-justify">
+      <p>
+        It takes a balance of <strong
+          >professional training and strong work ethic</strong
+        > to successfully complete a roofing project. At <strong
+          >Nova Solutions</strong
+        >, our <strong>Albany roofing contractors</strong> have the experience and
+        skill required to repair or replace your roof flawlessly.
+      </p>
+
+      <p>
+        We work exclusively with the <strong
+          >highest quality roofing materials</strong
+        > and are fully trained in the proper installation of shingles from top-rated
+        brands. Whether it’s <strong
+          >asphalt roofing, metal roofing, or roof repair</strong
+        >, our team delivers unmatched speed and craftsmanship on every project.
+      </p>
+
+      <p>
+        When you work with our expert team at Nova Solutions, you can expect:
+      </p>
+    </p>
+  </div>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1744940052/20231124_164824_pbq8zx.jpg"
+    alt="Roofing Installation"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto"
+  />
+</section>
+
+<!-- Sección 2: Imagen a la izquierda + texto -->
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1745296100/GAF-Layer-lock-Dynamic-Restoration_hodwla.jpg"
+    alt="Certified Roofing Process"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto order-1 md:order-none"
+  />
+  <div class="space-y-4">
+    <section class="max-w-6xl mx-auto px-4 my-16">
+      <h2 class="text-2xl font-bold text-black mb-4 text-center lg:text-left">
+        What You Can Look Forward To:
+      </h2>
+      <p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2">
+          <li>
+            <strong>Safety:</strong> resilient against wind, combustion, and collapse.
+          </li>
+          <li>
+            <strong>Weather resistant:</strong> precision-based shingle placement.
+          </li>
+          <li>
+            <strong>Style:</strong> multiple colors, textures, and materials.
+          </li>
+          <li>
+            <strong>Energy efficiency:</strong> insulation against extreme weather.
+          </li>
+          <li>
+            <strong>Durability:</strong> high-grade shingles for any condition.
+          </li>
+          <li>
+            <strong>Customer service:</strong> your satisfaction is our top priority.
+          </li>
+        </ul>
+      </p>
+      <p>
+        Let us show you why we're the trusted choice for <strong
+          >roofing in Albany</strong
+        >. Contact us today to schedule your free inspection!
+      </p>
+      <p class="text-gray-700 mt-4">
+        Questions?
+        <a href="/About/Contact-us" class="text-black font-bold text-base">
+          Contact us
+        </a>
+        today!
+      </p>
+    </section>
+  </div>
+</section>
+
+<TrustOur />
+
+<RelationServices title="Related Roofing Services" services={LinkServices} />
+<MoreServices />
+
+<Footer />

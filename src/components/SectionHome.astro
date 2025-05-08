@@ -1,0 +1,76 @@
+---
+import Formulario from "./Formulario.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<div
+  id="slideshow-bg"
+  class="relative bg-cover bg-center transition-all duration-1000 min-h-[55vh] h-auto bg-position-center"
+  style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg')"
+>
+  <div class="absolute inset-0 bg-accent opacity-[0.5] z-[1]"></div>
+
+  <div
+    class="relative z-[2] flex text-primary flex-wrap justify-between items-center p-10 h-full"
+  >
+    <!-- Contenido principal -->
+    <div class="flex-1" >
+      <h1 class="text-5xl mb-[10px] pl-[10%] text-white">Commercial and Residential</h1>
+      <h1 class="text-5xl mb-[20px] pl-[10%] text-white">
+        Renovation Team In Albany, NY!
+      </h1>
+      <h2 class="text-xl mb-4 pl-[10%] underline decoration-double">
+        One Call Does it All!
+      </h2>
+
+      <div class="pl-[10%]">
+        <p class="mt-5 text-base text-yellow-400 animate-slide-in-left">
+          4.5★★★★★ | Google Reviews
+        </p>
+      </div>
+
+      <div>
+        <p
+          class="ml-[10%] mt-2 my-1 px-3 py-3 text-lg font-bold bg-blue-500 text-white rounded-lg inline-block hover:bg-blue-700 transition-colors"
+        >
+          <Icon
+            name="mdi:phone"
+            width="34"
+            height="34"
+            class="inline-block mr-2"
+          />
+          <strong>(518)-598-5156</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Formulario oculto en móviles -->
+    <div
+      class="hidden md:block min-w-[200px] bg-transparent p-5 rounded-lg shadow-lg mx-20"
+    >
+      <div class="form-box text-black ">
+        <Formulario />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Información adicional -->
+
+<!-- Script para cambiar fondo -->
+<script is:inline>
+  const images = [
+    "https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg",
+    "https://res.cloudinary.com/driyxelzh/image/upload/v1744406636/banner2_pilov2.jpg",
+  ];
+
+  let index = 0;
+  const bg = document.getElementById("slideshow-bg");
+
+  setInterval(() => {
+    index = (index + 1) % images.length;
+    if (bg) {
+      bg.style.backgroundImage = `url('${images[index]}')`;
+    }
+  }, 5000); // cambia cada 5 segundos
+</script>

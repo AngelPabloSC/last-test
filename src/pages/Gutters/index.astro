@@ -1,0 +1,108 @@
+---
+import SectionInfo from "../../components/SectionInfo.astro";
+import Layout from "../../layouts/Layout.astro";
+import suppliers from "../../json/suppliers.json";
+import Footer from "../../components/Footer.astro";
+import BuutonMovil from "../../components/ButtonMovil.astro";
+import MoreServices from "../../components/moreServices.astro";
+import RelationServices from "../../components/relationServices.astro";
+import TrustOur from "../../components/trustOur.astro";
+import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
+import { LinkServicesGutters } from "../../data/LinkServicesaRoofingGutters";
+---
+
+<Layout
+  title="Gutter Installation & Repair in Albany - Nova Solution"
+  description="Need gutter repair or installation in Albany? Nova Solution offers affordable, high-quality gutter services, including vinyl, aluminum, and seamless gutters, plus gutter guards. Call now for a free quote!"
+/>
+<BuutonMovil class="fixed bottom-4 right-4 z-50" />
+<div class="mt-[130px] md:mt-[95px]">
+  <SectionInfo heading={"Gutter Installation "} sliders={suppliers} />
+</div>
+
+<div class="max-w-6xl mx-auto px-4 my-16">
+  <div class="breadcrumb text-sm text-gray-600 flex items-center">
+    <a href="/" class="hover:text-primary">Home</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <span class="font-semibold text-black">Gutter</span>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-3xl font-bold text-black text-center lg:text-left mt-10">
+        Gutter Services for Albany Homeowners
+      </h1>
+
+      <p class="text-black">
+        If you're looking for professional gutter installation, replacement, or
+        repairs in Albany, trust Nova Solution — your local experts. With over
+        20 years of hands-on experience and a reputation for reliability since
+        2007, we’ve helped countless homeowners protect their homes from water
+        damage.
+      </p>
+      <p class="text-black mt-4">
+        From seamless gutter installations to durable gutter guards, we handle
+        it all. Our customers consistently rate us 5 out of 5 stars for our
+        commitment to quality and satisfaction.
+      </p>
+      <p class="text-black mt-4">
+        Call our Albany team today to get your <strong
+          >free, affordable gutter estimate</strong
+        > and experience the Nova Solution difference!
+      </p>
+    </div>
+    <section class="flex-1 text-black mt-10">
+      <CertificatesAffiliations />
+    </section>
+  </div>
+</div>
+
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1745296100/GAF-Layer-lock-Dynamic-Restoration_hodwla.jpg"
+    alt="Certified Roofing Process"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto order-1 md:order-none"
+  />
+  <div class="space-y-4">
+    <section class="max-w-6xl mx-auto px-4 my-16">
+      <h2 class="text-2xl font-bold text-black mb-4 text-center lg:text-left">
+        Our Gutter Services Include
+      </h2>
+      <p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2">
+          <li>Affordable and fast gutter repair for leaks and damage</li>
+          <li>Installation of high-performance gutter and leaf guards</li>
+          <li>Complete gutter replacement (vinyl, aluminum, and seamless)</li>
+          <li>Custom-fit gutter solutions for long-term home protection</li>
+          <li>No-hassle inspections and transparent, competitive quotes</li>
+        </ul>
+      </p>
+      <p>
+        Let us show you why we're the trusted choice for <strong
+          >Gutter in Albany</strong
+        >. Contact us today to schedule your free inspection!
+      </p>
+      <p class="text-gray-700 mt-4">
+        Questions?
+        <a href="/About/Contact-us" class="text-black font-bold text-base">
+          Contact us
+        </a>
+        today!
+      </p>
+    </section>
+  </div>
+</section>
+
+<TrustOur />
+
+<RelationServices
+  title="Related Gutters Services"
+  services={LinkServicesGutters}
+/>
+<MoreServices />
+
+<Footer />

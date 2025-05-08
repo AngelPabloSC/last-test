@@ -1,0 +1,494 @@
+---
+import Card from "../components/Card.astro";
+import SectionHome from "../components/SectionHome.astro";
+import Layout from "../layouts/Layout.astro";
+import { stepsRespote } from "../data/stepRestore";
+import { oneCall } from "../data/onecall";
+import LazyYoutube from "../components/LazyYoutube.astro";
+import Swiper from "../components/swiper.astro";
+import suppliers from "../json/suppliers.json";
+import Footer from "../components/Footer.astro";
+import ButtonMovil from "../components/ButtonMovil.astro";
+const props = Astro.props;
+const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
+---
+
+<Layout
+  title="Nova Solutions Restoration | Roofing & Siding Experts in Albany"
+  description="Nova Solutions Restoration provides expert roofing, siding, windows, and gutter services in Albany. Trusted by homeowners for top-quality exterior home restoration and protection."
+>
+  <ButtonMovil class="fixed bottom-4 right-4 z-50" />
+  <div class="mt-[130px] md:mt-[95px]">
+    <SectionHome />
+  </div>
+  <div
+    class="flex justify-center items-center bg-primary-second bg-opacity-50 text-white font-sans p-[10px] md:p-[30px]"
+  >
+    <ul
+      class="flex flex-wrap md:flex-row items-center justify-center gap-[10px] md:gap-[80px] p-0 m-0 list-none"
+    >
+      <li class="flex items-center gap-2 text-lg md:text-2xl">
+        <span class="text-[1.5rem] md:text-[2rem] font-bold text-primary"
+          >✓</span
+        >
+        Trusted-home experts!
+      </li>
+      <li class="flex items-center gap-2 text-lg md:text-2xl">
+        <span class="text-[1.5rem] md:text-[2rem] font-bold text-primary"
+          >✓</span
+        >
+        Reliable-Installations!
+      </li>
+      <li class="flex items-center gap-2 text-lg md:text-2xl">
+        <span class="text-[1.5rem] md:text-[2rem] font-bold text-primary"
+          >✓</span
+        >
+        Local - Remodelers!
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="flex relative bg-white overflow-hidden h-auto justify-center items-center"
+  >
+    <div
+      class="absolute top-0 right-0 w-full h-full bg-gray-100 z-0"
+      style="clip-path: polygon(100% 0, 100% 100%, 30% 100%)"
+    >
+    </div>
+
+    <div
+      class="relative z-10 justify-center items-center text-primary font-sans p-[20px] md:p-[50px]"
+    >
+      <div class="text-center">
+        <h1 class="text-4xl font-bold italic text-blue-900 mb-4">WHAT WE DO</h1>
+        <p class="text-lg italic text-blue-900">
+          Nova Solutions | Albany Roofing | Roofers | Siding | Windows | Gutters
+          | Gutter Guards
+        </p>
+      </div>
+
+      <section class="flex flex-wrap justify-center gap-6 p-6 bg-white">
+        <Card
+          title="ROOFING"
+          paragraph="Choose a reliable local roofing company that knows what it takes to keep your Albany home protected. Nova Solutions has over 13+ years of roofing excellence!."
+          buttonText="Explore Roofing"
+          url="/Roofing"
+          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg"
+        />
+
+        <Card
+          title="SIDING"
+          paragraph="Upgrade the curb appeal of your home with vinyl & fiber cement siding by Nova Solutions! Siding not only protects your home's exterior but adds value to your Albany home!"
+          buttonText="Explore Siding"
+          url="/siding"
+        />
+
+        <Card
+          title="GUTTERS"
+          paragraph="Our gutters and gutter guards will keep your Albany home protected from water runoff & the elements! Gutter Cap is the leading gutter protection system in North America!"
+          buttonText="See Gutters"
+          url="/gutters"
+        />
+      </section>
+    </div>
+  </div>
+  <div
+    class="flex flex-col md:flex-row md:items-center bg-primary-second h-auto sm:h-auto md:h-auto xl:h-auto px-10 md:px-20 py-20 md:py-20 gap-10"
+  >
+    <!-- Texto principal -->
+    <div class="w-full flex flex-col justify-center h-auto">
+      <h1
+        class="text-primary text-4xl md:text-5xl font-bold italic mb-4 text-center md:text-left"
+      >
+        When Disaster Strikes, Call Nova Solutions
+      </h1>
+
+      <h2
+        class="text-white text-xl font-semibold mb-4 text-center md:text-left"
+      >
+        Trusted Experts in Albany
+      </h2>
+
+      <p class="text-white text-lg leading-relaxed mb-6 text-justify">
+        Emergencies can strike anytime, leaving your property in disarray. Nova
+        Solutions specializes in flood restoration Albany and water damage
+        restoration in Albany, ensuring quick help when disaster hits. We handle
+        mitigation and fire restoration, mold remediations, and more to restore
+        your space swiftly. Our experts prioritize safety, efficiency, and
+        quality, so you can regain peace of mind. Turn to Nova Solutions for a
+        fast, reliable recovery that brings your property back to its best.
+      </p>
+
+      <h3 class="text-white font-bold mb-4 text-3xl md:text-4xl text-center">
+        Our Restoration Services
+      </h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center">
+        <button
+          class="text-primary font-semibold px-6 py-4 rounded-xl hover:bg-white hover:text-primary hover:shadow-xl transition duration-200 flex flex-col items-center bg-white/20"
+          title="Fire Damage Restoration"
+        >
+          <iconify-icon icon="mdi:fire" class="text-3xl mb-1"></iconify-icon>
+          Fire Damage
+        </button>
+
+        <button
+          class="text-primary font-semibold px-6 py-4 rounded-xl hover:bg-white hover:text-primary hover:shadow-xl transition duration-200 flex flex-col items-center bg-white/20"
+          title="Water Damage Restoration"
+        >
+          <iconify-icon icon="mdi:water" class="text-3xl mb-1"></iconify-icon>
+          Water Damage
+        </button>
+      </div>
+    </div>
+
+    <!-- Imagen -->
+    <div class="w-full md:w-3/4 flex items-center justify-center h-full">
+      <img
+        src="https://res.cloudinary.com/driyxelzh/image/upload/v1744735272/Dynamic-Restoration-Mitigation-Services_bhbqva.jpg"
+        alt="Restoration team working"
+        class="rounded-3xl w-[90%] md:w-[60%] h-auto shadow-lg"
+      />
+    </div>
+  </div>
+  <div
+    class="relative flex flex-col md:flex-row md:items-center h-auto sm:h-auto md:h-auto xl:h-auto px-10 md:px-20 py-20 md:py-20 gap-10"
+  >
+    <div
+      class="absolute top-0 right-0 w-full h-full bg-gray-100 z-0"
+      style="clip-path: polygon(0% 0, 70% 100%, 0% 100%)"
+    >
+    </div>
+
+    <div class="w-full md:w-1/2 flex flex-col justify-center relative z-10">
+      <h2
+        class="text-black text-xl md:text-2xl font-semibold italic mb-4 text-center md:text-left"
+      >
+        Greater Albany Trusted Roofer & Exterior Expert
+      </h2>
+
+      <h3
+        class="text-black text-3xl md:text-5xl font-semibold italic mb-4 text-center md:text-left"
+      >
+        One Call Does It All – Roofing, Siding & More
+      </h3>
+
+      <p class="text-black text-lg leading-relaxed mb-6 text-justify">
+        At Nova Solutions, we perform both residential and commercial work. If
+        you’re looking for a dependable and organized contractor to help with
+        your residential or commercial project, give us a call today. We’ll have
+        one of our qualified reps work with you to ensure satisfaction every
+        step of the way.
+      </p>
+
+      <div
+        class="flex flex-col-reverse md:flex-col lg:flex-row items-center md:items-start justify-center md:justify-between gap-4 mb-4 my-1 text-center md:text-left"
+      >
+        <h4 class="text-4xl font-bold">
+          About Nova Solutions <span class="block">Restoration</span>
+        </h4>
+        <img
+          src="https://res.cloudinary.com/driyxelzh/image/upload/v1744947410/NRCA-Logo-Dynamic-Restoration_rtcccx.jpg"
+          alt="Nova Solutions Logo"
+          class="w-40 h-auto object-contain"
+        />
+      </div>
+
+      <p class="text-black text-lg leading-relaxed mb-6 text-justify">
+        We’ve been in business for more than <strong> 5 years</strong> and we have
+        many team and crew members with over <strong
+          >7 years of experience
+        </strong> in construction/restoration. Every member of our team is committed
+        to providing you with the best service, quality and workmanship available
+        for
+        <a
+          href="/Roofing"
+          class="text-black font-bold hover:text-primary-dark transition"
+        >
+          roofing
+        </a>,
+        <a
+          href="/Roofing-Repair"
+          class="text-black font-bold hover:text-primary-dark transition"
+        >
+          Roofing Repair
+        </a>
+        <a
+          href="/Siding"
+          class="text-black font-bold hover:text-primary-dark transition"
+        >
+          siding
+        </a>, and
+        <a
+          href="/Gutters"
+          class="text-black font-bold hover:text-primary-dark transition"
+        >
+          gutter protection
+        </a>. We’re committed to quality, craftsmanship, and customer
+        satisfaction.
+      </p>
+    </div>
+
+    <div
+      class="w-full md:w-3/4 flex items-center justify-center h-full relative z-10"
+    >
+      <img
+        src="https://res.cloudinary.com/driyxelzh/image/upload/v1744735272/Dynamic-Restoration-Mitigation-Services_bhbqva.jpg"
+        alt="Restoration team working"
+        class="rounded-3xl w-[90%] md:w-[60%] h-auto shadow-lg"
+      />
+    </div>
+  </div>
+  <div
+    class="relative flex flex-col md:grid md:grid-cols-4 gap-10 min-h-[700px] md:min-h-[auto] overflow-x-hidden overflow-y-visible py-20"
+  >
+    <div
+      class="absolute top-0 right-0 w-full h-full bg-gray-100 z-0"
+      style="clip-path: polygon(0% 0, 70% 0, 0% 100%)"
+    >
+    </div>
+    <div class="md:col-span-2 z-[2] pr-4 order-1 pt-0 md:pt-15">
+      <h1 class="text-3xl md:text-4xl font-bold mb-6 text-black mx-9">
+        {title}
+      </h1>
+
+      {
+        stepsRespote.map((item, index) => {
+          if ("title" in item && "steps" in item) {
+            return (
+              <div class="bg-primary-dark shadow w-full">
+                <button
+                  class={`text-primary flex justify-between items-center w-full text-lg font-semibold cursor-pointer accordion-toggle py-4 px-0 md:px-9 ${
+                    index !== 1 ? "border-t border-white" : ""
+                  }`}
+                  data-index={index}
+                >
+                  <span>{item.title}</span>
+                  <span class="transition-transform duration-300 icon">▼</span>
+                </button>
+
+                <ul
+                  id={`content-${index}`}
+                  class="accordion-content list-disc mt-2 px-10 bg-white w-full text-gray-700 text-base md:text-lg overflow-hidden max-h-0 transition-all duration-500 ease-in-out"
+                >
+                  {item.steps.map((step, stepIndex) => (
+                    <li>{step.text}</li>
+                  ))}
+                </ul>
+              </div>
+            );
+          }
+          return null;
+        })
+      }
+    </div>
+
+    <div
+      class="md:col-span-2 flex justify-center items-center z-[1] order-2 mt-10 md:mt-0 relative bg-cover bg-center rounded-xl p-0 md:px-20"
+    >
+      <div
+        class="hidden md:block w-full h-[600px] bg-cover bg-center rounded-xl"
+        style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg')"
+      >
+      </div>
+    </div>
+  </div>
+  <section class="bg-cover bg-center py-20 bg-primary-second">
+    <!-- style="background-image: url('...');" -->
+    <div class="text-center mb-12">
+      {
+        oneCall.map((item) => {
+          if ("titleOneCall" in item) {
+            return (
+              <h1 class="text-5xl font-bold text-primary">
+                {item.titleOneCall}
+              </h1>
+            );
+          }
+          if ("subtitleOneCall" in item) {
+            return (
+              <h2 class="text-2xl italic mt-2 text-white">
+                {item.subtitleOneCall}
+              </h2>
+            );
+          }
+        })
+      }
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-10">
+      {/* Servicios más pequeños */}
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {
+          oneCall.map((item) => {
+            if ("title" in item && "content" in item) {
+              return (
+                <div class="text-center flex flex-col items-center gap-2 text-primary text-sm">
+                  <iconify-icon
+                    icon={item.content[0].icon}
+                    class="text-yellow-400 text-4xl"
+                  />
+                  <h3 class="text-lg font-bold uppercase">{item.title}</h3>
+                  <p class="text-white text-justify">{item.content[0].text}</p>
+                </div>
+              );
+            }
+            return null;
+          })
+        }
+      </div>
+
+      {/* Video más grande */}
+      <div class="lg:col-span-1 flex justify-center items-center h-full w-full">
+        {
+          oneCall.map((item) => {
+            if ("video" in item) {
+              const videoId = item.video.src.split("v=")[1]?.split("&")[0];
+              return (
+                <div class="w-full aspect-video">
+                  <LazyYoutube videoId={videoId} alt={item.video.alt} />
+                </div>
+              );
+            }
+            return null;
+          })
+        }
+      </div>
+    </div>
+  </section>
+  <div
+    id="tour-section"
+    class="px-4 md:px-20 py-30 bg-cover bg-center transition-all duration-700 ease-in-out h-auto md:h-[600px] justify-center items-center"
+    style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg');"
+  >
+    <h1 class="text-3xl font-bold text-center mb-8 text-white">
+      EXPLORE OUR WORK
+    </h1>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
+    >
+      <div
+        class="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden cursor-pointer transition hover:scale-105 shadow-lg"
+        data-bg="https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg"
+        onclick="window.location.href='/About/Gallery#roofing-gallery'"
+      >
+        <img
+          src="https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 text-white">
+          <h2 class="font-bold text-lg">Roofing</h2>
+          <p class="text-sm opacity-80">There will be a small description.</p>
+        </div>
+      </div>
+
+      <div
+        class="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden cursor-pointer transition hover:scale-105 shadow-lg"
+        data-bg="https://res.cloudinary.com/driyxelzh/image/upload/v1744940052/20231124_164824_pbq8zx.jpg"
+        onclick="window.location.href='/About/Gallery#siding-gallery'"
+      >
+        <img
+          src="https://res.cloudinary.com/driyxelzh/image/upload/v1744940052/20231124_164824_pbq8zx.jpg"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 text-white">
+          <h2 class="font-bold text-lg">Siding</h2>
+          <p class="text-sm opacity-80">There will be a small description.</p>
+        </div>
+      </div>
+
+      <div
+        class="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden cursor-pointer transition hover:scale-105 shadow-lg"
+        data-bg="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80"
+        onclick="window.location.href='/tour3'"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 text-white">
+          <h2 class="font-bold text-lg">Windows</h2>
+          <p class="text-sm opacity-80">There will be a small description.</p>
+        </div>
+      </div>
+
+      <div
+        class="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden cursor-pointer transition hover:scale-105 shadow-lg"
+        data-bg="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+        onclick="window.location.href='/tour4'"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-4 text-white">
+          <h2 class="font-bold text-lg">Gutters</h2>
+          <p class="text-sm opacity-80">There will be a small description.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center flex flex-col bg-white p-5 md:px-10 gap-20 py-20">
+    <h1 class="text-2xl font-semibold text-black">
+      We use only top-quality products from leading suppliers
+    </h1>
+    <div class="h-10 w-full flex justify-center items-center">
+      <Swiper slides={suppliers} />
+    </div>
+  </div>
+  <div>
+    <Footer />
+  </div>
+  <!-- Agrega más tarjetas si deseas -->
+</Layout>
+<script type="module" is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    const toggles = document.querySelectorAll(".accordion-toggle");
+
+    toggles.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = button.getAttribute("data-index");
+        const content = document.getElementById(`content-${index}`);
+        const icon = button.querySelector(".icon");
+
+        const isOpen =
+          content.style.maxHeight && content.style.maxHeight !== "0px";
+
+        // Cierra todos los contenidos
+        document.querySelectorAll(".accordion-content").forEach((el) => {
+          el.style.maxHeight = null;
+          el.previousElementSibling
+            .querySelector(".icon")
+            .classList.remove("rotate-180");
+        });
+
+        // Si no estaba abierto, lo abre
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.classList.add("rotate-180");
+        }
+      });
+    });
+  });
+  // Cambio de fondo
+  window.addEventListener("DOMContentLoaded", () => {
+    const section = document.getElementById("tour-section");
+    const cards = document.querySelectorAll("[data-bg]");
+
+    // Lista de fondos desde las tarjetas
+    const bgImages = Array.from(cards).map((card) =>
+      card.getAttribute("data-bg")
+    );
+
+    let current = 0;
+
+    // Cambiar fondo automáticamente cada 5 segundos
+    setInterval(() => {
+      current = (current + 1) % bgImages.length;
+      section.style.backgroundImage = `url('${bgImages[current]}')`;
+    }, 5000);
+  });
+</script>

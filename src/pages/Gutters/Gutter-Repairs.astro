@@ -1,0 +1,106 @@
+---
+import SectionInfo from "../../components/SectionInfo.astro";
+import Layout from "../../layouts/Layout.astro";
+import suppliers from "../../json/suppliers.json";
+import Footer from "../../components/Footer.astro";
+
+import ButtonMovil from "../../components/ButtonMovil.astro";
+import MoreServices from "../../components/moreServices.astro";
+import RelationServices from "../../components/relationServices.astro";
+import TrustOur from "../../components/trustOur.astro";
+import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
+import { LinkServicesGutters } from "../../data/LinkServicesaRoofingGutters";
+---
+
+<Layout
+  title="Albany Gutter Repair Services | Nova Solution – Fast & Affordable"
+  description="Looking for reliable gutter repair in Albany, NY? Nova Solution specializes in fast, affordable gutter repairs, seamless gutter installation, and gutter guard protection. Get your free estimate today!"
+/>
+<ButtonMovil class="fixed bottom-4 right-4 z-50" />
+<div class="mt-[130px] md:mt-[95px]">
+  <SectionInfo heading={"Gutter Repair"} sliders={suppliers} />
+</div>
+
+<div class="max-w-6xl mx-auto px-4 my-16">
+  <div class="breadcrumb text-sm text-gray-600 flex items-center">
+    <a href="/" class="hover:text-primary">Home</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <a href="/Gutters" class="hover:text-primary">Gutters</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <span class="font-semibold text-black">Gutter Repairs</span>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-3xl font-bold text-black text-center lg:text-left mt-10">
+        Professional Gutter Repair Company in Albany, NY
+      </h1>
+
+      <p class="text-black mb-4">
+        At <strong>Nova Solution</strong>, we do more than just cover your
+        gutters — <strong>we restore them</strong>. When your gutter system is
+        compromised by debris, storm damage, or aging materials, our
+        Albany-based experts are here to repair or replace the affected sections
+        with precision and care.
+      </p>
+
+      <p class="text-black mb-4">
+        With <strong>over 7 years of experience</strong> in all types of gutter repairs,
+        we handle every model and condition. Whether your gutters are leaking, sagging,
+        or detached, <strong>we’ll get them working like new</strong>. Trust the
+        local pros to protect your home from costly water damage.
+      </p>
+    </div>
+    <section class="flex-1 text-black mt-10">
+      <CertificatesAffiliations />
+    </section>
+  </div>
+</div>
+
+<section
+  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
+>
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold text-black">Gutter Repairs in Albany</h2>
+
+    <p class="text-black leading-relaxed text-justify mt-4">
+      Gutters can become compromised over time due to harsh weather, falling
+      debris, or natural wear and tear. These issues can lead to <strong
+        >holes, tears, and detachment</strong
+      > from your home’s trim — putting your property at risk of water damage.
+    </p>
+    <p class="text-black leading-relaxed text-justify mt-4">
+      At <strong>Nova Solution</strong>, our friendly and experienced team will <strong
+        >quickly diagnose the problem</strong
+      > and provide a <strong>free estimate</strong> for your gutter repair. Once
+      approved, we’ll complete the job promptly with <strong
+        >top-quality craftsmanship and 5-star service</strong
+      > from start to finish.
+    </p>
+  </div>
+  <img
+    src="https://res.cloudinary.com/driyxelzh/image/upload/v1744940052/20231124_164824_pbq8zx.jpg"
+    alt="Nova Solution technician repairing gutters on a home in Albany"
+    class="rounded-xl shadow-lg w-full max-w-md mx-auto"
+  />
+</section>
+
+<img
+  src="https://res.cloudinary.com/driyxelzh/image/upload/v1745296100/GAF-Layer-lock-Dynamic-Restoration_hodwla.jpg"
+  alt="Certified gutter installation process with GAF materials"
+  class="rounded-xl shadow-lg w-full max-w-md mx-auto order-1 md:order-none"
+/>
+
+<TrustOur />
+
+<RelationServices
+  title="Related Gutters Services"
+  services={LinkServicesGutters}
+/>
+<MoreServices />
+
+<Footer />
