@@ -1,0 +1,37 @@
+image: node:18
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - echo "Cleaning up old dependencies..."
+  - rm -rf node_modules package-lock.json 
+  - npm cache clean --force
+  - echo "Reinstalling dependencies..."
+  - npm install 
+
+build:
+  stage: build
+  script:
+    - echo "→ Instalando dependencias"
+    - npm install
+    - npm run build
+    - echo "→ Build completo"
+    - tar -czf build.tar.gz dist/
+
+deploy_to_ec2:
+  stage: deploy
+  only:
+    - main
+  script:
+    - echo "→ Preparando SSH"
+    - mkdir -p ~/.ssh
+    - echo "$EC2_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+
+    - echo "→ Enviando build a EC2"
+    - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa build.tar.gz ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com:~/build.tar.gz
+
+    - echo "→ Descomprimiendo y desplegando en EC2"
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com "rm -rf ~/build && mkdir -p ~/build && tar -xzf build.tar.gz -C ~/build && bash ~/deploy.sh"
