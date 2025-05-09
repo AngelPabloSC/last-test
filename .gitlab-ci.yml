@@ -3,6 +3,7 @@ image: node:18
 stages:
   - build
   - deploy
+
 before_script:
   - echo "Cleaning up old dependencies..."
   - rm -rf node_modules package-lock.json 
@@ -17,7 +18,6 @@ build:
     - npm install
     - npm run build
     - echo "→ Build completo"
-
     - tar -czf build.tar.gz dist/
 
 deploy_to_ec2:
