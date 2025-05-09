@@ -6,27 +6,27 @@ export const LinkServices = [
   },
   {
     title: 'Roofing installation',
-    path: '/Roofing/Roff-installation',
+    path: '/Roofing/Roof-installation',
     icon: 'solar:home-line-duotone',
   },
   {
     title: 'Asphalt Shingles & Metal Roofing',
-    path: '/services/asphalt-metal-roofing',
+    path: '/Roofing/Asphalt-Single',
     icon: 'solar:layers-line-duotone',
   },
   {
     title: 'Insurance Claim specialists',
-    path: '/services/insurance-claims',
+    path: '/Roofing/Insurance-Claims',
     icon: 'solar:shield-check-line-duotone',
   },
   {
     title: 'Metal Roofing',
-    path: '/services/local-roofing',
+    path: '/Roofing/Metal-Roofing',
     icon: 'ic:baseline-roofing',
   },
   {
     title: 'Commercial Roofing',
-    path: '/services/commercial',
+    path: '/Roofing/Commercial',
     icon: 'material-symbols:roofing-rounded',
   },
 
