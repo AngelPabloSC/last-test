@@ -1,22 +1,28 @@
 [
+   
     {
-        "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1744959554/Master-Elite-3-80x80_fsgicw.png",
-        "alt": "Supplier 1"
+       "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1746729929/certainteed-logo-freelogovectors.net_-400x225_n7gdwj.png",
+        "alt": "Logo Certaniteed "
     },
     {
-        "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1744947410/NRCA-Logo-Dynamic-Restoration_rtcccx.jpg",
-        "alt": "Supplier 2"
+        "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1746729290/pinkpanther-logo_qngzlc.png",
+        "alt": "Logo Owends Corning"
     },
     {
-        "imgUrl": "https://example.com/image3.jpg",
-        "alt": "Supplier 3"
+        "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1746729514/norandex_vsij3j.png",
+        "alt": "Logo Norandex"
     },
+   
     {
-        "imgUrl": "https://example.com/image4.jpg",
-        "alt": "Supplier 4"
+        "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1746730454/2020-andersen-windows-new-logo-design_leh7qq-removebg-preview_akmc6j.png",
+        "alt": "Logo Andersen"
     },
+   
+   
     {
-        "imgUrl": "https://example.com/image5.jpg",
-        "alt": "Supplier 5"
+        "imgUrl": "https://res.cloudinary.com/driyxelzh/image/upload/v1746730347/ideal-roofing-logo-640w-removebg-preview_t4wuby.png",
+        "alt": "logo ideal Roofing"
     }
+   
+    
 ]

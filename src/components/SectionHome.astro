@@ -6,16 +6,21 @@ import { Icon } from "astro-icon/components";
 <div
   id="slideshow-bg"
   class="relative bg-cover bg-center transition-all duration-1000 min-h-[55vh] h-auto bg-position-center"
-  style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg')"
+  style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1746726907/IMG-20240109-WA0138_y93nsn.jpg')"
 >
-  <div class="absolute inset-0 bg-accent opacity-[0.5] z-[1]"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-tr from-black via-black/80 to-transparent opacity-100 z-[1]"
+  >
+  </div>
 
   <div
     class="relative z-[2] flex text-primary flex-wrap justify-between items-center p-10 h-full"
   >
     <!-- Contenido principal -->
-    <div class="flex-1" >
-      <h1 class="text-5xl mb-[10px] pl-[10%] text-white">Commercial and Residential</h1>
+    <div class="flex-1">
+      <h1 class="text-5xl mb-[10px] pl-[10%] text-primary-700">
+        Commercial and Residential
+      </h1>
       <h1 class="text-5xl mb-[20px] pl-[10%] text-white">
         Renovation Team In Albany, NY!
       </h1>
@@ -48,7 +53,7 @@ import { Icon } from "astro-icon/components";
     <div
       class="hidden md:block min-w-[200px] bg-transparent p-5 rounded-lg shadow-lg mx-20"
     >
-      <div class="form-box text-black ">
+      <div class="form-box text-black">
         <Formulario />
       </div>
     </div>
@@ -60,8 +65,9 @@ import { Icon } from "astro-icon/components";
 <!-- Script para cambiar fondo -->
 <script is:inline>
   const images = [
-    "https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg",
-    "https://res.cloudinary.com/driyxelzh/image/upload/v1744406636/banner2_pilov2.jpg",
+    "https://res.cloudinary.com/driyxelzh/image/upload/v1746726907/IMG-20240109-WA0156_pmbfsw.jpg",
+    "https://res.cloudinary.com/driyxelzh/image/upload/v1746726907/IMG-20240313-WA0043_knl337.jpg",
+    "https://res.cloudinary.com/driyxelzh/image/upload/v1746726907/IMG-20240109-WA0138_y93nsn.jpg",
   ];
 
   let index = 0;
