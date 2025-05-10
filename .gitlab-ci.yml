@@ -6,10 +6,10 @@ stages:
 
 before_script:
   - echo "Cleaning up old dependencies..."
-  - rm -rf node_modules package-lock.json 
+  - rm -rf node_modules package-lock.json
   - npm cache clean --force
   - echo "Reinstalling dependencies..."
-  - npm install 
+  - npm install
 
 build:
   stage: build
@@ -19,7 +19,10 @@ build:
     - npm run build
     - echo "→ Build completo"
     - tar -czf build.tar.gz dist/
-
+  artifacts:
+    paths:
+      - build.tar.gz
+    expire_in: 1 hour
 deploy_to_ec2:
   stage: deploy
   only:
@@ -34,4 +37,4 @@ deploy_to_ec2:
     - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa build.tar.gz ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com:~/build.tar.gz
 
     - echo "→ Descomprimiendo y desplegando en EC2"
-    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com "rm -rf ~/build && mkdir -p ~/build && tar -xzf build.tar.gz -C ~/build && bash ~/deploy.sh"
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com "bash ~/deploy.sh"
