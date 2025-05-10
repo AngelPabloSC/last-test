@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^6.3.0",
+    "@astrojs/sitemap": "^3.3.1",
     "@iconify-json/mdi": "^1.2.3",
     "@lucia-auth/astro": "^0.5.7",
     "@midudev/tailwind-animations": "^0.2.0",
