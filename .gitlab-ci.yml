@@ -34,7 +34,7 @@ deploy_to_ec2:
     - chmod 600 ~/.ssh/id_rsa
 
     - echo "→ Enviando build a EC2"
-    - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa build.tar.gz ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com:~/build.tar.gz
+    - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa build.tar.gz "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH"
 
     - echo "→ Descomprimiendo y desplegando en EC2"
-    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@ec2-3-215-5-204.compute-1.amazonaws.com "bash ~/deploy.sh"
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$REMOTE_USER@$REMOTE_HOST" "bash ~/deploy.sh"

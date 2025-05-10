@@ -11,7 +11,7 @@ const inputStyles =
     <strong>contractor </strong>
   </div>
 
-  <form id="animated-form" class="flex flex-col space-y-4">
+  <form id="contact-form" class="flex flex-col space-y-4">
     <input
       type="text"
       id="full-name"
@@ -99,3 +99,46 @@ const inputStyles =
     text-decoration: underline;
   }
 </style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: (form.elements.namedItem("full-name") as HTMLInputElement).value,
+        phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+        email: (form.elements.namedItem("email") as HTMLInputElement).value,
+        address: (form.elements.namedItem("address") as HTMLInputElement).value,
+        city: (form.elements.namedItem("city") as HTMLInputElement).value,
+        project: (form.elements.namedItem("project") as HTMLTextAreaElement)
+          .value,
+      };
+
+      try {
+        const response = await fetch(
+          "http://ec2-3-215-5-204.compute-1.amazonaws.com:3000/contacts",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (response.ok) {
+          alert("Message sent successfully!");
+          form.reset();
+        } else {
+          alert("Error sending message. Please try again.");
+        }
+      } catch (error) {
+        alert("Server error. Please try again later.");
+      }
+    });
+  });
+</script>
