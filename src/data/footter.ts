@@ -22,7 +22,7 @@ export const footer: (
       icon: "",
       services: [
 
-        { name: 'Roff Installation', link: '/Roofing/Roff-installation' },
+        { name: 'Roff Installation', link: '/Roofing/Roof-installation' },
         { name: 'Asphalt shingle', link: '/Roofing/Asphalt-Single' },
         { name: 'insurance Claims', link: '/Roofing/Insurance-Claims' },
         { name: 'Metal Roofing', link: '/Roofing/Metal-Roofing' },
@@ -34,7 +34,7 @@ export const footer: (
       title: 'Roof Repair',
       icon: "",
       services: [
-        { name: 'Roff Inspection', link: '/Roofing-Repair/Roff-Inspection' },
+        { name: 'Roff Inspection', link: '/Roofing-Repair/Roof-Inspection' },
         { name: 'Storm Damage', link: '/Roofing-Repair/Storm-Damage' },
         { name: 'Hail Damage', link: '/Roofing-Repair/Hail-Damage' },
         { name: 'Roof Leak', link: '/Roofing-Repair/Roof-Leak' },
