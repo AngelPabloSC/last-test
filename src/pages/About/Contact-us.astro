@@ -10,8 +10,9 @@ import { oneCallExtra } from "../../data/servicesRoofing";
 <Loyout
   title="Contact Us | Nova Solutions"
   description="Nova Solutions is the #1 roofing company for estate and estares. We offer a wide range of roofing services, including roof repair, roof replacement, and roof installation. Our team of experienced professionals is dedicated to providing the highest quality service and workmanship."
+  showButtonMovil={false}
 >
-<div class="mt-[130px] md:mt-[95px]">
+  <div class="mt-[130px] md:mt-[95px]">
     <ContactSeccion />
   </div>
 
@@ -19,10 +20,8 @@ import { oneCallExtra } from "../../data/servicesRoofing";
     <div
       class="grid grid-cols-1 sm:grid-cols-2 items-start justify-items-center sm:justify-items-between gap-4 mb-6"
     >
-
       <div class="space-y-6 flex flex-col items-center sm:items-start">
-
-        <div class="breadcrumb text-sm  flex items-center">
+        <div class="breadcrumb text-sm flex items-center">
           <a href="/" class="hover:text-gray-700">Home</a>
           <iconify-icon
             icon="mingcute:arrows-right-line"
@@ -55,17 +54,17 @@ import { oneCallExtra } from "../../data/servicesRoofing";
     </section>
   </section>
   <div
-  class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 mx-auto max-w-7xl my-10 animate-fade-in"
->
-  {
-    oneCallExtra.map((item) => (
-      <Card
-        title={item.title}
-        description={item.content[0].text}
-        icon={item.content[0].icon}
-      />
-    ))
-  }
-</div>
-    <Footer />
+    class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 mx-auto max-w-7xl my-10 animate-fade-in"
+  >
+    {
+      oneCallExtra.map((item) => (
+        <Card
+          title={item.title}
+          description={item.content[0].text}
+          icon={item.content[0].icon}
+        />
+      ))
+    }
+  </div>
+  <Footer />
 </Loyout>

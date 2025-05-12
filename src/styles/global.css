@@ -2,7 +2,6 @@
 @import 'tailwindcss/utilities';
 @import 'swiper/css';
 
-  
 
 @theme {
 
@@ -54,8 +53,8 @@
     --text-xsmall: clamp(0.625rem, 1.5vw + 0.0625rem, 0.75rem);
     --text-small: clamp(0.875rem, 1.5vw + 0.0625rem, 1rem);
     --text-base: clamp(1rem, 2vw + 0.125rem, 1.25rem);
-    --text-large: clamp(1rem, 2vw + 0.25rem, 1.5rem);
-    --text-xlarge: clamp(1.75rem, 4vw + 1rem, 1rem);
+    --text-large: clamp(0.875rem, 1.5vw + 0.1rem, 1.25rem);
+    --text-xlarge: clamp(1.5rem, 4vw + 0.1rem, 1rem);
 
 
     --color-primary-100: #FFF9B0;

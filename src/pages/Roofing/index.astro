@@ -4,7 +4,6 @@ import Layout from "../../layouts/Layout.astro";
 import suppliers from "../../json/suppliers.json";
 import Footer from "../../components/Footer.astro";
 import { LinkServices } from "../../data/LinkServicesRoffing";
-import BuutonMovil from "../../components/ButtonMovil.astro";
 import MoreServices from "../../components/moreServices.astro";
 import RelationServices from "../../components/relationServices.astro";
 import TrustOur from "../../components/trustOur.astro";
@@ -15,10 +14,8 @@ import CertificatesAffiliations from "../../components/CertificatesAffiliations.
   title="Roofing in Albany | Nova Solutions"
   description="Looking for reliable  roofing in Albany? Nova Solutions offers expert roof repair, replacement, and installation using high-quality materials and certified contractors you can trust."
 />
-<BuutonMovil class="fixed bottom-4 right-4 z-50" />
-<div class="mt-[170px] md:mt-[120px]">
-  <SectionInfo sliders={suppliers} />
-</div>
+
+<SectionInfo sliders={suppliers} />
 
 <div class="max-w-6xl mx-auto px-4 my-16">
   <div class="breadcrumb text-sm text-gray-600 flex items-center">

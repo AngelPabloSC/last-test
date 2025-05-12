@@ -11,7 +11,7 @@ const { sliders = [] } = Astro.props;
 ---
 
 <div
-  class="relative bg-cover bg-center min-h-[55vh] text-white"
+  class="relative bg-cover bg-center min-h-[55vh] text-white mt-[190px] md:mt-[120px]"
   style={`background-image:url(${bagroundImage})`}
 >
   <div
@@ -42,7 +42,7 @@ const { sliders = [] } = Astro.props;
 
       <div class="mt-6 flex justify-center lg:justify-start">
         <div
-          class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
+          class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl w-screen overflow-x-hidden"
         >
           <Swiper slides={sliders} />
         </div>
