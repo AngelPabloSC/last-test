@@ -61,8 +61,8 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       class="relative z-1 justify-center items-center text-primary font-sans p-[20px] md:p-[50px]"
     >
       <div class="text-center">
-        <h1 class="text-4xl font-bold italic text-blue-900 mb-4">WHAT WE DO</h1>
-        <p class="text-lg italic text-blue-900">
+        <h1 class="text-4xl font-bold italic text-black mb-4">WHAT WE DO</h1>
+        <p class="text-lg italic text-black mb-4">
           Nova Solutions | Albany Roofing | Roofers | Siding | Windows | Gutters
           | Gutter Guards
         </p>
@@ -107,12 +107,12 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       </h1>
 
       <h2
-        class="text-white text-xl font-semibold mb-4 text-center md:text-left"
+        class="text-white text-xlarge font-semibold mb-4 text-center md:text-left"
       >
         Trusted Experts in Albany
       </h2>
 
-      <p class="text-white text-lg leading-relaxed mb-6 text-justify">
+      <p class="text-white text-large leading-relaxed mb-6 text-justify">
         Emergencies can strike anytime, leaving your property in disarray. Nova
         Solutions specializes in flood restoration Albany and water damage
         restoration in Albany, ensuring quick help when disaster hits. We handle
@@ -165,13 +165,13 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
 
     <div class="w-full md:w-1/2 flex flex-col justify-center relative z-10">
       <h2
-        class="text-black text-xl md:text-2xl font-semibold italic mb-4 text-center md:text-left"
+        class="text-black text-xl md:text-xlarge font-semibold italic mb-4 text-center md:text-left"
       >
         Greater Albany Trusted Roofer & Exterior Expert
       </h2>
 
       <h3
-        class="text-primary-700 text-3xl md:text-5xl font-semibold italic mb-4 text-center md:text-left"
+        class="text-primary-700 text-xlarge md:text-5xl font-semibold italic mb-4 text-center md:text-left"
       >
         One Call Does It All – Roofing, Siding & More
       </h3>
@@ -258,7 +258,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         stepsRespote.map((item, index) => {
           if ("title" in item && "steps" in item) {
             return (
-              <div class="bg-primary-dark shadow w-full">
+              <div class="bg-black shadow w-full">
                 <button
                   class={`text-primary flex justify-between items-center w-full text-lg font-semibold cursor-pointer accordion-toggle py-4 px-0 md:px-9 ${
                     index !== 1 ? "border-t border-white" : ""
