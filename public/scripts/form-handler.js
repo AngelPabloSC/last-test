@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        "http://ec2-3-215-5-204.compute-1.amazonaws.com:3000/contacts",
+        "https://connection.nova-solutions.us/contacts",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
