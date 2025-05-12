@@ -3,19 +3,19 @@ import { footer } from "../data/footter.ts";
 ---
 
 <footer
-  class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-white bg-primary-second p-10"
+  class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-white bg-primary-second p-10 pl-10 md:pl-30"
 >
   {
-    footer.map((item) => {
+    footer.map((item, index) => {
       if (item.type === "contact") {
         return (
-          <div>
+          <div class="col-span-2 md:col-span-1 lg:col-span-2 mr-0 md:mr-10">
             <h3 class="font-bold text-xl">{item.tile}</h3>
             <p>{item.number}</p>
             <p>{item.direction}</p>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.2836642714856!2d-73.78406582251819!3d42.655343871167084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89de0a44e842d437%3A0xe0a4d4c58fccc801!2s520%20Warren%20St%2C%20Albany%2C%20NY%2012208!5e0!3m2!1ses-419!2sus!4v1745812732846!5m2!1ses-419!2sus"
-              width="100%"
+              width="80%"
               height="150"
               style="border:0;"
               allowfullscreen=""
@@ -50,7 +50,7 @@ import { footer } from "../data/footter.ts";
               {item.icon && <iconify-icon icon={item.icon} />}
               {item.title}
             </h3>
-            <ul class="mt-2 space-y-1">
+            <ul class="mt-2 ">
               {item.services.map((service) => (
                 <li>
                   <a href={service.link} class="hover:underline text-sm">

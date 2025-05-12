@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ButtonMovil from "../../components/ButtonMovil.astro";
 import SectionInfo from "../../components/SectionInfo.astro";
 import suppliers from "../../json/suppliers.json";
 import roofingGallery from "../../data/roofingGallery";
@@ -13,7 +12,6 @@ import Footer from "../../components/Footer.astro";
   title="Photo Gallery | Nova Solutions"
   description="Nova Solutions is the #1 roofing company for estate and estares. We offer a wide range of roofing services, including roof repair, roof replacement, and roof installation. Our team of experienced professionals is dedicated to providing the highest quality service and workmanship."
 >
-  <ButtonMovil class="fixed bottom-4 right-4 z-50" />
   <div class="mt-[130px] md:mt-[95px]">
     <SectionInfo sliders={suppliers} />
   </div>

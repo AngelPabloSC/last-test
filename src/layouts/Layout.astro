@@ -3,9 +3,12 @@ interface LayoutProps {
   title: string;
   description: string;
   keywords: string;
+  showButtonMovil: boolean;
 }
-const { title, description, keywords } = Astro.props;
+const { title, description, keywords, showButtonMovil = true } = Astro.props;
+import Accessibility from "../components/Accessibility.astro";
 import Header from "../components/Header.astro";
+import BuutonMovil from "../components/ButtonMovil.astro";
 import "../styles/global.css";
 ---
 
@@ -85,11 +88,12 @@ import "../styles/global.css";
       }
     </style>
   </head>
-
+  <Accessibility />
   <body>
     <Header />
-    <slot />
 
+    <slot />
+    {showButtonMovil && <BuutonMovil class="fixed bottom-4 right-4 z-50" />}
     <script
       type="module"
       src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"

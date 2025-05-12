@@ -4,7 +4,6 @@ import Layout from "../../layouts/Layout.astro";
 import suppliers from "../../json/suppliers.json";
 import Footer from "../../components/Footer.astro";
 import { LinkServices } from "../../data/LinkServicesRoffing";
-import BuutonMovil from "../../components/ButtonMovil.astro";
 import MoreServices from "../../components/moreServices.astro";
 import RelationServices from "../../components/relationServices.astro";
 import TrustOur from "../../components/trustOur.astro";
@@ -16,10 +15,9 @@ import InsureProcces from "../../components/InsureProcces.astro";
   title="Roofing Insurance Claims in Albany | Nova Solutions"
   description="Nova Solutions specializes in roofing insurance claims in Albany. With over 5 years of experience, our skilled team helps homeowners navigate insurance claims for roof repairs and restoration, ensuring quality service and customer satisfaction."
 />
-<BuutonMovil class="fixed bottom-4 right-4 z-50" />
-<div class="mt-[172px] md:mt-[95px]">
+
   <SectionInfo heading={"Insurance Claims​"} sliders={suppliers} />
-</div>
+
 
 <div class="max-w-6xl mx-auto px-4 my-16">
   <div class="breadcrumb text-sm text-gray-600 flex items-center">
@@ -37,10 +35,10 @@ import InsureProcces from "../../components/InsureProcces.astro";
 
   <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
     <div class="flex-1 space-y-6">
-      <h1 class="text-xlarge font-bold text-black text-center lg:text-left mt-10">
+      <h1 class="text-2xl font-bold text-black text-center lg:text-left mt-10">
         Albany Roofing Insurance Claims
       </h1>
-      <p class="text-large text-black mt-4 leading-relaxed">
+      <p class="text-1xl text-black mt-4 leading-relaxed">
         With over 5 years in business and many team members boasting more than 7
         years of experience in construction and restoration, <strong
           >Nova Solutions</strong
