@@ -4,21 +4,19 @@ const { title, paragraph, buttonText, url, imageUrl } = Astro.props;
 
 <div
   class="group relative w-full max-w-[300px] overflow-hidden rounded-tl-3xl rounded-br-3xl shadow-md transform transition duration-300 hover:scale-[1.03]"
+  data-animate="slideInRight"
 >
-
   <div
     class="absolute inset-0 bg-cover bg-center"
     style={`background-image: url('${imageUrl}')`}
   >
   </div>
 
-
   <div
     class="absolute inset-0"
     style="background-color: rgba(13, 14, 15, 0.8);"
   >
   </div>
-
 
   <div
     class="absolute top-0 left-0 w-full h-[6px] bg-yellow-400 transition-opacity duration-300 group-hover:opacity-0 z-10"
@@ -48,4 +46,25 @@ const { title, paragraph, buttonText, url, imageUrl } = Astro.props;
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const animatedElements = document.querySelectorAll("[data-animate]");
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.classList.add("animate-" + (el as HTMLElement).dataset.animate);
+            observer.unobserve(el);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+</script>

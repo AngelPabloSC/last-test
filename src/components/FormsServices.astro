@@ -2,24 +2,25 @@
 import Dialog from "./ Dialog.astro";
 
 const inputStyles =
-  "p-3 border border-gray-300 rounded-md text-base bg-white text-black";
+  "p-1 border border-gray-300 rounded-md text-base bg-white text-black";
 const isSuccess = true; // cambia esto dinámicamente si quieres
 
 const title = isSuccess ? "¡Registro exitoso!" : "Error en el registro";
 const message = isSuccess
   ? "Gracias por contactarnos. Te llamaremos en el transcurso del día."
   : "Hubo un problema al enviar tu información. Intenta nuevamente.";
+  
 ---
 
 <div class="form-container w-full max-w-xl mx-auto p-6 bg-primary-second">
   <div
-    class="form-header text-start mb-6 uppercase text-4xl font-bold text-input-text text-primary tracking-wider"
+    class="form-header text-start mb-6 uppercase text-2xl font-bold text-input-text text-primary tracking-wider"
   >
     <strong>Contact your local </strong>
     <strong>contractor </strong>
   </div>
 
-  <form id="contact-form" class="flex flex-col space-y-4">
+  <form id="contact-form" class="flex flex-col space-y-2">
     <input
       type="text"
       id="full-name"

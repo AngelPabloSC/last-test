@@ -5,7 +5,7 @@ import astroIcon from 'astro-icon';
 import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
-        site: 'http://3.215.5.204',
+    site: 'https://nova-solutions.us/',
 
     devToolbar: {
         enabled: false
