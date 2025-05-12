@@ -11,7 +11,7 @@ const { sliders = [] } = Astro.props;
 ---
 
 <div
-  class="relative bg-cover bg-center min-h-[55vh] text-white"
+  class="relative bg-cover bg-center min-h-[55vh] text-white mt-[190px] md:mt-[120px] clip-bottom pb-20 md:pb-32"
   style={`background-image:url(${bagroundImage})`}
 >
   <div
@@ -29,15 +29,43 @@ const { sliders = [] } = Astro.props;
       >
         One Call Does it all!
       </h2>
-      <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+      <h1 class="text-3xl lg:text-5xl font-Azonix  font-bold leading-tight mb-6">
         {heading}
       </h1>
 
-      <ul class="list-none space-y-2 text-lg">
-        <li>✅ Nova Solutions</li>
-        <li>✅ Made in USA - Family Owned & Operated</li>
-        <li>✅ Transferable Lifetime Warranty</li>
-        <li>✅ BBB  Accredited</li>
+      <ul class="list-none space-y-2 text-lg text-white">
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Nova Solutions
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Made in USA - Family Owned & Operated
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Transferable Lifetime Warranty
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          BBB Accredited
+        </li>
       </ul>
 
       <div class="mt-6 flex justify-center lg:justify-start">
@@ -64,3 +92,9 @@ const { sliders = [] } = Astro.props;
     </div>
   </div>
 </div>
+<style>
+
+  .clip-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+</style>

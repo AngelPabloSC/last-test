@@ -15,12 +15,14 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
 <Layout
   title="Nova Solutions Restoration | Roofing & Siding Experts in Albany"
   description="Nova Solutions Restoration provides expert roofing, siding, windows, and gutter services in Albany. Trusted by homeowners for top-quality exterior home restoration and protection."
+  keywords="roofing, siding, windows, gutters, Albany, exterior home restoration, home protection, roofing experts, siding contractors, gutter services, Nova Solutions, Albany roofing, home restoration, exterior remodeling, free inspection, roof inspection, free roof inspection, roofing near me"
 >
   <div class="mt-[199px] md:mt-[95px]">
     <SectionHome />
   </div>
   <div
-    class="flex justify-center items-center bg-primary-second bg-opacity-50 text-white font-sans p-[10px] md:p-[30px]"
+    class="flex justify-center items-center bg-primary-second bg-opacity-50 text-white font-sans p-[10px] md:p-[10px]"
+    data-animate="slide-up"
   >
     <ul
       class="flex flex-wrap md:flex-row items-center justify-center gap-[10px] md:gap-[80px] p-0 m-0 list-none"
@@ -165,7 +167,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       <h2
         class="text-black text-xl md:text-xlarge font-semibold italic mb-4 text-center md:text-left"
       >
-        Greater Albany Trusted Roofer & Exterior Expert
+        Albany’s NY Trusted Roofing & Exterior Specialist
       </h2>
 
       <h3
@@ -483,10 +485,32 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
 
     let current = 0;
 
-    // Cambiar fondo automáticamente cada 5 segundos
     setInterval(() => {
       current = (current + 1) % bgImages.length;
       section.style.backgroundImage = `url('${bgImages[current]}')`;
     }, 5000);
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const animatedElements = document.querySelectorAll("[data-animate]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.classList.add("animate-" + (el as HTMLElement).dataset.animate);
+            observer.unobserve(el);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
   });
 </script>
