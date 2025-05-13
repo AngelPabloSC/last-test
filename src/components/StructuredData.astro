@@ -1,0 +1,77 @@
+---
+// components/StructuredData.astro
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nova Solutions",
+  "url": "https://nova-solutions.us",
+  "hasPart": [
+    {
+      "@type": "WebPage",
+      "name": "Roofing",
+      "url": "https://nova-solutions.us/Roofing",
+      "hasPart": [
+        { "@type": "WebPage", "name": "Roof Installation", "url": "https://nova-solutions.us/Roofing/Roof-installation" },
+        { "@type": "WebPage", "name": "Asphalt Shingle", "url": "https://nova-solutions.us/Roofing/Asphalt-Single" },
+        { "@type": "WebPage", "name": "Insurance Claims", "url": "https://nova-solutions.us/Roofing/Insurance-Claims" },
+        { "@type": "WebPage", "name": "Metal Roofing", "url": "https://nova-solutions.us/Roofing/Metal-Roofing" },
+        { "@type": "WebPage", "name": "Commercial", "url": "https://nova-solutions.us/Roofing/Commercial" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Roof Repair",
+      "url": "https://nova-solutions.us/Roofing-Repair",
+      "hasPart": [
+        { "@type": "WebPage", "name": "Roof Inspection", "url": "https://nova-solutions.us/Roofing-Repair/Roof-Inspection" },
+        { "@type": "WebPage", "name": "Storm Damage", "url": "https://nova-solutions.us/Roofing-Repair/Storm-Damage" },
+        { "@type": "WebPage", "name": "Hail Damage", "url": "https://nova-solutions.us/Roofing-Repair/Hail-Damage" },
+        { "@type": "WebPage", "name": "Roof Leak", "url": "https://nova-solutions.us/Roofing-Repair/Roof-Leak" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Siding",
+      "url": "https://nova-solutions.us/Siding",
+      "hasPart": [
+        { "@type": "WebPage", "name": "Vinyl Siding", "url": "https://nova-solutions.us/Siding/Vinyl-Siding" },
+        { "@type": "WebPage", "name": "Siding Replacement", "url": "https://nova-solutions.us/Siding/Siding-Replacement" },
+        { "@type": "WebPage", "name": "Fiber Cement Siding", "url": "https://nova-solutions.us/Siding/fiber-Cement-Siding" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Gutters",
+      "url": "https://nova-solutions.us/Gutters",
+      "hasPart": [
+        {
+          "@type": "WebPage",
+          "name": "Gutter Guards",
+          "url": "https://nova-solutions.us/Gutters/Gutter-Guards",
+          "hasPart": [
+            { "@type": "WebPage", "name": "Gutter Protection", "url": "https://nova-solutions.us/Gutters/Gutter-Guards/Gutter-Protection" },
+            { "@type": "WebPage", "name": "Leaf Filters", "url": "https://nova-solutions.us/Gutters/Gutter-Guards/Leaf-Filters" },
+            { "@type": "WebPage", "name": "Leaf Guards", "url": "https://nova-solutions.us/Gutters/Gutter-Guards/Leaf-Guards" },
+            { "@type": "WebPage", "name": "Gutter Covers", "url": "https://nova-solutions.us/Gutters/Gutter-Guards/Gutter-Covers" },
+            { "@type": "WebPage", "name": "Gutter Cap", "url": "https://nova-solutions.us/Gutters/Gutter-Guards/Gutter-Cap" }
+          ]
+        },
+        { "@type": "WebPage", "name": "Gutter Replacement", "url": "https://nova-solutions.us/Gutters/Gutter-Replacement" },
+        { "@type": "WebPage", "name": "Gutter Repairs", "url": "https://nova-solutions.us/Gutters/Gutter-Repairs" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "About",
+      "url": "https://nova-solutions.us/About",
+      "hasPart": [
+        { "@type": "WebPage", "name": "Contact Us", "url": "https://nova-solutions.us/About/Contact-us" }
+      ]
+    }
+  ]
+};
+---
+<script type="application/ld+json" is:inline>
+  {JSON.stringify(jsonLd)}
+</script>
