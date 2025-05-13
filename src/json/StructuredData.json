@@ -1,11 +1,17 @@
----
-// components/StructuredData.astro
-
-const jsonLd = {
+{
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Nova Solutions",
   "url": "https://nova-solutions.us",
+  "telephone": "+1-518-598-5156",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "520 Warren St",
+    "addressLocality": "Albany",
+    "addressRegion": "NY",
+    "postalCode": "12208",
+    "addressCountry": "US"
+  },
   "hasPart": [
     {
       "@type": "WebPage",
@@ -70,8 +76,4 @@ const jsonLd = {
       ]
     }
   ]
-};
----
-<script type="application/ld+json" is:inline>
-  {JSON.stringify(jsonLd)}
-</script>
+}

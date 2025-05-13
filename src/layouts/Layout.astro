@@ -10,7 +10,7 @@ import Accessibility from "../components/Accessibility.astro";
 import Header from "../components/Header.astro";
 import BuutonMovil from "../components/ButtonMovil.astro";
 import "../styles/global.css";
-import StructuredData from "../components/StructuredData.astro";
+import structuredData from "../json/structuredData.json";
 ---
 
 <!doctype html>
@@ -62,7 +62,10 @@ import StructuredData from "../components/StructuredData.astro";
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="42x42" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <StructuredData />
+    <script
+      type="application/ld+json"
+      set:text={JSON.stringify(structuredData)}
+    />
     <link
       rel="apple-touch-icon"
       href="https://res.cloudinary.com/driyxelzh/image/upload/v1746592837/NOVA_Mesa_de_trabajo_1_fwplz7.png"
