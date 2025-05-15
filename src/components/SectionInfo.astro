@@ -15,7 +15,7 @@ const { sliders = [] } = Astro.props;
   style={`background-image:url(${bagroundImage})`}
 >
   <div
-    class="absolute inset-0 bg-gradient-to-tr from-white/70 via-white/10 to-transparent opacity-70 z-[1]"
+    class="absolute inset-0 bg-gradient-to-tr from-black via-black/60 to-transparent opacity-100 z-[1]"
   >
   </div>
 
@@ -23,16 +23,18 @@ const { sliders = [] } = Astro.props;
     class="relative z-[2] flex flex-col lg:flex-row justify-between items-start gap-8 px-6 py-10 lg:px-20"
   >
     <!-- Text Section -->
-    <div class="flex-1 min-w-[300px] text-left m-auto text-input-text animate__animated animate__backInLeft">
-      <h2 class="text-xl lg:text-3xl font-bold tracking-wide mb-2 text-primary ">
+    <div
+      class="flex-1 min-w-[300px] text-left m-auto text-input-text animate__animated animate__backInLeft"
+    >
+      <h2 class="text-xl lg:text-3xl font-bold tracking-wide mb-2 text-primary">
         One Call Does it all!
       </h2>
       <h1 class="text-3xl lg:text-5xl font-bold font-Azonix leading-tight mb-6">
         {heading}
       </h1>
 
-      <ul class="list-none space-y-2 text-lg text-black ">
-        <li class="flex items-center ">
+      <ul class="list-none space-y-2 text-lg text-white">
+        <li class="flex items-center">
           <iconify-icon
             icon="material-symbols:check-box"
             width="34"

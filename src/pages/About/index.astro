@@ -1,5 +1,4 @@
 ---
-
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import MoreServices from "../../components/moreServices.astro";
@@ -19,7 +18,7 @@ import FormsServices from "../../components/FormsServices.astro";
   <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12"}>
     <div class="absolute w-full lg:w-1/2 inset-y-0 lg:right-0">
       <span
-        class="absolute -left-6 md:left-4 top-24 lg:top-28 w-24 h-24 rotate-90 skew-x-12 rounded-3xl bg-green-400 blur-xl opacity-60 lg:opacity-95 lg:block hidden"
+        class="absolute -left-6 md:left-4 top-24 lg:top-28 w-24 h-24 rotate-90 skew-x-12 rounded-3xl bg-primary blur-xl opacity-60 lg:opacity-95 lg:block hidden"
       ></span>
       <span
         class="absolute right-4 bottom-12 w-24 h-24 rounded-3xl bg-primary blur-xl opacity-80"
@@ -42,24 +41,19 @@ import FormsServices from "../../components/FormsServices.astro";
         > by Nova Solutions
       </h1>
       <Paragraph className="mt-8">
-        Nova Solutions specializes in roofing, roof repairs, gutters, leaf
-        guards, and siding — delivering reliable service and lasting protection
-        for your home.
+        Nova Solutions specializes in roofing, siding, and gutters, providing
+        reliable service and long-lasting protection for your home.
       </Paragraph>
       <div class="mt-10 w-full flex max-w-md mx-auto lg:mx-0">
         <div class="flex sm:flex-row flex-col gap-5 w-full"></div>
       </div>
     </div>
 
-    <div
-      class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl"
-    >
+    <div class="flex justify-center lg:w-1/2 mx-auto max-w-md">
       <img
         src="https://res.cloudinary.com/driyxelzh/image/upload/v1744258572/WhatsApp_Image_2025-04-08_at_15.15.18-removebg-preview_1_gbw7ay.png"
         alt="Nova Solutions Logo"
-        width="2350"
-        height="2359"
-        class="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96"
+        class="rounded-3xl object-contain w-full h-auto"
       />
     </div>
   </Container>
@@ -103,21 +97,14 @@ import FormsServices from "../../components/FormsServices.astro";
   </div>
 </div>
 
-<section
-  class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center"
->
-  <div class="space-y-4">
+<section class="max-w-6xl mx-auto px-4 my-16 grid place-items-center">
+  <div class="space-y-4 text-center">
     <p
-      class="text-4xl sm:text-5xl font-bold italic text-center text-transparent bg-clip-text bg-gradient-to-br from-black from-20% via-primary via-30% to-black"
+      class="text-4xl sm:text-5xl font-bold italic text-transparent bg-clip-text bg-gradient-to-br from-black from-20% via-primary via-30% to-black"
     >
       “Protecting Your Home, One Roof at a Time.”
     </p>
   </div>
-  <img
-    src="https://res.cloudinary.com/driyxelzh/image/upload/v1744258572/WhatsApp_Image_2025-04-08_at_15.15.18-removebg-preview_1_gbw7ay.png"
-    alt="Roofing Installation"
-    class="w-full max-w-md mx-auto"
-  />
 </section>
 
 <MoreServices title="Our Services " />
@@ -141,15 +128,14 @@ import FormsServices from "../../components/FormsServices.astro";
       class="w-full h-full"></iframe>
   </div>
 </div>
-<section class="bg-primary text-black py-20 px-6 md:px-12">
-  <div class="max-w-7xl mx-auto space-y-12">
-    <!-- Section Title -->
-    <h2 class="text-4xl font-bold text-center md:text-left">Contact Us</h2>
-
-    <!-- Grid Content -->
+<section class="bg-primary text-black py-10 px-6 md:px-6">
+  <div class="max-w-7xl mx-auto">
+    <!-- Grid: 2 columnas -->
     <div class="grid md:grid-cols-2 gap-10 items-center">
-      <!-- Left Message -->
-      <div class="space-y-6">
+      <!-- Columna Izquierda: Títulos y texto -->
+      <div class="space-y-6 pt-6">
+        <!-- 👈 Se añadió pt-6 aquí -->
+        <h2 class="text-4xl font-bold items-start">Contact Us</h2>
         <h3 class="text-2xl md:text-3xl font-semibold">
           Let’s Start Your Next Project
         </h3>
@@ -166,8 +152,8 @@ import FormsServices from "../../components/FormsServices.astro";
         </p>
       </div>
 
-      <!-- Right Form -->
-      <div>
+      <!-- Columna Derecha: Formulario -->
+      <div class="flex justify-center items-start w-full">
         <FormsServices />
       </div>
     </div>
