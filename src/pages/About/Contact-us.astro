@@ -5,6 +5,7 @@ import { service } from "../../data/services";
 import Footer from "../../components/Footer.astro";
 import Card from "../../components/certificates.astro";
 import { oneCallExtra } from "../../data/servicesRoofing";
+import MoreServices from "../../components/moreServices.astro";
 ---
 
 <Loyout
@@ -12,7 +13,7 @@ import { oneCallExtra } from "../../data/servicesRoofing";
   description="Nova Solutions is the #1 roofing company for estate and estares. We offer a wide range of roofing services, including roof repair, roof replacement, and roof installation. Our team of experienced professionals is dedicated to providing the highest quality service and workmanship."
   showButtonMovil={false}
 >
-  <div class="mt-[130px] md:mt-[95px]">
+  <div class="mt-[-50px] md:mt-[125px]">
     <ContactSeccion heading="Contact" />
   </div>
 
@@ -31,28 +32,7 @@ import { oneCallExtra } from "../../data/servicesRoofing";
       </div>
     </div>
   </div>
-  <section class="mt-10 px-16 max-w-7xl mx-auto mb-10 justify-center">
-    <h2 class="text-2xl font-bold text-primary mb-6 text-center lg:text-left">
-      Explore More Services
-    </h2>
-    <section
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-    >
-      {
-        service.map((item) => (
-          <a
-            href={item.path}
-            class="block p-4 rounded-xl border shadow hover:shadow-lg"
-          >
-            <span class="text-lg font-semibold text-primary mb-1">
-              {item.title}
-            </span>
-            <p class="text-sm text-gray-600">{item.description}</p>
-          </a>
-        ))
-      }
-    </section>
-  </section>
+  <MoreServices />
   <div
     class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 mx-auto max-w-7xl my-10 animate-fade-in"
   >
