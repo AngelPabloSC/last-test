@@ -7,6 +7,9 @@ import Container from "../../components/Container.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
 import FormsServices from "../../components/FormsServices.astro";
+const imageUrl =
+  "https://res.cloudinary.com/driyxelzh/image/upload/v1756943631/PHOTO-2025-09-03-18-52-30_mgqq4o.jpg";
+const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
 ---
 
 <Layout
@@ -117,15 +120,20 @@ import FormsServices from "../../components/FormsServices.astro";
   <div
     class="w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg"
   >
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.2836642714856!2d-73.78406582251819!3d42.655343871167084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89de0a44e842d437%3A0xe0a4d4c58fccc801!2s520%20Warren%20St%2C%20Albany%2C%20NY%2012208!5e0!3m2!1ses-419!2sus!4v1745812732846!5m2!1ses-419!2sus"
-      width="100%"
-      height="100%"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      class="w-full h-full"></iframe>
+    <div class="relative w-full h-full">
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="absolute inset-0 z-10"
+        aria-label="Ver ubicación en Google Maps"></a>
+
+      <img
+        src={imageUrl}
+        alt="Vista del mapa sin marcador"
+        class="w-full h-full object-cover"
+      />
+    </div>
   </div>
 </div>
 <section class="bg-primary text-black py-10 px-6 md:px-6">

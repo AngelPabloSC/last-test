@@ -7,7 +7,7 @@ export const footer: (
       type: 'contact',
       tile: 'Roofing',
       number: '(518)-598-5156',
-      direction: "520 Warren St Albany NY 12208"
+      direction: "31 Fairfield Ave Albany 12205"
     },
     // {
     //   type: 'offices',
