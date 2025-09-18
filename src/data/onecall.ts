@@ -8,7 +8,7 @@ export const oneCall: (
   | { video: { src: string; alt: string } }
 )[] = [
   { titleOneCall: 'One Call Does It All!' },
-  { subtitleOneCall: '#1 in Exterior Remodeling' },
+  { subtitleOneCall: 'Exterior & Interior Remodeling' },
 
   {
     title: 'Roofing',
@@ -72,7 +72,7 @@ export const oneCall: (
 
   {
     video: {
-      src: 'https://www.youtube.com/watch?v=hADWcALv8z8&ab_channel=IsaMarcial', // asegúrate que la ruta exista en tu proyecto Astro
+      src: 'https://www.youtube.com/watch?v=hADWcALv8z8&ab_channel=IsaMarcial', 
       alt: 'Nova Solutions team at work showcasing various remodeling services',
     },
   },
