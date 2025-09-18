@@ -7,7 +7,7 @@ export const footer: (
       type: 'contact',
       tile: 'Roofing',
       number: '(518)-598-5156',
-      direction: "31 Fairfield Ave Albany 12205"
+      direction: ""
     },
     // {
     //   type: 'offices',
