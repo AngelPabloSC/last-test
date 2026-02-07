@@ -32,7 +32,7 @@ export const gutterRepairsData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -70,7 +70,7 @@ export const gutterReplacementData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -124,7 +124,7 @@ export const gutterCapData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -163,7 +163,7 @@ export const gutterCoversData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -202,7 +202,7 @@ export const gutterProtectionData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -241,7 +241,7 @@ export const leafFiltersData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -280,7 +280,7 @@ export const leafGuardsData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -324,7 +324,7 @@ export const guttersIndexData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutters Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,
@@ -362,7 +362,7 @@ export const gutterGuardsIndexData: ServicePageData = {
   
   relatedServices: {
     title: "Related Gutter Guard Services",
-    services: LinkServicesGutters.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesGutters
   },
   
   showTrustOur: true,

@@ -45,7 +45,7 @@ export const vinylSidingData: ServicePageData = {
   
   relatedServices: {
     title: "Related Siding Services",
-    services: LinkServicesSiding.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesSiding
   },
   
   showTrustOur: true,
@@ -83,7 +83,7 @@ export const fiberCementSidingData: ServicePageData = {
   
   relatedServices: {
     title: "Related Siding Services",
-    services: LinkServicesSiding.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesSiding
   },
   
   showTrustOur: true,
@@ -121,7 +121,7 @@ export const sidingReplacementData: ServicePageData = {
   
   relatedServices: {
     title: "Related Siding Services",
-    services: LinkServicesSiding.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesSiding
   },
   
   showTrustOur: true,
@@ -158,7 +158,7 @@ export const sidingIndexData: ServicePageData = {
   
   relatedServices: {
     title: "Related Siding Services",
-    services: LinkServicesSiding.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesSiding
   },
   
   showTrustOur: true,

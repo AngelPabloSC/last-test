@@ -32,7 +32,7 @@ export const hailDamageData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Repair Services",
-    services: LinkServicesRoofingRepair.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesRoofingRepair
   },
   
   showTrustOur: true,
@@ -70,7 +70,7 @@ export const roofInspectionData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Repair Services",
-    services: LinkServicesRoofingRepair.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesRoofingRepair
   },
   
   showTrustOur: true,
@@ -108,7 +108,7 @@ export const roofLeakData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Repair Services",
-    services: LinkServicesRoofingRepair.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesRoofingRepair
   },
   
   showTrustOur: true,
@@ -146,7 +146,7 @@ export const stormDamageData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Repair Services",
-    services: LinkServicesRoofingRepair.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesRoofingRepair
   },
   
   showTrustOur: true,
@@ -183,7 +183,7 @@ export const roofingRepairIndexData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Repair Services",
-    services: LinkServicesRoofingRepair.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServicesRoofingRepair
   },
   
   showTrustOur: true,

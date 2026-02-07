@@ -65,7 +65,7 @@ export const asphaltShingleData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Services",
-    services: LinkServices.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServices
   },
   
   showTrustOur: true,
@@ -143,7 +143,7 @@ export const metalRoofingData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Services",
-    services: LinkServices.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServices
   },
   
   showTrustOur: true,
@@ -210,7 +210,7 @@ export const commercialRoofingData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Services",
-    services: LinkServices.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServices
   },
   
   showTrustOur: true,
@@ -248,7 +248,7 @@ export const roofInstallationData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Services",
-    services: LinkServices.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServices
   },
   
   showTrustOur: true,
@@ -300,7 +300,7 @@ export const roofingIndexData: ServicePageData = {
   
   relatedServices: {
     title: "Related Roofing Services",
-    services: LinkServices.map(s => ({ name: s.title, href: s.path }))
+    services: LinkServices
   },
   
   showTrustOur: true,
