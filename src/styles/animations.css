@@ -1,0 +1,99 @@
+/* Scroll Animations */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+[data-animate].animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade In Animation */
+[data-animate="fade-in"] {
+    transform: none;
+}
+
+[data-animate="fade-in"].animated {
+    opacity: 1;
+}
+
+/* Slide Up Animation */
+[data-animate="slide-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+[data-animate="slide-up"].animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scale Animation */
+[data-animate="scale"] {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+[data-animate="scale"].animated {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Slide In Right Animation */
+[data-animate="slideInRight"] {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+[data-animate="slideInRight"].animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide In Left Animation */
+[data-animate="slideInLeft"] {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+[data-animate="slideInLeft"].animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Bounce Animation */
+[data-animate="bounce"].animated {
+    animation: bounce 1s ease-out;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Rotate Animation */
+[data-animate="rotate"] {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+}
+
+[data-animate="rotate"].animated {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}

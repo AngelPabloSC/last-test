@@ -1,12 +1,11 @@
-import { k as elementTransitionEnd } from './utils.mjs';
+import { o as elementTransitionEnd } from './utils.mjs';
 
-function effectVirtualTransitionEnd(_ref) {
-  let {
-    swiper,
-    duration,
-    transformElements,
-    allSlides
-  } = _ref;
+function effectVirtualTransitionEnd({
+  swiper,
+  duration,
+  transformElements,
+  allSlides
+}) {
   const {
     activeIndex
   } = swiper;

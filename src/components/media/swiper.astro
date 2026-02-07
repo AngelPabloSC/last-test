@@ -1,0 +1,63 @@
+---
+import "swiper/css";
+import "swiper/css/navigation";
+
+type Slide = {
+  imgUrl: string;
+  alt: string;
+};
+
+interface Props {
+  slides: Slide[];
+}
+
+const { slides }: Props = Astro.props;
+---
+
+<script>
+  
+  import Swiper from "swiper";
+  import "swiper/css";
+  
+  import { Autoplay, Navigation } from "swiper/modules";
+
+  
+  const swiper = new Swiper(".swiper", {
+    modules: [Navigation, Autoplay],
+    loop: true, 
+
+    breakpoints: {
+      0: { slidesPerView: 2, spaceBetween: 10 }, 
+      640: { slidesPerView: 2, spaceBetween: 30 }, 
+      768: { slidesPerView: 2, spaceBetween: 40 }, 
+      1024: { slidesPerView: 3, spaceBetween: 50 }, 
+      1280: { slidesPerView: 3, spaceBetween: 200 }, 
+    },
+    autoplay: {
+      delay: 1000,
+    },
+    speed: 3000,
+    centeredSlides: true,
+  });
+</script>
+
+<div class="swiper ">
+  
+  <div class="swiper-wrapper">
+    {
+      slides.map((item) => (
+        <div class="swiper-slide ">
+          <img
+            src={item.imgUrl}
+            alt={item.alt}
+            class="h-24 w-auto object-contain mx-auto"
+            width="160"
+            height="96"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>

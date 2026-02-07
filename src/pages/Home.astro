@@ -1,21 +1,22 @@
 ---
-import Card from "../components/Card.astro";
-import SectionHome from "../components/SectionHome.astro";
+import Card from "../components/ui/Card.astro";
+import SectionHome from "../components/sections/SectionHome.astro";
 import Layout from "../layouts/Layout.astro";
-import { stepsRespote } from "../data/stepRestore";
-import { oneCall } from "../data/onecall";
-import LazyYoutube from "../components/LazyYoutube.astro";
-import Swiper from "../components/swiper.astro";
+import { stepsRespote } from "../data/content/step-restore";
+import { oneCall } from "../data/content/onecall";
+import LazyYoutube from "../components/media/LazyYoutube.astro";
+import Swiper from "../components/media/swiper.astro";
 import suppliers from "../json/suppliers.json";
-import Footer from "../components/Footer.astro";
+import Footer from "../components/layout/Footer.astro";
+import "../styles/animations.css";
 const props = Astro.props;
 const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
 ---
 
 <Layout
-  title="Nova Solutions Restoration | Roofing & Siding Experts in Albany"
-  description="Nova Solutions Restoration provides expert roofing, siding, windows, and gutter services in Albany. Trusted by homeowners for top-quality exterior home restoration and protection."
-  keywords="roofing, siding, windows, gutters, Albany, exterior home restoration, home protection, roofing experts, siding contractors, gutter services, Nova Solutions, Albany roofing, home restoration, exterior remodeling, free inspection, roof inspection, free roof inspection, roofing near me"
+  title="Nova Solutions Restoration | Roofing & Siding Experts in Capital Region"
+  description="Nova Solutions Restoration provides expert roofing, siding, windows, and gutter services in Capital Region. Trusted by homeowners for top-quality exterior home restoration and protection."
+  keywords="roofing, siding, windows, gutters, Capital Region, exterior home restoration, home protection, roofing experts, siding contractors, gutter services, Nova Solutions, Capital Region roofing, home restoration, exterior remodeling, free inspection, roof inspection, free roof inspection, roofing near me"
 >
   <div class="mt-[199px] md:mt-[95px]">
     <SectionHome />
@@ -60,10 +61,10 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
     <div
       class="relative z-1 justify-center items-center text-primary font-sans p-[20px] md:p-[50px]"
     >
-      <div class="text-center">
+      <div class="text-center" data-animate="fade-in">
         <h1 class="text-4xl font-bold italic text-black mb-4">WHAT WE DO</h1>
         <p class="text-lg italic text-black mb-4">
-          Nova Solutions | Albany Roofing | Roofers | Siding | Windows | Gutters
+          Nova Solutions | Capital Region Roofing | Roofers | Siding | Windows | Gutters
           | Gutter Guards
         </p>
       </div>
@@ -71,26 +72,26 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       <section class="flex flex-wrap justify-center gap-6 p-6 bg-white">
         <Card
           title="ROOFING"
-          paragraph="Choose a reliable local roofing company that knows what it takes to keep your Albany home protected. Nova Solutions has over 5+ years of roofing excellence!."
+          paragraph="Choose a reliable local roofing company that knows what it takes to keep your Capital Region home protected. Nova Solutions has over 5+ years of roofing excellence!."
           buttonText="Explore Roofing"
           url="/Roofing"
-          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg"
+          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_800/v1744252247/banner1_akffxu.jpg"
         />
 
         <Card
           title="SIDING"
-          paragraph="Upgrade the curb appeal of your home with vinyl & fiber cement siding by Nova Solutions! Siding not only protects your home's exterior but adds value to your Albany home!"
+          paragraph="Upgrade the curb appeal of your home with vinyl & fiber cement siding by Nova Solutions! Siding not only protects your home's exterior but adds value to your Capital Region home!"
           buttonText="Explore Siding"
           url="/Siding"
-          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/v1744406636/banner2_pilov2.jpg"
+          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_800/v1744406636/banner2_pilov2.jpg"
         />
 
         <Card
           title="GUTTERS"
-          paragraph="Our gutters and gutter guards will keep your Albany home protected from water runoff & the elements! Gutter Cap is the leading gutter protection system in North America!"
+          paragraph="Our gutters and gutter guards will keep your Capital Region home protected from water runoff & the elements! Gutter Cap is the leading gutter protection system in North America!"
           buttonText="See Gutters"
           url="/Gutters"
-          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/v1746726327/IMG-20250505-WA0045_uslnfr.jpg"
+          imageUrl="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_800/v1746726327/IMG-20250505-WA0045_uslnfr.jpg"
         />
       </section>
     </div>
@@ -98,8 +99,8 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
   <div
     class="flex flex-col md:flex-row md:items-center bg-primary-second h-auto sm:h-auto md:h-auto xl:h-auto px-10 md:px-20 py-20 md:py-20 gap-10"
   >
-    <!-- Texto principal -->
-    <div class="w-full flex flex-col justify-center h-auto">
+    
+    <div class="w-full flex flex-col justify-center h-auto" data-animate="slide-up">
       <h1
         class="text-primary text-4xl md:text-5xl font-bold italic mb-4 text-center md:text-left"
       >
@@ -109,13 +110,13 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       <h2
         class="text-white text-xlarge font-semibold mb-4 text-center md:text-left"
       >
-        Trusted Experts in Albany
+        Trusted Experts in Capital Region
       </h2>
 
       <p class="text-white text-large leading-relaxed mb-6 text-justify">
         Emergencies can strike anytime, leaving your property in disarray. Nova
-        Solutions specializes in flood restoration Albany and water damage
-        restoration in Albany, ensuring quick help when disaster hits. We handle
+        Solutions specializes in flood restoration Capital Region and water damage
+        restoration in Capital Region, ensuring quick help when disaster hits. We handle
         mitigation and fire restoration, and more to restore your space swiftly.
         Our experts prioritize safety, efficiency, and quality, so you can
         regain peace of mind. Turn to Nova Solutions for a fast, reliable
@@ -145,12 +146,15 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       </div>
     </div>
 
-    <!-- Imagen -->
-    <div class="w-full md:w-3/4 flex items-center justify-center h-full">
+    
+    <div class="w-full md:w-3/4 flex items-center justify-center h-full" data-animate="fade-in">
       <img
-        src="https://res.cloudinary.com/driyxelzh/image/upload/v1746728328/7C58B497-D953-4A42-9328-A532C4FF5DAB_iwmtiv.png"
+        src="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_800/v1746728328/7C58B497-D953-4A42-9328-A532C4FF5DAB_iwmtiv.png"
         alt="Restoration team working"
         class="rounded-3xl w-[90%] md:w-[60%] h-auto shadow-lg"
+        loading="lazy"
+        width="800"
+        height="600"
       />
     </div>
   </div>
@@ -167,7 +171,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       <h2
         class="text-black text-xl md:text-xlarge font-semibold italic mb-4 text-center md:text-left"
       >
-        Albany’s NY Trusted Roofing & Exterior Specialist
+        Capital Region’s NY Trusted Roofing & Exterior Specialist
       </h2>
 
       <h3
@@ -190,11 +194,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         <h4 class="text-4xl font-bold">
           About Nova Solutions <span class="block">Restoration</span>
         </h4>
-        <!-- <img
-          src="https://res.cloudinary.com/driyxelzh/image/upload/v1744258572/WhatsApp_Image_2025-04-08_at_15.15.18-removebg-preview_1_gbw7ay.png"
-          alt="Nova Solutions Logo"
-          class="w-40 h-auto object-contain"
-        /> -->
+        
       </div>
 
       <p class="text-black text-lg leading-relaxed mb-6 text-justify">
@@ -239,10 +239,14 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
 
     <div
       class="w-full md:w-3/4 flex items-center justify-center h-full relative z-10 rounded-3xl overflow-hidden"
+      data-animate="fade-in"
     >
       <img
-        src="https://res.cloudinary.com/driyxelzh/image/upload/v1746981693/PHOTO-2025-05-11-11-40-19_atlhtq.jpg"
+        src="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1200/v1746981693/PHOTO-2025-05-11-11-40-19_atlhtq.jpg"
         alt="Ny map services"
+        loading="lazy"
+        width="1200"
+        height="800"
       />
     </div>
   </div>
@@ -295,13 +299,13 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
     >
       <div
         class="hidden md:block w-full h-[600px] bg-cover bg-center rounded-xl"
-        style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1746726355/IMG-20250508-WA0026_vlclqo.jpg')"
+        style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1000/v1746726355/IMG-20250508-WA0026_vlclqo.jpg')"
       >
       </div>
     </div>
   </div>
   <section class="bg-cover bg-center py-20 bg-primary-second">
-    <!-- style="background-image: url('...');" -->
+    
     <div class="text-center mb-12">
       {
         oneCall.map((item) => {
@@ -344,28 +348,13 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         }
       </div>
 
-      <!--   
-      <div class="lg:col-span-1 flex justify-center items-center h-full w-full">
-        {
-          oneCall.map((item) => {
-            if ("video" in item) {
-              const videoId = item.video.src.split("v=")[1]?.split("&")[0];
-              return (
-                <div class="w-full aspect-video">
-                  <LazyYoutube videoId={videoId} alt={item.video.alt} />
-                </div>
-              );
-            }
-            return null;
-          })
-        }
-      </div> -->
+      
     </div>
   </section>
   <div
     id="tour-section"
     class="px-4 md:px-20 py-30 bg-cover bg-center transition-all duration-700 ease-in-out h-auto md:h-[600px] justify-center items-center"
-    style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg');"
+    style="background-image: url('https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1920/v1744252247/banner1_akffxu.jpg');"
   >
     <h1 class="text-3xl font-bold text-center mb-8 text-white">
       EXPLORE OUR WORK
@@ -379,9 +368,12 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         data-bg="https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg"
       >
         <img
-          src="https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg"
+          src="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_600/v1744252247/banner1_akffxu.jpg"
           class="w-full h-64 object-cover"
           alt="Roofing Nova Solutions Gallery"
+          loading="lazy"
+          width="600"
+          height="400"
         />
         <div class="p-4 text-white">
           <h2 class="font-bold text-lg">Roofing</h2>
@@ -394,9 +386,12 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         data-bg="https://res.cloudinary.com/driyxelzh/image/upload/v1744406636/banner2_pilov2.jpg"
       >
         <img
-          src="https://res.cloudinary.com/driyxelzh/image/upload/v1744406636/banner2_pilov2.jpg"
+          src="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_600/v1744406636/banner2_pilov2.jpg"
           class="w-full h-64 object-cover"
           alt="Siding Nova Solutions gallery"
+          loading="lazy"
+          width="600"
+          height="400"
         />
         <div class="p-4 text-white">
           <h2 class="font-bold text-lg">Siding</h2>
@@ -404,29 +399,19 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         </div>
       </div>
 
-      <!-- <div
-        class="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden cursor-pointer transition hover:scale-105 shadow-lg"
-        data-bg="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80"
-        onclick="window.location.href='/tour3'"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80"
-          class="w-full h-64 object-cover"
-        />
-        <div class="p-4 text-white">
-          <h2 class="font-bold text-lg">Windows</h2>
-          <p class="text-sm opacity-80">There will be a small description.</p>
-        </div>
-      </div> -->
+      
 
       <div
         class="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden cursor-pointer transition hover:scale-105 shadow-lg"
-        data-bg="https://res.cloudinary.com/driyxelzh/image/upload/v1746726327/IMG-20250505-WA0045_uslnfr.jpg"
+        data-bg="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1000/v1746726327/IMG-20250505-WA0045_uslnfr.jpg"
       >
         <img
-          src="https://res.cloudinary.com/driyxelzh/image/upload/v1746726327/IMG-20250505-WA0045_uslnfr.jpg"
+          src="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_600/v1746726327/IMG-20250505-WA0045_uslnfr.jpg"
           class="w-full h-64 object-cover"
           alt="Gutter Replacement"
+          loading="lazy"
+          width="600"
+          height="400"
         />
         <div class="p-4 text-white">
           <h2 class="font-bold text-lg">Gutters</h2>
@@ -447,7 +432,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
   <div>
     <Footer />
   </div>
-  <!-- Agrega más tarjetas si deseas -->
+  
 </Layout>
 <script type="module" is:inline>
   window.addEventListener("DOMContentLoaded", () => {
@@ -462,7 +447,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
         const isOpen =
           content.style.maxHeight && content.style.maxHeight !== "0px";
 
-        // Cierra todos los contenidos
+        
         document.querySelectorAll(".accordion-content").forEach((el) => {
           el.style.maxHeight = null;
           el.previousElementSibling
@@ -470,7 +455,7 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
             .classList.remove("rotate-180");
         });
 
-        // Si no estaba abierto, lo abre
+        
         if (!isOpen) {
           content.style.maxHeight = content.scrollHeight + "px";
           icon.classList.add("rotate-180");
@@ -478,12 +463,12 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
       });
     });
   });
-  // Cambio de fondo
+  
   window.addEventListener("DOMContentLoaded", () => {
     const section = document.getElementById("tour-section");
     const cards = document.querySelectorAll("[data-bg]");
 
-    // Lista de fondos desde las tarjetas
+    
     const bgImages = Array.from(cards).map((card) =>
       card.getAttribute("data-bg")
     );
@@ -498,24 +483,10 @@ const title = "titleSteps" in stepsRespote[0] ? stepsRespote[0].titleSteps : "";
 </script>
 
 <script>
+  import { initScrollAnimations } from "../scripts/scroll-animations";
+  
   document.addEventListener("DOMContentLoaded", () => {
-    const animatedElements = document.querySelectorAll("[data-animate]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            el.classList.add("animate-" + (el as HTMLElement).dataset.animate);
-            observer.unobserve(el);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-
-    animatedElements.forEach((el) => observer.observe(el));
+    initScrollAnimations();
   });
 </script>
+

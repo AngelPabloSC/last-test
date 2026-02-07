@@ -1,0 +1,153 @@
+---
+import type { ServicePageData } from "../../types/service-page";
+import Layout from "../../layouts/Layout.astro";
+import SectionInfo from "../sections/SectionInfo.astro";
+import CertificatesAffiliations from "../sections/CertificatesAffiliations.astro";
+import TrustOur from "../sections/trustOur.astro";
+import RelationServices from "../services/relationServices.astro";
+import MoreServices from "../services/moreServices.astro";
+import Footer from "./Footer.astro";
+import suppliers from "../../json/suppliers.json";
+import "../../styles/animations.css";
+
+interface Props extends ServicePageData {}
+
+const {
+  title,
+  description,
+  keywords = "",
+  sectionInfoHeading,
+  breadcrumbs,
+  hero,
+  sections,
+  relatedServices,
+  showTrustOur = true,
+  showMoreServices = true,
+} = Astro.props;
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <SectionInfo heading={sectionInfoHeading} sliders={suppliers} />
+
+  <div class="max-w-6xl mx-auto px-4 my-16">
+    
+    <div class="breadcrumb text-sm text-gray-600 flex items-center">
+      {
+        breadcrumbs.map((crumb, index) => (
+          <>
+            {crumb.href ? (
+              <a href={crumb.href} class="hover:text-primary">
+                {crumb.label}
+              </a>
+            ) : (
+              <span class="font-semibold text-black">{crumb.label}</span>
+            )}
+            {index < breadcrumbs.length - 1 && (
+              <iconify-icon
+                icon="mingcute:arrows-right-line"
+                class="mx-2 text-gray-400 text-lg"
+              />
+            )}
+          </>
+        ))
+      }
+    </div>
+
+    
+    <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+      <div class="flex-1 space-y-6" data-animate="slide-up">
+        <h1
+          class="text-3xl font-bold text-black text-center lg:text-left mt-10"
+        >
+          {hero.heading}
+        </h1>
+        <p class="text-black leading-relaxed text-justify" set:html={hero.content} />
+      </div>
+      {
+        hero.showCertificates !== false && (
+          <section class="flex-1 text-primary" data-animate="fade-in">
+            <CertificatesAffiliations />
+          </section>
+        )
+      }
+    </div>
+  </div>
+
+  
+  {
+    sections.map((section, index) => {
+      const isImageLeft = section.imagePosition === "left";
+      const isEven = index % 2 === 0;
+      
+      return (
+        <section class="max-w-6xl mx-auto px-4 my-16 grid md:grid-cols-2 gap-8 items-center">
+          {section.image && isImageLeft && (
+            <img
+              src={section.image}
+              alt={section.imageAlt || section.heading}
+              class="rounded-xl shadow-lg w-full max-w-md mx-auto order-1 md:order-none"
+              data-animate="fade-in"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          
+          <div class="space-y-4" data-animate="slide-up">
+            <h2 class="text-2xl font-bold text-black text-center lg:text-left">
+              {section.heading}
+            </h2>
+            <p class="text-black leading-relaxed text-justify" set:html={section.content} />
+            
+            {section.list && section.list.length > 0 && (
+              <ul class="list-disc list-inside text-black leading-relaxed mt-4 space-y-2">
+                {section.list.map((item) => (
+                  <li>
+                    <strong>{item.title}:</strong> {item.description}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          
+          {section.image && !isImageLeft && (
+            <img
+              src={section.image}
+              alt={section.imageAlt || section.heading}
+              class="rounded-xl shadow-lg w-full max-w-md mx-auto"
+              data-animate="fade-in"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+        </section>
+      );
+    })
+  }
+
+  {showTrustOur && <TrustOur />}
+
+  {
+    relatedServices && (
+      <RelationServices
+        title={relatedServices.title}
+        services={relatedServices.services}
+      />
+    )
+  }
+  
+  {showMoreServices && <MoreServices />}
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initScrollAnimations } from "../../scripts/scroll-animations";
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    initScrollAnimations();
+  });
+</script>

@@ -6,11 +6,13 @@ interface LayoutProps {
   showButtonMovil: boolean;
 }
 const { title, description, keywords, showButtonMovil = true } = Astro.props;
-import Accessibility from "../components/Accessibility.astro";
-import Header from "../components/Header.astro";
-import BuutonMovil from "../components/ButtonMovil.astro";
+import Accessibility from "../components/common/Accessibility.astro";
+import Header from "../components/layout/Header.astro";
+import BuutonMovil from "../components/ui/ButtonMovil.astro";
 import "../styles/global.css";
-// import StructuredData from "../components/StructuredData.astro";
+
+import AzonixFont from "../assets/fonts/Azonix.otf";
+import FutrfwFont from "../assets/fonts/FUTRFW.TTF";
 ---
 
 <!doctype html>
@@ -18,11 +20,29 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://code.iconify.design">
+    
     <link
       rel="icon"
       type="image/png"
-      href="https://res.cloudinary.com/driyxelzh/image/upload/v1758224762/para_fondos_obscuros_eyaupu.png"
+      href="https://res.cloudinary.com/driyxelzh/image/upload/w_96,h_96,f_auto,q_auto/v1758224762/para_fondos_obscuros_eyaupu.png"
     />
+    <link 
+      rel="preload" 
+      as="image" 
+      href="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1920/v1746726907/IMG-20240109-WA0138_y93nsn.jpg"
+      imagesrcset="
+        https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_800/v1746726907/IMG-20240109-WA0138_y93nsn.jpg 800w,
+        https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1920/v1746726907/IMG-20240109-WA0138_y93nsn.jpg 1920w
+      "
+      imagesizes="(max-width: 768px) 800px, 1920px"
+      fetchpriority="high"
+    />
+    <link rel="preload" href={AzonixFont} as="font" type="font/otf" crossorigin />
+    <link rel="preload" href={FutrfwFont} as="font" type="font/ttf" crossorigin />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
@@ -40,7 +60,7 @@ import "../styles/global.css";
     <meta name="robots" content="index, follow" />
     <meta
       property="og:image"
-      content="https://res.cloudinary.com/driyxelzh/image/upload/v1758224762/para_fondos_obscuros_eyaupu.png"
+      content="https://res.cloudinary.com/driyxelzh/image/upload/w_1200,h_630,f_auto,q_auto,c_fill/v1758224762/para_fondos_obscuros_eyaupu.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -49,7 +69,7 @@ import "../styles/global.css";
       content="https://res.cloudinary.com/driyxelzh/image/upload/v1746592837/NOVA_Mesa_de_trabajo_1_fwplz7.png"
     />
 
-    <!-- Twitter Card -->
+    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -59,10 +79,10 @@ import "../styles/global.css";
     />
     <meta name="twitter:image:alt" content="Nova Solutions company logo" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="42x42" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="42x42" />
 
-    <!-- <StructuredData /> -->
+    
     <link
       rel="apple-touch-icon"
       href="https://res.cloudinary.com/driyxelzh/image/upload/v1746592837/NOVA_Mesa_de_trabajo_1_fwplz7.png"
@@ -78,6 +98,8 @@ import "../styles/global.css";
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      media="print" 
+      onload="this.media='all'"
     />
 
     <style>
@@ -96,11 +118,8 @@ import "../styles/global.css";
     <slot />
     {showButtonMovil && <BuutonMovil class="fixed bottom-4 right-4 z-50" />}
     <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
-    ></script>
-    <script
       src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
+      defer
     ></script>
   </body>
 </html>
