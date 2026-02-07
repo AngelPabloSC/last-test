@@ -2,27 +2,27 @@ export const LinkServicesRoofingRepair = [
     {
      title: 'Roofing Repair',
       path: '/Roofing-Repair',
-      icon: 'solar:home-line-duotone',
+      icon: 'mdi:hammer-wrench',
     },
     {
         title: 'Roof Inspection',
       path: '/Roofing-Repair/Roof-Inspection',
-      icon: 'solar:magnifier-line-duotone',
+      icon: 'mdi:home-search-outline',
     },
     {
       title: 'Storm Damage',
       path: '/Roofing-Repair/Storm-Damage',
-      icon: 'solar:cloud-storm-line-duotone',
+      icon: 'mdi:weather-lightning',
     },
     {
       title: 'Hail Damage',
       path: '/Roofing-Repair/Hail-Damage',
-      icon: 'solar:cloud-hail-line-duotone',
+      icon: 'mdi:weather-hail',
     },
     {
       title: 'Roof Leak',
       path: '/Roofing-Repair/Roof-Leak',
-      icon: 'solar:drop-line-duotone',
+      icon: 'mdi:water-alert',
     },
   ];
   

@@ -26,9 +26,9 @@ export interface HeroSection {
 export interface RelatedService {
   title: string;
   services: Array<{
-    name: string;
-    href: string;
-    description?: string;
+    title: string;
+    path: string;
+    icon: string;
   }>;
 }
 
