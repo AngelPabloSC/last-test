@@ -1,11 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import SectionInfo from "../../components/SectionInfo.astro";
+import SectionInfo from "../../components/sections/SectionInfo.astro";
 import suppliers from "../../json/suppliers.json";
-import roofingGallery from "../../data/roofingGallery";
-import siding from "../../data/sidingGallery";
-import ImageGallery from "../../components/ImageGallery.astro";
-import Footer from "../../components/Footer.astro";
+import roofingGallery from "../../data/gallery/roofing";
+import siding from "../../data/gallery/siding";
+import ImageGallery from "../../components/media/ImageGallery.astro";
+import Footer from "../../components/layout/Footer.astro";
 ---
 
 <Layout
@@ -16,7 +16,7 @@ import Footer from "../../components/Footer.astro";
     <SectionInfo sliders={suppliers} />
   </div>
   <div class="max-w-6xl mx-auto px-4">
-    <!-- Breadcrumbs -->
+    
     <div
       class="text-sm text-gray-600 flex flex-wrap items-center justify-center lg:justify-start mb-6"
     >
@@ -31,7 +31,7 @@ import Footer from "../../components/Footer.astro";
       <span class="font-semibold text-black">Photo Gallery</span>
     </div>
 
-    <!-- Title Section -->
+    
     <h1 class="text-3xl font-bold text-primary text-center mb-8">
       Photo Gallery
     </h1>

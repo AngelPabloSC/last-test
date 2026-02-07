@@ -1,0 +1,18 @@
+---
+import Card from "../services/certificates.astro";
+import { oneCallExtra } from "../../data/content/services-roofing";
+---
+
+<div
+  class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 mx-10 my-10"
+>
+  {
+    oneCallExtra.map((item) => (
+      <Card
+        title={item.title}
+        description={item.content[0].text}
+        icon={item.content[0].icon}
+      />
+    ))
+  }
+</div>

@@ -1,14 +1,13 @@
 import { c as classesToSelector } from '../shared/classes-to-selector.mjs';
 import { c as createElementIfNotDefined } from '../shared/create-element-if-not-defined.mjs';
-import { m as makeElementsArray, f as elementOuterSize, h as elementIndex, a as elementParents } from '../shared/utils.mjs';
+import { m as makeElementsArray, i as elementOuterSize, j as elementIndex, s as setInnerHTML, d as elementParents } from '../shared/utils.mjs';
 
-function Pagination(_ref) {
-  let {
-    swiper,
-    extendParams,
-    on,
-    emit
-  } = _ref;
+function Pagination({
+  swiper,
+  extendParams,
+  on,
+  emit
+}) {
   const pfx = 'swiper-pagination';
   extendParams({
     pagination: {
@@ -226,7 +225,7 @@ function Pagination(_ref) {
         });
       }
       if (params.type === 'custom' && params.renderCustom) {
-        subEl.innerHTML = params.renderCustom(swiper, current + 1, total);
+        setInnerHTML(subEl, params.renderCustom(swiper, current + 1, total));
         if (subElIndex === 0) emit('paginationRender', subEl);
       } else {
         if (subElIndex === 0) emit('paginationRender', subEl);
@@ -276,7 +275,7 @@ function Pagination(_ref) {
     swiper.pagination.bullets = [];
     el.forEach(subEl => {
       if (params.type !== 'custom') {
-        subEl.innerHTML = paginationHTML || '';
+        setInnerHTML(subEl, paginationHTML || '');
       }
       if (params.type === 'bullets') {
         swiper.pagination.bullets.push(...subEl.querySelectorAll(classesToSelector(params.bulletClass)));

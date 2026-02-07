@@ -1,0 +1,116 @@
+---
+
+import FormsServices from "../forms/FormsServices.astro";
+import Swiper from "../media/swiper.astro";
+
+const {
+  bagroundImage = "https://res.cloudinary.com/driyxelzh/image/upload/v1744252247/banner1_akffxu.jpg",
+} = Astro.props;
+const { heading = "Roofer for Albany" } = Astro.props;
+const { sliders = [] } = Astro.props;
+---
+
+<div
+  class="relative min-h-[55vh] text-white mt-[190px] md:mt-[120px] clip-bottom pb-20 md:pb-32 overflow-hidden"
+>
+  
+  <img 
+    src={`https://res.cloudinary.com/driyxelzh/image/upload/w_1920,f_auto,q_auto/v1744252247/banner1_akffxu.jpg`}
+    alt="Nova Solutions Roofing Background"
+    width="1920"
+    height="1080"
+    fetchpriority="high"
+    class="absolute inset-0 w-full h-full object-cover -z-0"
+  />
+  
+  <div
+    class="absolute inset-0 bg-gradient-to-tr from-black via-black/60 to-transparent opacity-100 z-[1]"
+  >
+  </div>
+
+  <div
+    class="relative z-[2] flex flex-col lg:flex-row justify-between items-start gap-8 px-6 py-10 lg:px-20"
+  >
+    
+    <div
+      class="flex-1 min-w-[300px] text-left m-auto text-input-text animate__animated animate__backInLeft"
+    >
+      <h2 class="text-xl lg:text-3xl font-bold tracking-wide mb-2 text-primary">
+        One Call Does it all!
+      </h2>
+      <h1 class="text-3xl lg:text-5xl font-bold font-Azonix leading-tight mb-6">
+        {heading}
+      </h1>
+
+      <ul class="list-none space-y-2 text-lg text-white">
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Nova Solutions
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Made in USA - Family Owned & Operated
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Transferable Lifetime Warranty
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          BBB Accredited
+        </li>
+      </ul>
+
+      <div class="mt-6 flex justify-center lg:justify-start">
+        <div
+          class="flex w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-[70%] w-screen overflow-x-hidden"
+        >
+          <Swiper slides={sliders} />
+        </div>
+      </div>
+
+      <a
+        href="/About/Contact-us"
+        class="inline-block bg-white text-blue-600 hover:text-blue-800 transition-colors font-semibold rounded-lg px-6 py-3 mt-6 shadow-md"
+      >
+        get your free stimate
+      </a>
+    </div>
+    <div class="hidden md:block animate__animated animate__fadeInDown">
+      <FormsServices />
+    </div>
+  </div>
+</div>
+<style>
+  .checker-icon {
+    display: inline-block;
+    background-color: black;
+    color: yellow;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 20px;
+    margin-right: 8px;
+  }
+  .clip-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+</style>

@@ -1,20 +1,20 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Footer from "../../components/Footer.astro";
-import MoreServices from "../../components/moreServices.astro";
-import Trust from "../../components/Trust.astro";
-import Container from "../../components/Container.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import CertificatesAffiliations from "../../components/CertificatesAffiliations.astro";
-import FormsServices from "../../components/FormsServices.astro";
+import Footer from "../../components/layout/Footer.astro";
+import MoreServices from "../../components/services/moreServices.astro";
+import Trust from "../../components/sections/Trust.astro";
+import Container from "../../components/layout/Container.astro";
+import Paragraph from "../../components/ui/Paragraph.astro";
+import CertificatesAffiliations from "../../components/sections/CertificatesAffiliations.astro";
+import FormsServices from "../../components/forms/FormsServices.astro";
 const imageUrl =
   "https://res.cloudinary.com/driyxelzh/image/upload/v1758226116/PHOTO-2025-09-18-15-03-26_xbia6m.jpg";
 const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
 ---
 
 <Layout
-  title="About Nova Solutions | Roofing & Exterior Experts in Albany, NY"
-  description="Discover Nova Solutions, Albany’s trusted provider of roofing, siding, gutters, and exterior home services. With 5+ years of experience, we deliver durable craftsmanship and reliable protection for your home."
+  title="About Nova Solutions | Roofing & Exterior Experts in Capital Region, NY"
+  description="Discover Nova Solutions, Capital Region’s trusted provider of roofing, siding, gutters, and exterior home services. With 5+ years of experience, we deliver durable craftsmanship and reliable protection for your home."
 />
 
 <section class="relative pt-32 lg:pt-36 mt-[100px] md:mt-[50px]">
@@ -54,9 +54,11 @@ const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
 
     <div class="flex justify-center lg:w-1/2 mx-auto max-w-md">
       <img
-        src="https://res.cloudinary.com/driyxelzh/image/upload/v1744258572/WhatsApp_Image_2025-04-08_at_15.15.18-removebg-preview_1_gbw7ay.png"
+        src="https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_500/v1744258572/WhatsApp_Image_2025-04-08_at_15.15.18-removebg-preview_1_gbw7ay.png"
         alt="Nova Solutions Logo"
         class="rounded-3xl object-contain w-full h-auto"
+        width="500"
+        height="300"
       />
     </div>
   </Container>
@@ -74,7 +76,7 @@ const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
         <strong>About Nova Solutions</strong> —
         <strong>Nova Solutions</strong> is a leading provider of
         <strong>exterior home improvement services</strong> in
-        <strong>Albany, New York</strong>. With over <strong
+        <strong>Capital Region, New York</strong>. With over <strong
           >5 years of hands-on experience</strong
         >, we specialize in <strong>roofing</strong>, <strong
           >roof repair</strong
@@ -89,7 +91,7 @@ const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
         >, or need
         <strong>long-term protection</strong> from water and weather,
         <strong>Nova Solutions</strong> is the trusted local expert. We’re proud
-        to serve homeowners throughout <strong>Albany</strong> and surrounding areas
+        to serve homeowners throughout <strong>Capital Region</strong> and surrounding areas
         with affordable,
         <strong>customized exterior solutions</strong> that last.
       </p>
@@ -132,24 +134,26 @@ const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
         src={imageUrl}
         alt="Vista del mapa sin marcador"
         class="w-full h-full object-cover"
+        width="1200"
+        height="400"
       />
     </div>
   </div>
 </div>
 <section class="bg-primary text-black py-10 px-6 md:px-6">
   <div class="max-w-7xl mx-auto">
-    <!-- Grid: 2 columnas -->
+    
     <div class="grid md:grid-cols-2 gap-10 items-center">
-      <!-- Columna Izquierda: Títulos y texto -->
+      
       <div class="space-y-6 pt-6">
-        <!-- 👈 Se añadió pt-6 aquí -->
+        
         <h2 class="text-4xl font-bold items-start">Contact Us</h2>
         <h3 class="text-2xl md:text-3xl font-semibold">
           Let’s Start Your Next Project
         </h3>
         <p class="text-lg leading-relaxed">
           At <strong>Nova Solutions</strong>, based in <strong
-            >Albany, NY</strong
+            >Capital Region, NY</strong
           >, we're always here to help you with roofing, gutters, siding, and
           more. Whether you're planning a full remodel or a small repair, we’re
           ready.
@@ -160,7 +164,7 @@ const mapsUrl = "https://maps.app.goo.gl/QoNHzw2ME7cze2Br5";
         </p>
       </div>
 
-      <!-- Columna Derecha: Formulario -->
+      
       <div class="flex justify-center items-start w-full">
         <FormsServices />
       </div>
