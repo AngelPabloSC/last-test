@@ -1,48 +1,96 @@
-# Astro Starter Kit: Basics
+# Nova Solutions
 
-```sh
-npm create astro@latest -- --template basics
-```
+**Nova Solutions** es un sitio web moderno y de alto rendimiento especializado en servicios de techado (Roofing, Siding, Gutters). Este proyecto está construido utilizando **Astro**, lo que garantiza una velocidad de carga excepcional y una excelente optimización para motores de búsqueda (SEO).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 🚀 Stack Tecnológico
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El proyecto utiliza las siguientes tecnologías y librerías clave:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+-   **Core**: [Astro v5](https://astro.build/) - Framework web para sitios orientados a contenido.
+-   **Estilos**: [Tailwind CSS v4](https://tailwindcss.com/) - Framework de utilidades CSS (integrado vía Vite).
+-   **Interactividad**:
+    -   **React**: Para componentes interactivos complejos (si aplica).
+    -   **Swiper**: Para carruseles y galerías de imágenes táctiles.
+    -   **Animate.css**: Para animaciones de entrada y efectos visuales.
+-   **Iconos**:
+    -   `astro-icon` & `@iconify-json/mdi`: Gestión eficiente de iconos SVG.
+    -   `lucide-astro`: Set de iconos limpios y modernos.
+-   **SEO**: `@astrojs/sitemap` para generación automática del mapa del sitio.
 
-## 🚀 Project Structure
+## 📂 Estructura del Proyecto
 
-Inside of your Astro project, you'll see the following folders and files:
+La estructura de directorios sigue las convenciones de Astro, con un enfoque en la separación de datos y presentación:
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/             # Archivos estáticos (imágenes, fuentes, favicon)
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/         # Recursos procesados por Astro/Vite
+│   ├── components/     # Componentes UI reutilizables (.astro, .jsx)
+│   ├── data/           # ⚠️ Fuente de verdad del contenido
+│   │   ├── content/    # Textos y descripciones generales
+│   │   ├── gallery/    # Datos de imágenes para galerías
+│   │   ├── navigation/ # Configuración de menús
+│   │   └── services/   # Información detallada de servicios
+│   ├── layouts/        # Plantillas base (Header, Footer, Meta tags)
+│   ├── pages/          # Rutas del sitio (generación basada en archivos)
+│   └── styles/         # Estilos globales y configuraciones de Tailwind
+└── astro.config.mjs    # Configuración de Astro
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+> **Nota para Editores**: Si necesitas cambiar textos, agregar servicios o modificar la navegación, revisa primero la carpeta `src/data`. El sitio está diseñado para consumir estos archivos de datos dinámicamente.
 
-## 🧞 Commands
+## 🛠️ Instalación y Desarrollo
 
-All commands are run from the root of the project, from a terminal:
+Para ejecutar este proyecto localmente, necesitas tener instalado **Node.js** (versión 18 o superior).
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+1.  **Clonar el repositorio**:
+    ```bash
+    git clone <url-del-repositorio>
+    cd novasolutions
+    ```
 
-## 👀 Want to learn more?
+2.  **Instalar dependencias**:
+    ```bash
+    npm install
+    ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+3.  **Iniciar servidor de desarrollo**:
+    ```bash
+    npm run dev
+    ```
+    El sitio estará disponible en `http://localhost:4321`.
+
+## 📦 Construcción y Despliegue
+
+Este proyecto está configurado para un despliegue estático.
+
+### Generar Build de Producción
+Para generar los archivos estáticos listos para producción:
+
+```bash
+npm run build
+```
+Esto creará una carpeta `dist/` con todo el sitio compilado.
+
+### Flujo CI/CD (GitLab -> Azure)
+El despliegue está automatizado mediante **GitLab CI/CD**:
+
+1.  Al hacer push a la rama `main`, se activa el pipeline.
+2.  **Build Stage**: Se instalan dependencias y se ejecuta `npm run build`.
+3.  **Deploy Stage**:
+    -   El artefacto generado se transfiere al servidor de producción en **Azure**.
+    -   Se descomprime y sirve estáticamente.
+    -   *Nota*: La configuración de Netlify ha sido eliminada en favor de esta infraestructura propia.
+
+## 📝 Comandos Útiles
+
+| Comando | Acción |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desarrollo local. |
+| `npm run build` | Compila el sitio para producción en `./dist/`. |
+| `npm run preview` | Previsualiza localmente la versión compilada (`dist`). |
+| `astro check` | Verifica tipos y problemas en archivos `.astro`. |
+
+---
+© 2026 Nova Solutions. Todos los derechos reservados.
