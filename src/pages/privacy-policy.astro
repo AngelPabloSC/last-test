@@ -1,5 +1,39 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ContentCard from "../components/ui/ContentCard.astro";
+import ListItem from "../components/ui/ListItem.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import SidebarNav from "../components/ui/SidebarNav.astro";
+
+// Navigation data
+const navSections = [
+  {
+    title: "Privacy Policy",
+    links: [
+      { href: "#privacy-rights", text: "Your Privacy Rights" },
+      { href: "#info-collect", text: "Information We Collect" },
+      { href: "#info-use", text: "How We Use Your Info" },
+      { href: "#cookies", text: "Cookies & Tracking" },
+      { href: "#sharing", text: "Sharing of Information" },
+      { href: "#consent", text: "Your Consent" },
+      { href: "#security", text: "Data Security" },
+      { href: "#retention", text: "Data Retention" },
+      { href: "#rights", text: "Your Rights & Choices" }
+    ]
+  },
+  {
+    title: "Terms & Conditions",
+    links: [
+      { href: "#acceptance", text: "Acceptance of Terms" },
+      { href: "#use-website", text: "Use of Website" },
+      { href: "#intellectual", text: "Intellectual Property" },
+      { href: "#disclaimer", text: "Disclaimer" },
+      { href: "#liability", text: "Limitation of Liability" },
+      { href: "#changes", text: "Changes to Terms" },
+      { href: "#contact", text: "Contact Us" }
+    ]
+  }
+];
 ---
 
 <Layout
@@ -7,164 +41,237 @@ import Layout from "../layouts/Layout.astro";
   description="Read our full Privacy Policy and Terms & Conditions to understand how Nova Solutions collects, uses, and protects your data while delivering quality service in Capital Region and surrounding areas."
 />
 
-<section
-  class="max-w-5xl mx-auto px-4 py-12 text-black mt-[130px] md:mt-[120px]"
->
-  <h1 class="text-4xl font-bold mb-6">Privacy Policy | Nova Solutions</h1>
-  <p class="text-sm text-gray-600 mb-8">Last Updated: May 6, 2025</p>
+<div class="bg-black mt-[100px] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 py-16 text-center relative z-10">
+    <h1 class="text-5xl font-bold text-primary mb-4">Privacy Policy & Terms</h1>
+    <p class="text-xl text-white/90">Your privacy and trust matter to us</p>
+    <p class="text-sm text-white/70 mt-2">Last Updated: February 13, 2026</p>
+  </div>
+</div>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">1. Your Privacy Rights</h2>
-  <p class="mb-4">
-    Nova Solutions is committed to protecting your personal information and your
-    right to privacy. This Privacy Policy outlines our practices regarding the
-    collection, use, and disclosure of information we may gather through your
-    use of our website, services, and communications. This policy applies to all
-    pages, forms, platforms, and services operated by Nova Solutions that link
-    to this statement.
-  </p>
-
-  
-  <p class="mb-4">
-    We encourage you to read this Privacy Policy carefully to understand how we
-    collect, use, and safeguard your personal information. By using our website
-    and services, you agree to the terms described in this policy.
-  </p>
-
-  <p class="mb-4">
-    If you have any questions or concerns regarding our privacy practices,
-    please refer to the final section of this document for contact details.
-  </p>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">2. Information We Collect</h2>
-  <p>We may collect the following types of information:</p>
-  <ul class="list-disc ml-6 mt-2 space-y-1">
-    <li>Full name</li>
-    <li>Email address</li>
-    <li>Phone number (cell or landline)</li>
-    <li>City and geographic location</li>
-
-    <li>Form submissions and service inquiries</li>
-  </ul>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">
-    3. How We Use Your Information
-  </h2>
-  <p>We use your personal data to:</p>
-  <ul class="list-disc ml-6 mt-2 space-y-1">
-    <li>Send personalized emails, SMS, or phone calls regarding services</li>
-    <li>Respond to inquiries or provide support</li>
-    <li>Offer location-based services or promotions</li>
-    <li>Improve our services and user experience</li>
-    <li>Monitor website analytics and site performance</li>
-    <li>Conduct marketing campaigns, promotions, or surveys</li>
-  </ul>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">
-    4. Use of Cookies and Tracking
-  </h2>
-  <p>
-    We use cookies and similar technologies to personalize your experience,
-    track usage patterns, and improve our website functionality. You may disable
-    cookies through your browser settings, but doing so may limit certain
-    functionalities of our website.
-  </p>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">5. Sharing of Information</h2>
-  <p>
-    Nova Solutions does <strong>not sell or rent</strong> your personal information.
-    We may share data with trusted third-party service providers who assist us in
-    delivering services (e.g., hosting, email, payment processors), and only as necessary
-    to complete transactions or enhance your experience. These providers are required
-    to keep your data confidential.
-  </p>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">6. Your Consent</h2>
-  <p>
-    By submitting any form on our website or providing information through
-    communication, you consent to the collection, use, and storage of your data
-    by Nova Solutions in accordance with this Privacy Policy.
-  </p>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">7. Data Security</h2>
-  <p>
-    We take data protection seriously. Your information is stored on secure
-    servers and protected by encryption and administrative safeguards. Access is
-    restricted to authorized personnel only. We continually review our practices
-    to keep your data safe from unauthorized access, loss, or misuse.
-  </p>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">8. Data Retention</h2>
-  <p>
-    We retain personal data for as long as necessary to fulfill the purposes for
-    which it was collected, including legal, accounting, or reporting
-    requirements.
-  </p>
-
-  <h2 class="text-2xl font-semibold mt-8 mb-4">9. Your Rights</h2>
-  <p>
-    You have the right to access, update, or request deletion of your personal
-    information. To exercise your rights, contact us at:
-    <a
+<div class="max-w-7xl mx-auto px-4 py-12">
+  <div class="flex flex-col lg:flex-row gap-8">
     
-      class="text-black font-semibold"
-    >
-     Admin@nova-solutions.us
-    </a>
-  </p>
+    <aside class="lg:w-64 flex-shrink-0">
+      <SidebarNav sections={navSections} />
+    </aside>
 
-  <hr class="my-12" />
+    <main class="flex-1 min-w-0">
+      
+      <section class="mb-12 scroll-mt-[120px]">
+        <SectionTitle title="Privacy Policy" />
+        
+        <ContentCard id="privacy-rights" title="1. Your Privacy Rights">
+          <p class="mb-4 text-gray-700">
+            Nova Solutions is committed to protecting your personal information and your
+            right to privacy. This Privacy Policy outlines our practices regarding the
+            collection, use, and disclosure of information we may gather through your
+            use of our website, services, and communications. This policy applies to all
+            pages, forms, platforms, and services operated by Nova Solutions that link
+            to this statement.
+          </p>
+          <p class="mb-4 text-gray-700">
+            We encourage you to read this Privacy Policy carefully to understand how we
+            collect, use, and safeguard your personal information. By using our website
+            and services, you agree to the terms described in this policy.
+          </p>
+          <p class="text-gray-700">
+            If you have any questions or concerns regarding our privacy practices,
+            please refer to the final section of this document for contact details.
+          </p>
+        </ContentCard>
 
-  <h1 class="text-4xl font-bold mb-6">Terms and Conditions | Nova Solutions</h1>
+        <ContentCard id="info-collect" title="2. Information We Collect">
+          <p class="mb-3 text-gray-700">We may collect the following types of information:</p>
+          <ul class="space-y-2">
+            <ListItem text="Full name" />
+            <ListItem text="Email address" />
+            <ListItem text="Phone number (cell or landline)" />
+            <ListItem text="City and geographic location" />
+            <ListItem text="Form submissions and service inquiries" />
+          </ul>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">1. Acceptance of Terms</h2>
-  <p>
-    By using this website, you agree to be bound by these terms and conditions.
-    If you do not agree, please do not access or use the site.
-  </p>
+        <ContentCard id="info-use" title="3. How We Use Your Information">
+          <p class="mb-3 text-gray-700">We use your personal data to:</p>
+          <ul class="space-y-2">
+            <ListItem text="Send personalized emails, SMS, or phone calls regarding services" />
+            <ListItem text="Respond to inquiries or provide support" />
+            <ListItem text="Offer location-based services or promotions" />
+            <ListItem text="Improve our services and user experience" />
+            <ListItem text="Monitor website analytics and site performance" />
+            <ListItem text="Conduct marketing campaigns, promotions, or surveys" />
+          </ul>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">2. Use of Website</h2>
-  <p>You may use this site for lawful purposes only. You agree not to:</p>
-  <ul class="list-disc ml-6 mt-2 space-y-1">
-    <li>Misuse or attempt to exploit the platform</li>
-    <li>Upload harmful, misleading, or fraudulent content</li>
-    <li>Collect information about others without consent</li>
-    <li>Violate any laws or third-party rights</li>
-  </ul>
+        <ContentCard id="cookies" title="4. Use of Cookies and Tracking">
+          <p class="text-gray-700">
+            We use cookies and similar technologies to personalize your experience,
+            track usage patterns, and improve our website functionality. You may disable
+            cookies through your browser settings, but doing so may limit certain
+            functionalities of our website.
+          </p>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">3. Intellectual Property</h2>
-  <p>
-    All content on this website — including logos, text, images, and code — is
-    the property of Nova Solutions and may not be used without permission.
-  </p>
+        <ContentCard id="sharing" title="5. Sharing of Information">
+          <p class="mb-4 text-gray-700">
+            Nova Solutions does <strong>not sell or rent</strong> your personal information.
+            We may share data with trusted third-party service providers who assist us in
+            delivering services (e.g., hosting, email, payment processors), and only as necessary
+            to complete transactions or enhance your experience. These providers are required
+            to keep your data confidential.
+          </p>
+          <p class="text-gray-700">
+            However, no mobile information will be shared with third parties/affiliates for
+            marketing/promotional purposes. All the above categories exclude text messaging
+            originator opt-in data and consent; this information will not be shared with any
+            third parties.
+          </p>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">4. Disclaimer</h2>
-  <p>
-    We strive to ensure the information on our site is accurate. However, we
-    make no warranties regarding completeness or accuracy and disclaim liability
-    for any errors or omissions.
-  </p>
+        <ContentCard id="consent" title="6. Your Consent">
+          <p class="text-gray-700">
+            By submitting any form on our website or providing information through
+            communication, you consent to the collection, use, and storage of your data
+            by Nova Solutions in accordance with this Privacy Policy.
+          </p>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">5. Limitation of Liability</h2>
-  <p>
-    Nova Solutions is not responsible for any damages or losses arising from the
-    use or inability to use our site, even if advised of such damages.
-  </p>
+        <ContentCard id="security" title="7. Data Security">
+          <p class="text-gray-700">
+            We take data protection seriously. Your information is stored on secure
+            servers and protected by encryption and administrative safeguards. Access is
+            restricted to authorized personnel only. We continually review our practices
+            to keep your data safe from unauthorized access, loss, or misuse.
+          </p>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">6. Changes to Terms</h2>
-  <p>
-    We may revise these Terms & Conditions or Privacy Policy at any time without
-    prior notice. Updates will be posted on this page with a new effective date.
-  </p>
+        <ContentCard id="retention" title="8. Data Retention">
+          <p class="text-gray-700">
+            We retain personal data for as long as necessary to fulfill the purposes for
+            which it was collected, including legal, accounting, or reporting
+            requirements.
+          </p>
+        </ContentCard>
 
-  <h2 class="text-2xl font-semibold mt-8 mb-4">7. Contact Us</h2>
-  <p>
-    For questions regarding these terms or our privacy practices, please contact
-    us at:
-    <a
-   
-      class="text-black font-semibold"
-    >
-           Admin@nova-solutions.us
-    </a>
-  </p>
-</section>
+        <ContentCard id="rights" title="9. Your Rights & Choices">
+          <p class="mb-4 text-gray-700">
+            You have the right to access, update, or request deletion of your personal
+            information.
+          </p>
+          <p class="mb-4 text-gray-700">
+            <strong>Opt-Out of Texting:</strong> You may opt out of receiving text messages
+            from us at any time by replying "STOP" to any message. You may also reply "HELP"
+            for assistance.
+          </p>
+          <p class="text-gray-700">
+            To exercise your rights, contact us at:
+            <a href="mailto:Admin@nova-solutions.us" class="text-black font-semibold border-b-2 border-transparent hover:border-primary transition-colors duration-200">
+              Admin@nova-solutions.us
+            </a>
+          </p>
+        </ContentCard>
+      </section>
+
+      <section class="scroll-mt-[120px]">
+        <SectionTitle title="Terms and Conditions" />
+
+        <ContentCard id="acceptance" title="1. Acceptance of Terms">
+          <p class="text-gray-700">
+            By using this website, you agree to be bound by these terms and conditions.
+            If you do not agree, please do not access or use the site.
+          </p>
+        </ContentCard>
+
+        <ContentCard id="use-website" title="2. Use of Website">
+          <p class="mb-3 text-gray-700">You may use this site for lawful purposes only. You agree not to:</p>
+          <ul class="space-y-2">
+            <ListItem text="Misuse or attempt to exploit the platform" />
+            <ListItem text="Upload harmful, misleading, or fraudulent content" />
+            <ListItem text="Collect information about others without consent" />
+            <ListItem text="Violate any laws or third-party rights" />
+          </ul>
+        </ContentCard>
+
+        <ContentCard id="intellectual" title="3. Intellectual Property">
+          <p class="text-gray-700">
+            All content on this website — including logos, text, images, and code — is
+            the property of Nova Solutions and may not be used without permission.
+          </p>
+        </ContentCard>
+
+        <ContentCard id="disclaimer" title="4. Disclaimer">
+          <p class="text-gray-700">
+            We strive to ensure the information on our site is accurate. However, we
+            make no warranties regarding completeness or accuracy and disclaim liability
+            for any errors or omissions.
+          </p>
+        </ContentCard>
+
+        <ContentCard id="liability" title="5. Limitation of Liability">
+          <p class="text-gray-700">
+            Nova Solutions is not responsible for any damages or losses arising from the
+            use or inability to use our site, even if advised of such damages.
+          </p>
+        </ContentCard>
+
+        <ContentCard id="changes" title="6. Changes to Terms">
+          <p class="text-gray-700">
+            We may revise these Terms & Conditions or Privacy Policy at any time without
+            prior notice. Updates will be posted on this page with a new effective date.
+          </p>
+        </ContentCard>
+
+        <ContentCard id="contact" title="7. Contact Us">
+          <p class="text-gray-700">
+            For questions regarding these terms or our privacy practices, please contact
+            us at:
+            <a href="mailto:Admin@nova-solutions.us" class="text-black font-semibold border-b-2 border-transparent hover:border-primary transition-colors duration-200">
+              Admin@nova-solutions.us
+            </a>
+          </p>
+        </ContentCard>
+      </section>
+    </main>
+  </div>
+</div>
+
+<style>
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  // Smooth scroll and active link highlighting
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const sections = document.querySelectorAll('[id]');
+
+    // Active section highlighting on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.remove('bg-yellow-50', 'text-black', 'border-l-primary', 'font-semibold');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('bg-yellow-50', 'text-black', 'border-l-primary', 'font-semibold');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      if (section.id) observer.observe(section);
+    });
+  });
+</script>
