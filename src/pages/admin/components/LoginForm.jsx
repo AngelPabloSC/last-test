@@ -136,7 +136,7 @@ export default function LoginForm({
 
         {/* Email */}
         <Box sx={{ mb: 2.5 }}>
-          <FieldLabel>Correo electrónico</FieldLabel>
+          <FieldLabel>Email Address</FieldLabel>
           <CustomTextField
             name="email"
             register={register}
@@ -163,7 +163,7 @@ export default function LoginForm({
 
         {/* Password */}
         <Box sx={{ mb: 2.5 }}>
-          <FieldLabel>Contraseña</FieldLabel>
+          <FieldLabel>Password</FieldLabel>
           <CustomTextField
             name="password"
             register={register}
@@ -210,11 +210,11 @@ export default function LoginForm({
                 sx={{ color: '#444444', p: '2px', mr: 0.5, '&.Mui-checked': { color: 'primary.main' } }}
               />
             }
-            label={<Typography sx={{ fontSize: '13px', color: '#AAAAAA' }}>Recordarme</Typography>}
+            label={<Typography sx={{ fontSize: '13px', color: '#AAAAAA' }}>Remember me</Typography>}
             sx={{ m: 0 }}
           />
           <Link href="/forgot-password" underline="hover" sx={{ fontSize: '13px', fontWeight: 600, color: 'primary.main' }}>
-            ¿Olvidaste tu contraseña?
+            Forgot password?
           </Link>
         </Box>
 
@@ -242,13 +242,13 @@ export default function LoginForm({
             },
           }}
         >
-          {isSubmitting ? <CircularProgress size={20} color="inherit" /> : 'Iniciar Sesión'}
+          {isSubmitting ? <CircularProgress size={20} color="inherit" /> : 'Sign In'}
         </Button>
 
         {/* Divider */}
         <Box sx={{ my: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Box sx={{ flex: 1, height: '1px', bgcolor: '#2A2A2A' }} />
-          <Typography sx={{ fontSize: '11px', color: '#444444' }}>acceso seguro</Typography>
+          <Typography sx={{ fontSize: '11px', color: '#444444' }}>secure access</Typography>
           <Box sx={{ flex: 1, height: '1px', bgcolor: '#2A2A2A' }} />
         </Box>
 
@@ -268,7 +268,7 @@ export default function LoginForm({
         >
           <VerifiedUserOutlinedIcon sx={{ fontSize: 14, color: '#34A853', flexShrink: 0 }} />
           <Typography sx={{ fontSize: '11px', color: '#666666' }}>
-            Acceso protegido · Cifrado SSL · Solo administradores
+            Protected Access · SSL Encrypted · Admins Only
           </Typography>
         </Box>
       </Box>

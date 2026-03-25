@@ -10,15 +10,15 @@ const BG_IMAGE =
   'https://images.unsplash.com/photo-1770650882353-8dbf9b85a4cf?w=1080&q=80';
 
 const FEATURES = [
-  'Gestión de peticiones y solicitudes de servicio',
-  'Moderación de reseñas de clientes',
-  'Envío de correos y comunicaciones',
+  'Manage service requests and quotes',
+  'Customer review moderation',
+  'Email and communications',
 ];
 
 const STATS = [
-  { value: '24',   label: 'Peticiones activas' },
-  { value: '156',  label: 'Reseñas totales'    },
-  { value: '4.8★', label: 'Rating promedio'    },
+  { value: '24',   label: 'Active requests' },
+  { value: '156',  label: 'Total reviews'   },
+  { value: '4.8★', label: 'Average rating'  },
 ];
 
 export default function LoginBrandingPanel() {
@@ -121,17 +121,17 @@ export default function LoginBrandingPanel() {
           <Typography
             sx={{ fontSize: '10px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: 'primary.main' }}
           >
-            Panel de Administración
+            Admin Panel
           </Typography>
           <Typography
             variant="h1"
             sx={{ mt: 1.5, fontSize: '36px !important', fontWeight: 700, lineHeight: 1.2, color: '#FFFFFF' }}
           >
-            Gestiona tu negocio<br />desde un solo lugar
+            Manage your business<br />from one place
           </Typography>
           <Box sx={{ mt: 1.5, width: 48, height: 3, borderRadius: 9999, bgcolor: 'primary.main' }} />
           <Typography sx={{ mt: 2, maxWidth: '420px', fontSize: '0.875rem', lineHeight: 1.7, color: '#AAAAAA' }}>
-            Accede a peticiones, reseñas, correos y configuración de Nova Solutions en tiempo real.
+            Access requests, reviews, emails, and Nova Solutions settings in real time.
           </Typography>
         </Box>
 
