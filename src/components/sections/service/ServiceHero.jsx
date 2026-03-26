@@ -116,15 +116,7 @@ export default function ServiceHero({ hero }) {
           </Box>
         </Box>
 
-        <Box
-          sx={{ width: { xs: '100%', lg: 420 }, flexShrink: 0, bgcolor: '#161616EE', border: `1px solid ${gold}33`, borderRadius: '20px', p: 4 }}
-        >
-          <Typography sx={{ color: gold, fontSize: 11, fontWeight: 800, letterSpacing: 4, textAlign: 'center', mb: 2 }}>
-            CONTACT YOUR LOCAL CONTRACTOR
-          </Typography>
-          <Box sx={{ width: '100%', height: 1, bgcolor: '#2A2A2A', mb: 2 }} />
-          <ContactForm />
-        </Box>
+     
       </Box>
     </Box>
   );

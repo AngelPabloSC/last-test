@@ -20,6 +20,15 @@ export default function ServicePage({ data, category = 'Services' }) {
       }
       meta.content = seo.description;
     }
+    if (seo?.keywords) {
+      let meta = document.querySelector('meta[name="keywords"]');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.name = 'keywords';
+        document.head.appendChild(meta);
+      }
+      meta.content = seo.keywords;
+    }
   }, [seo]);
 
   return (
@@ -33,6 +42,7 @@ export default function ServicePage({ data, category = 'Services' }) {
           image={section.image}
           imagePos={section.imagePos}
           bullets={section.bullets}
+          certificates={section.certificates}
           index={i}
         />
       ))}

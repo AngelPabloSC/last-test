@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Box, CircularProgress } from '@mui/material';
 import MUIDataTable from 'mui-datatables';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 
@@ -12,12 +13,12 @@ const GlobalTable = (props) => {
     rowsSelected,
     onRowSelectionChange,
     customTheme,
+    loading = false,
   } = props;
 
   const parentTheme = useTheme();
 
-  
-  const mergedOptions = {
+  const mergedOptions = React.useMemo(() => ({
     selectableRows: 'none',
     selectableRowsOnClick: false,
     search: false,
@@ -29,11 +30,15 @@ const GlobalTable = (props) => {
     elevation: 0,
     rowsSelected,
     onRowSelectionChange,
+    textLabels: {
+      body: {
+        noMatch: loading ? 'Cargando solicitudes...' : 'No se encontraron registros',
+      }
+    },
     ...options,
-  };
+  }), [options, rowsSelected, onRowSelectionChange, loading]);
 
-  // Creación de un tema específico para la tabla que hereda del general
-  const getMuiTheme = () =>
+  const getMuiTheme = React.useMemo(() =>
     createTheme({
       ...parentTheme,
       components: {
@@ -113,16 +118,38 @@ const GlobalTable = (props) => {
         },
         ...customTheme?.components,
       },
-    });
+    }), [parentTheme, customTheme]);
 
   return (
-    <ThemeProvider theme={getMuiTheme()}>
-      <MUIDataTable
-        title={title}
-        data={data}
-        columns={columns}
-        options={mergedOptions}
-      />
+    <ThemeProvider theme={getMuiTheme}>
+      <Box sx={{ position: 'relative' }}>
+        {loading && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 10,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bgcolor: 'rgba(0,0,0,0.5)',
+              borderRadius: '10px',
+              backdropFilter: 'blur(1px)',
+            }}
+          >
+            <CircularProgress size={30} />
+          </Box>
+        )}
+        <MUIDataTable
+          title={title}
+          data={data}
+          columns={columns}
+          options={mergedOptions}
+        />
+      </Box>
     </ThemeProvider>
   );
 };
@@ -135,6 +162,7 @@ GlobalTable.propTypes = {
   rowsSelected: PropTypes.arrayOf(PropTypes.number),
   onRowSelectionChange: PropTypes.func,
   customTheme: PropTypes.object,
+  loading: PropTypes.bool,
 };
 
 export default GlobalTable;

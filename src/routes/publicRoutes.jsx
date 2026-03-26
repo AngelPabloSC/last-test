@@ -5,6 +5,7 @@ import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
 import ReviewsPage from '@/pages/ReviewsPage';
 import LeaveReviewPage from '@/pages/LeaveReviewPage';
+import TermsPrivacyPage from '@/pages/TermsPrivacyPage';
 import AdminLogin from '@/pages/AdminLogin';
 import GuestRoute from '@/routes/GuestRoute';
 import {
@@ -17,7 +18,6 @@ import {
   ROOFING_REPAIR,
   HAIL_DAMAGE,
   ROOF_INSPECTION,
-  ROOF_LEAK,
   STORM_DAMAGE,
   SIDING,
   VINYL_SIDING,
@@ -46,7 +46,7 @@ export const publicRoutes = [
       // Home
       { index: true, element: <Landing /> },
 
-      // ── Roofing ────────────────────────────────────────────────────────────
+  
       { path: 'Roofing',                   element: <ServicePage data={ROOFING}            category="Roofing" /> },
       { path: 'Roofing/Roof-installation', element: <ServicePage data={ROOF_INSTALLATION}  category="Roofing" /> },
       { path: 'Roofing/Asphalt-Single',    element: <ServicePage data={ASPHALT_SHINGLE}    category="Roofing" /> },
@@ -54,20 +54,19 @@ export const publicRoutes = [
       { path: 'Roofing/Metal-Roofing',     element: <ServicePage data={METAL_ROOFING}      category="Roofing" /> },
       { path: 'Roofing/Commercial',        element: <ServicePage data={COMMERCIAL_ROOFING} category="Roofing" /> },
 
-      // ── Roof Repair ────────────────────────────────────────────────────────
+
       { path: 'Roofing-Repair',                   element: <ServicePage data={ROOFING_REPAIR}  category="Roofing Repair" /> },
       { path: 'Roofing-Repair/Roof-Inspection',   element: <ServicePage data={ROOF_INSPECTION} category="Roofing Repair" /> },
       { path: 'Roofing-Repair/Storm-Damage',      element: <ServicePage data={STORM_DAMAGE}    category="Roofing Repair" /> },
       { path: 'Roofing-Repair/Hail-Damage',       element: <ServicePage data={HAIL_DAMAGE}     category="Roofing Repair" /> },
-      { path: 'Roofing-Repair/Roof-Leak',         element: <ServicePage data={ROOF_LEAK}       category="Roofing Repair" /> },
 
-      // ── Siding ─────────────────────────────────────────────────────────────
+      
       { path: 'Siding',                      element: <ServicePage data={SIDING}               category="Siding" /> },
       { path: 'Siding/Vinyl-Siding',         element: <ServicePage data={VINYL_SIDING}          category="Siding" /> },
       { path: 'Siding/Siding-Replacement',   element: <ServicePage data={SIDING_REPLACEMENT}    category="Siding" /> },
       { path: 'Siding/fiber-Cement-Siding',  element: <ServicePage data={FIBER_CEMENT_SIDING}   category="Siding" /> },
 
-      // ── Gutters ────────────────────────────────────────────────────────────
+    
       { path: 'Gutters',                                   element: <ServicePage data={GUTTERS}           category="Gutters" /> },
       { path: 'Gutters/Gutter-Guards',                     element: <ServicePage data={GUTTER_GUARDS}     category="Gutters" /> },
       { path: 'Gutters/Gutter-Guards/Gutter-Protection',   element: <ServicePage data={GUTTER_PROTECTION} category="Gutters" /> },
@@ -78,13 +77,14 @@ export const publicRoutes = [
       { path: 'Gutters/Gutter-Replacement',                element: <ServicePage data={GUTTER_REPLACEMENT} category="Gutters" /> },
       { path: 'Gutters/Gutter-Repairs',                    element: <ServicePage data={GUTTER_REPAIRS}    category="Gutters" /> },
 
-      // ── About ──────────────────────────────────────────────────────────────
+
       { path: 'About', element: <AboutPage /> },
       { path: 'About/Contact-us', element: <ContactPage /> },
 
-      // ── Reviews ────────────────────────────────────────────────────────────
+ 
       { path: 'Reviews', element: <ReviewsPage /> },
       { path: 'Leave-Review', element: <LeaveReviewPage /> },
+      { path: 'privacy-policy', element: <TermsPrivacyPage /> },
     ],
   },
 ];

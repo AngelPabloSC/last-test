@@ -55,16 +55,16 @@ export const useLogin = () => {
   };
 
   return {
-    // form
+ 
     register,
     handleSubmit,
     errors,
     isSubmitting,
     onSubmit,
-    // password toggle
+   
     showPassword,
     handleClickShowPassword,
-    // auth error
+   
     errorMsg,
   };
 };

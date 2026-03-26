@@ -1,11 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CheckIcon from '@mui/icons-material/Check';
+import ServiceCertificatesBlock from './ServiceCertificatesBlock';
 
 const BG_ALT = '#0D0D0D';
 const BG_MAIN = '#111111';
 
-export default function ServiceContentSection({ heading, body, image, imagePos = 1, bullets, index = 0 }) {
+export default function ServiceContentSection({ heading, body, image, imagePos = 1, bullets, index = 0, certificates }) {
   const theme = useTheme();
   const gold = theme.palette.primary.main;
   const bgColor = index % 2 === 0 ? BG_MAIN : BG_ALT;
@@ -21,7 +22,10 @@ export default function ServiceContentSection({ heading, body, image, imagePos =
         {heading}
       </Typography>
       {body && (
-        <Typography sx={{ color: '#777777', fontSize: 15, lineHeight: 1.8 }}>{body}</Typography>
+        <Typography 
+          sx={{ color: '#777777', fontSize: 15, lineHeight: 1.8 }}
+          dangerouslySetInnerHTML={{ __html: body }}
+        />
       )}
       {bullets && bullets.length > 0 && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: 1 }}>
@@ -38,7 +42,11 @@ export default function ServiceContentSection({ heading, body, image, imagePos =
     </Box>
   );
 
-  const imageBlock = (
+  const certificatesBlock = certificates ? (
+    <ServiceCertificatesBlock />
+  ) : null;
+
+  const imageBlock = image ? (
     <Box sx={{ flex: 1, maxWidth: { xs: '100%', md: 540 }, borderRadius: '20px', overflow: 'hidden', flexShrink: 0 }}>
       <Box
         component="img"
@@ -47,15 +55,17 @@ export default function ServiceContentSection({ heading, body, image, imagePos =
         sx={{ width: '100%', height: { xs: 260, md: 420 }, objectFit: 'cover', display: 'block' }}
       />
     </Box>
-  );
+  ) : null;
+
+  const rightSide = certificates ? certificatesBlock : imageBlock;
 
   return (
     <Box
       component="section"
-      sx={{ width: '100%', bgcolor: bgColor, px: { xs: 3, md: '8%' }, py: { xs: 7, md: 10 }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', gap: { xs: 5, md: 8 } }}
+      sx={{ width: '100%', bgcolor: bgColor, px: { xs: 3, md: '8%' }, py: { xs: 7, md: 10 }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', gap: { xs: 5, md: 8 }, mb: certificates ? 5 : 0 }}
     >
-      {imageRight ? textBlock : imageBlock}
-      {imageRight ? imageBlock : textBlock}
+      {imageRight ? textBlock : rightSide}
+      {imageRight ? rightSide : textBlock}
     </Box>
   );
 }

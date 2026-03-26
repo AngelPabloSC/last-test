@@ -5,10 +5,11 @@
 // solo cambia este archivo.
 
 const KEYS = {
-  USER:         'user',
-  ACCESS_TOKEN: 'access_token',
-  ID_USER:      'iduser',
-  SIDEBAR_OPEN: 'sidebarOpen',
+  USER:          'user',
+  ACCESS_TOKEN:  'access_token',
+  SESSION_TOKEN: 'session_token',
+  ID_USER:       'iduser',
+  SIDEBAR_OPEN:  'sidebarOpen',
 };
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
@@ -48,10 +49,21 @@ const removeIdUser = () => {
   localStorage.removeItem(KEYS.ID_USER);
 };
 
+const getSessionToken = () => localStorage.getItem(KEYS.SESSION_TOKEN);
+
+const setSessionToken = (token) => {
+  localStorage.setItem(KEYS.SESSION_TOKEN, token);
+};
+
+const removeSessionToken = () => {
+  localStorage.removeItem(KEYS.SESSION_TOKEN);
+};
+
 const clearSession = () => {
   removeUser();
   removeToken();
   removeIdUser();
+  removeSessionToken();
 };
 
 // ── UI state ──────────────────────────────────────────────────────────────────
@@ -69,6 +81,12 @@ const setSidebarOpen = (isOpen) => {
   localStorage.setItem(KEYS.SIDEBAR_OPEN, JSON.stringify(isOpen));
 };
 
+const getDeviceId = () => localStorage.getItem('deviceId');
+
+const setDeviceId = (id) => {
+  localStorage.setItem('deviceId', id);
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const storageService = {
@@ -78,8 +96,13 @@ export const storageService = {
   getToken,
   setToken,
   removeToken,
+  getSessionToken,
+  setSessionToken,
+  removeSessionToken,
   setIdUser,
   removeIdUser,
+  getDeviceId,
+  setDeviceId,
   clearSession,
   getSidebarOpen,
   setSidebarOpen,

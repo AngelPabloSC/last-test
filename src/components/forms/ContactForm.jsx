@@ -8,6 +8,7 @@ import {
   Link,
 } from '@mui/material';
 import { useContactForm } from '@/hooks/useContactForm';
+import { Link as RouterLink } from 'react-router-dom';
 import SuccessDialog from '@/components/ui/SuccessDialog';
 import ErrorDialog   from '@/components/ui/ErrorDialog';
 import CustomTextField from '@/components/common/CustomTextField';
@@ -209,7 +210,7 @@ export default function ContactForm() {
           />
           <Typography sx={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.82rem', lineHeight: 1 }}>
             I accept the{' '}
-            <Link href="/privacy-policy" target="_blank" sx={{ color: 'primary.main' }}>
+            <Link component={RouterLink} to="/privacy-policy" target="_blank" sx={{ color: 'primary.main' }}>
               Terms and Conditions
             </Link>
           </Typography>

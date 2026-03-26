@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot, createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
@@ -8,18 +8,25 @@ import { LoginProvider } from './context/LoginContext.jsx'
 import { SnackbarProvider } from './context/SnackbarContext.jsx'
 import { SidebarProvider } from './context/SidebarContext.jsx'
 
-createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root')
+const app = (
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <LoginProvider>
-          <SnackbarProvider>
+        <SnackbarProvider>
+          <LoginProvider>
             <SidebarProvider>
               <App />
             </SidebarProvider>
-          </SnackbarProvider>
-        </LoginProvider>
+          </LoginProvider>
+        </SnackbarProvider>
       </ThemeProvider>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
+
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app)
+} else {
+  createRoot(container).render(app)
+}

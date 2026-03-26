@@ -12,34 +12,36 @@ import TrendingFlatIcon       from '@mui/icons-material/TrendingFlat';
 import RequestsTable from './components/RequestsTable';
 import MetricCard             from './components/MetricCard';
 
-const METRICS = [
+import { useContacts } from './hooks/useContacts';
+
+const METRIC_CONFIG = [
   {
+    status: 'New',
     label: 'New Requests',
-    value: '18',
     Icon: NoteAddOutlinedIcon,
     change: '+15% vs last week',
     changeColor: '#4ADE80',
     TrendIcon: TrendingUpIcon,
   },
   {
+    status: 'In Progress',
     label: 'In Progress',
-    value: '7',
     Icon: HourglassEmptyIcon,
     change: '3 assigned today',
     changeColor: '#60A5FA',
     TrendIcon: TrendingFlatIcon,
   },
   {
+    status: 'Completed',
     label: 'Completed',
-    value: '142',
     Icon: CheckCircleOutlineIcon,
     change: '98% satisfaction',
     changeColor: '#666',
     prefix: '✓',
   },
   {
+    status: 'Canceled',
     label: 'Pending Response',
-    value: '5',
     Icon: ErrorOutlineIcon,
     change: '-2 this week',
     changeColor: '#F87171',
@@ -47,16 +49,42 @@ const METRICS = [
   },
 ];
 
-const FILTERS = [
-  { id: 'todas',       label: 'All',         count: 172 },
-  { id: 'nuevas',      label: 'New',         count: 18  },
-  { id: 'en_progreso', label: 'In Progress', count: 7   },
-  { id: 'completadas', label: 'Completed',   count: 142 },
-  { id: 'canceladas',  label: 'Canceled',    count: 5   },
+const FILTER_CONFIG = [
+  { id: 'todas',       apiStatus: null,          label: 'All' },
+  { id: 'nuevas',      apiStatus: 'New',         label: 'New' },
+  { id: 'en_progreso', apiStatus: 'In Progress', label: 'In Progress' },
+  { id: 'completadas', apiStatus: 'Completed',   label: 'Completed' },
+  { id: 'canceladas',  apiStatus: 'Canceled',    label: 'Canceled' },
 ];
 
 export default function SolicitudesPage() {
   const [activeFilter, setActiveFilter] = useState('todas');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const { contactsData, tableState, fetchContacts, refreshContacts } = useContacts({ 
+    status: activeFilter, 
+    search: searchTerm,
+  });
+
+  const summary = contactsData.summary || [];
+  
+  // Mapear métricas dinámicamente
+  const metrics = METRIC_CONFIG.map(m => {
+    const apiMatch = summary.find(s => s.status === m.status);
+    return { ...m, value: apiMatch ? String(apiMatch.count) : '0' };
+  });
+
+  // Mapear filtros dinámicamente
+  const filters = FILTER_CONFIG.map(f => {
+    let count = 0;
+    if (f.id === 'todas') {
+      count = summary.reduce((acc, curr) => acc + curr.count, 0);
+    } else {
+      const apiMatch = summary.find(s => s.status === f.apiStatus);
+      count = apiMatch ? apiMatch.count : 0;
+    }
+    return { ...f, count };
+  });
 
   return (
     <Box
@@ -103,6 +131,8 @@ export default function SolicitudesPage() {
             <SearchIcon sx={{ fontSize: 16, color: '#555', flexShrink: 0 }} />
             <InputBase
               placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               sx={{
                 fontSize: 13,
                 color: 'white',
@@ -134,16 +164,16 @@ export default function SolicitudesPage() {
         </Box>
       </Box>
 
-      
+      {/* Metrics Grid */}
       <Grid container spacing={{ xs: 1.5, sm: 2.5 }} sx={{ flexShrink: 0 }}>
-        {METRICS.map((m) => (
+        {metrics.map((m) => (
           <Grid size={{ xs: 6, sm: 6, lg: 3 }} key={m.label}>
             <MetricCard {...m} />
           </Grid>
         ))}
       </Grid>
-
  
+      {/* Filters */}
       <Box
         sx={{
           display: 'flex',
@@ -159,7 +189,7 @@ export default function SolicitudesPage() {
           flexShrink: 0,
         }}
       >
-        {FILTERS.map(({ id, label, count }) => {
+        {filters.map(({ id, label, count }) => {
           const active = id === activeFilter;
           return (
             <Box
@@ -196,8 +226,14 @@ export default function SolicitudesPage() {
         })}
       </Box>
 
-   
-      <RequestsTable />
+      <RequestsTable 
+        contactsData={contactsData}
+        tableState={tableState}
+        fetchContacts={fetchContacts}
+        refreshContacts={refreshContacts}
+        filter={activeFilter}
+        search={searchTerm}
+      />
     </Box>
   );
 }

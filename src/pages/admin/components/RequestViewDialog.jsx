@@ -1,8 +1,31 @@
-import React from 'react';
-import { Dialog, DialogTitle, DialogContent, IconButton, Typography, Box, Divider } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Dialog, DialogTitle, DialogContent, IconButton, Typography, Box, Divider, Avatar, Skeleton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function RequestViewDialog({ open, onClose, data }) {
+const STATUS_COLORS = {
+  'New':         '#FFD700',
+  'In Progress': '#60A5FA',
+  'Completed':   '#4ADE80',
+  'Canceled':    '#F87171',
+};
+
+export default function RequestViewDialog({ open, onClose, data, getHistory }) {
+  const [history, setHistory] = useState([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+
+  useEffect(() => {
+    if (open && data?.id && getHistory) {
+      loadHistory();
+    }
+  }, [open, data?.id]);
+
+  const loadHistory = async () => {
+    setLoadingHistory(true);
+    const res = await getHistory(data.id);
+    setHistory(res);
+    setLoadingHistory(false);
+  };
+
   if (!data) return null;
 
   return (
@@ -18,9 +41,12 @@ export default function RequestViewDialog({ open, onClose, data }) {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <DialogContent dividers>
+      <DialogContent dividers sx={{ pb: 4 }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
-          <InfoRow label="Client Name" value={data.name} />
+          <Box sx={{ display: 'flex', gap: 4 }}>
+            <InfoRow label="Client Name" value={data.names || data.name} />
+            <InfoRow label="Contact Status" value={data.status} isStatus />
+          </Box>
           
           <Box sx={{ display: 'flex', gap: 4 }}>
             <InfoRow label="Email" value={data.email} />
@@ -30,12 +56,37 @@ export default function RequestViewDialog({ open, onClose, data }) {
           <Divider sx={{ my: 0.5 }} />
           
           <Box>
-            <Typography sx={{ fontSize: 12, color: 'text.secondary', mb: 1, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', mb: 1, textTransform: 'uppercase', letterSpacing: '1px' }}>
               Project Description
             </Typography>
-            <Typography sx={{ fontSize: 14, p: 2, bgcolor: 'background.default', borderRadius: 1, minHeight: 80 }}>
-              {data.project || 'Client needs a full estimate regarding roofing improvements and potential siding repairs due to recent storm damages.'}
+            <Typography sx={{ fontSize: 13, p: 2, bgcolor: 'rgba(255,255,255,0.02)', border: '1px solid #1f1f1f', borderRadius: 1, minHeight: 60, color: '#ccc', lineHeight: 1.6 }}>
+              {data.project || 'No description provided.'}
             </Typography>
+          </Box>
+
+          <Divider sx={{ my: 0.5 }} />
+
+          {/* History Section */}
+          <Box>
+            <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', mb: 2, textTransform: 'uppercase', letterSpacing: '1px' }}>
+              Status History & Activity
+            </Typography>
+            
+            {loadingHistory ? (
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {[1, 2].map(i => <Skeleton key={i} variant="rounded" height={60} sx={{ bgcolor: 'rgba(255,255,255,0.05)' }} />)}
+              </Box>
+            ) : history.length > 0 ? (
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {history.map((h) => (
+                  <HistoryItem key={h.id} item={h} />
+                ))}
+              </Box>
+            ) : (
+              <Typography sx={{ fontSize: 13, color: '#555', fontStyle: 'italic', textAlign: 'center', py: 2 }}>
+                No status updates recorded yet.
+              </Typography>
+            )}
           </Box>
         </Box>
       </DialogContent>
@@ -43,15 +94,66 @@ export default function RequestViewDialog({ open, onClose, data }) {
   );
 }
 
-function InfoRow({ label, value }) {
+function HistoryItem({ item }) {
+  const adminName = item.admin?.person?.names || item.admin?.username || 'Admin';
+  const profilePic = item.admin?.person?.profilePicture;
+  
+  return (
+    <Box sx={{ display: 'flex', gap: 1.75, p: 1.5, borderRadius: 1.5, bgcolor: 'rgba(255,255,255,0.02)', border: '1px solid #1f1f1f' }}>
+      <Avatar src={profilePic} sx={{ width: 32, height: 32, fontSize: 14 }}>{adminName.charAt(0)}</Avatar>
+      <Box sx={{ flex: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#eee' }}>
+            {adminName}
+          </Typography>
+          <Typography sx={{ fontSize: 11, color: '#666' }}>
+            {new Date(item.createdAt).toLocaleDateString()} {new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </Typography>
+        </Box>
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, my: 0.5 }}>
+          <StatusTinyBadge label={item.oldStatus} />
+          <Typography sx={{ fontSize: 11, color: '#444' }}>→</Typography>
+          <StatusTinyBadge label={item.newStatus} />
+        </Box>
+
+        {item.message && (
+          <Typography sx={{ fontSize: 12, color: '#888', mt: 1, pl: 1, borderLeft: '2px solid #333' }}>
+            "{item.message}"
+          </Typography>
+        )}
+      </Box>
+    </Box>
+  );
+}
+
+function StatusTinyBadge({ label }) {
+  const color = STATUS_COLORS[label] || '#666';
+  return (
+    <Typography component="span" sx={{ fontSize: 10, fontWeight: 700, p: '2px 8px', borderRadius: 4, bgcolor: `${color}15`, color: color }}>
+      {label}
+    </Typography>
+  );
+}
+
+function InfoRow({ label, value, isStatus }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, flex: 1 }}>
-      <Typography sx={{ fontSize: 12, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+      <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
         {label}
       </Typography>
-      <Typography sx={{ fontSize: 15, fontWeight: 500 }}>
-        {value || '-'}
-      </Typography>
+      {isStatus ? (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: STATUS_COLORS[value] || '#666' }} />
+          <Typography sx={{ fontSize: 14, fontWeight: 600, color: STATUS_COLORS[value] || '#fff' }}>
+            {value}
+          </Typography>
+        </Box>
+      ) : (
+        <Typography sx={{ fontSize: 14, fontWeight: 500, color: '#eee' }}>
+          {value || '-'}
+        </Typography>
+      )}
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   AppBar,
   Box,
@@ -17,6 +17,7 @@ import {
   Collapse,
   Dialog,
   DialogContent,
+  useMediaQuery,
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -55,14 +56,16 @@ const ContactBarDesktop = () => {
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: '0.875rem' }}>
         <Mail sx={{ color: theme.palette.primary.main, fontSize: 20 }} />
-        <Typography variant="body2">Admin@nova-solutions.us</Typography>
+        <Typography component="a" href="mailto:Admin@nova-solutions.us" variant="body2" sx={{ color: theme.palette.primary.main, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+          Admin@nova-solutions.us
+        </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Phone sx={{ color: theme.palette.primary.main, fontSize: 18 }} />
         <Typography variant="body2" sx={{ color: theme.palette.primary.main, fontWeight: 600 }}>
-          Information
+          Call us
         </Typography>
-        <Typography variant="body2" sx={{ color: theme.palette.primary.main, fontWeight: 700 }}>
+        <Typography component="a" href="tel:+15185985156" variant="body2" sx={{ color: theme.palette.primary.main, fontWeight: 700, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
           : +1 518-598-5156
         </Typography>
       </Box>
@@ -93,11 +96,18 @@ const ContactBarMobile = () => {
     >
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
         <Mail sx={{ color: theme.palette.primary.main, fontSize: 16 }} />
-        <Typography variant="caption">Admin@nova-solutions.us</Typography>
+        <Typography component="a" href="mailto:Admin@nova-solutions.us" variant="caption" sx={{ color: theme.palette.primary.main, textDecoration: 'none' }}>
+          Admin@nova-solutions.us
+        </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
         <Phone sx={{ color: theme.palette.primary.main, fontSize: 16 }} />
-        <Typography variant="caption">+1 518-598-5156</Typography>
+        <Typography variant="caption" sx={{ color: theme.palette.primary.main, fontWeight: 600 }}>
+          Call us
+        </Typography>
+        <Typography component="a" href="tel:+15185985156" variant="caption" sx={{ color: theme.palette.primary.main, fontWeight: 700, textDecoration: 'none' }}>
+          : +1 518-598-5156
+        </Typography>
       </Box>
     </Box>
   );
@@ -112,6 +122,18 @@ const DesktopNav = () => {
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const closeTimer = useRef(null);
   const subCloseTimer = useRef(null);
+
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+
+  // Close menus when screen resizes to mobile layout to prevent MUI invalid anchorEl warnings
+  useEffect(() => {
+    if (!isDesktop) {
+      setAnchorEl(null);
+      setActiveMenu(null);
+      setSubMenuAnchorEl(null);
+      setActiveSubMenu(null);
+    }
+  }, [isDesktop]);
 
   const isActiveParent = (item) => {
     if (item.link === location.pathname) return true;
@@ -250,11 +272,13 @@ const DesktopNav = () => {
         {activeMenu?.children?.map((child) => (
           <Box key={child.name} sx={{ position: 'relative' }}>
              <MenuItem
-                component={child.children ? 'div' : Link}
-                to={child.children ? undefined : child.link}
-                onClick={child.children ? undefined : () => {
+                component={Link}
+                to={child.link}
+                onClick={() => {
                     setAnchorEl(null);
                     setActiveMenu(null);
+                    setSubMenuAnchorEl(null);
+                    setActiveSubMenu(null);
                 }}
                 onMouseEnter={(e) => handleSubOpen(e, child)}
                 onMouseLeave={handleSubClose}

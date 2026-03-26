@@ -3,6 +3,7 @@ import ProtectSidebarRouter  from '@/routes/ProtectSidebarRouter';
 import SolicitudesPage       from '@/pages/admin/SolicitudesPage';
 import { SidebarProvider }   from '@/context/SidebarContext';
 import AdminReviewsPage from '../pages/admin/ReviewsPage';
+import AdminProfilePage from '../pages/admin/AdminProfilePage';
 
 // ─── Placeholder para rutas futuras ──────────────────────────────────────────
 const ComingSoon = ({ title }) => (
@@ -22,12 +23,7 @@ const ComingSoon = ({ title }) => (
   </div>
 );
 
-// ─── Admin routes ─────────────────────────────────────────────────────────────
-// Estructura: /admin → AdminSidebarLayout (protegido por ProtectSidebarRouter)
-//   Hijos: cada página del panel admin.
-// Para agregar una nueva sección, basta con:
-//   1. Definir su menuItem en helpPermsion.js
-//   2. Agregar la ruta aquí
+
 export const adminRoutes = [
   {
     path: 'admin',
@@ -41,6 +37,7 @@ export const adminRoutes = [
     children: [
       { path: 'requests',     element: <SolicitudesPage /> },
       { path: 'reviews',      element: <AdminReviewsPage /> },
+      { path: 'profile',      element: <AdminProfilePage /> },
       { path: 'customers',    element: <ComingSoon title="Customers" /> },
       { path: 'settings',     element: <ComingSoon title="Settings" /> },
     ],
