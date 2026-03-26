@@ -86,7 +86,7 @@ export default function ActiveSessionRow({ session, onClose, closingId }) {
                 border: '1px solid #4ADE8030',
               }}
             >
-              Tu sesión
+              Your session
             </Box>
           )}
         </Box>
@@ -146,7 +146,7 @@ export default function ActiveSessionRow({ session, onClose, closingId }) {
               : undefined
           }
         >
-          {isClosing ? '...' : 'Cerrar'}
+          {isClosing ? '...' : 'Close'}
         </Button>
       )}
     </Box>

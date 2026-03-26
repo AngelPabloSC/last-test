@@ -16,10 +16,12 @@ export const useReviewDialogs = ({ onPublish, onReject, onDelete }) => {
   const openConfirm  = (variant, review) => setConfirmDialog({ open: true, variant, review });
   const closeConfirm = ()                => setConfirmDialog({ open: false, variant: 'delete', review: null });
 
-  const handleConfirmAction = async (review) => {
-    if (confirmDialog.variant === 'publish')      onPublish(review.id);
-    else if (confirmDialog.variant === 'reject')  onReject(review.id);
-    else if (confirmDialog.variant === 'delete')  onDelete(review.id);
+  const [statusReview, setStatusReview] = useState(null);
+
+  const handleConfirmAction = async (review, message) => {
+    if (confirmDialog.variant === 'publish')      await onPublish(review.id, message);
+    else if (confirmDialog.variant === 'reject')  await onReject(review.id, message);
+    
     closeDetail();
     closeConfirm();
   };
@@ -34,5 +36,13 @@ export const useReviewDialogs = ({ onPublish, onReject, onDelete }) => {
     openConfirm,
     closeConfirm,
     handleConfirmAction,
+
+    // Status Dialog
+    statusDialog: {
+      open: !!statusReview,
+      review: statusReview,
+    },
+    openStatusDialog: (review) => setStatusReview(review),
+    closeStatusDialog: ()        => setStatusReview(null),
   };
 };

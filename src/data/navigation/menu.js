@@ -79,6 +79,12 @@ export const headerMenu = [
         ],
     },
     {
+        name:"Gallery",
+        link:"/Gallery",
+        showArrow: false,
+     
+    },
+    {
         name: 'About',
         link: '/About',
         showArrow: true,

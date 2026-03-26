@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Typography, Button, Container, Grid, IconButton } from '@mui/material';
+import { Box, Typography, Button, Container, Grid, IconButton, Pagination, Skeleton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -21,6 +21,7 @@ import {
 import StarRow from '@/components/common/StarRow';
 import ReviewCard from '@/components/cards/ReviewCard';
 import GoogleReviewCard from '@/components/cards/GoogleReviewCard';
+import { usePublicReviews } from '@/hooks/usePublicReviews';
 
 const HERO_BG = 'https://images.unsplash.com/photo-1577032229954-61f1e6f63973?w=1440&q=80';
 const CTA_BG = 'https://images.unsplash.com/photo-1761509844483-38db3cfab696?w=1440&q=80';
@@ -29,7 +30,7 @@ const CTA_BG = 'https://images.unsplash.com/photo-1761509844483-38db3cfab696?w=1
 
 
 
-function HeroSection() {
+function HeroSection(props) {
   const theme = useTheme();
   const gold = theme.palette.primary.main;
   
@@ -53,7 +54,7 @@ function HeroSection() {
         <Box sx={{ display: 'flex', width: 'fit-content', alignItems: 'center', gap: 1, borderRadius: 999, bgcolor: `${gold}20`, px: 2, py: 0.75 }}>
           <StarIcon sx={{ fontSize: 14, color: gold }} />
           <Typography sx={{ fontSize: 13, fontWeight: 600, color: gold }}>
-            500+ Five-Star Reviews
+            {props.count || '500+'} Five-Star Reviews
           </Typography>
         </Box>
         <Typography sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' }, fontWeight: 800, lineHeight: 1.1, color: 'white' }}>
@@ -88,15 +89,52 @@ export default function ReviewsPage() {
   const theme = useTheme();
   const gold = theme.palette.primary.main;
 
+  const { list, totalPages, currentPage, total, loading, serviceTypes, summary, fetchReviews } = usePublicReviews({
+    serviceTypeId: activeFilter,
+    limit: 6
+  });
+
+  // Dynamic stats override
+  const dynamicStats = [
+    { value: `${summary.average}/5`, label: 'Average Rating' },
+    { value: `${summary.count}`, label: 'Verified Reviews' },
+    { value: '100%', label: 'Satisfaction Rate' }
+  ];
+
+  // Dynamic filters: "All" + categories from DB
+  const dynamicFilters = [
+    { id: 'all', label: 'All Reviews' },
+    ...serviceTypes.map(s => ({ id: s.id, label: s.name }))
+  ];
+
   useEffect(() => {
     document.title = 'Reviews | Nova Solutions Home Improvement';
   }, []);
 
-  const filteredReviews = activeFilter === 'all' ? REVIEWS : REVIEWS.filter((r) => r.category === activeFilter);
+  const handlePageChange = (event, value) => {
+    fetchReviews(value);
+    // Smooth scroll back to reviews section
+    const element = document.getElementById('reviews');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const formattedReviews = list.map(r => ({
+    ...r,
+    name: r.fullName,
+    text: r.review,
+    service: r.serviceType?.name || 'General',
+    date: new Date(r.createdAt).toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    })
+  }));
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: '#111111', color: 'white' }}>
-      <HeroSection />
+      <HeroSection count={summary.count} />
 
       {/* Trust Bar */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: { xs: 3, md: 6 }, flexWrap: 'wrap', bgcolor: gold, px: { xs: 4, md: 15 }, py: 2 }}>
@@ -110,7 +148,7 @@ export default function ReviewsPage() {
 
       {/* Stats */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 4, bgcolor: '#0A0A0A', px: { xs: 4, md: 15 }, py: { xs: 5, md: 6 } }}>
-        {STATS.map(({ value, label }) => (
+        {dynamicStats.map(({ value, label }) => (
           <Box key={label} sx={{ flex: 1, minWidth: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, borderRadius: '20px', border: '1px solid #2A2A2A', bgcolor: '#1A1A1A', p: 4 }}>
             <Typography sx={{ fontSize: { xs: 36, md: 44 }, fontWeight: 800, color: gold }}>{value}</Typography>
             <Typography sx={{ fontSize: 15, fontWeight: 500, color: '#AAAAAA' }}>{label}</Typography>
@@ -127,15 +165,15 @@ export default function ReviewsPage() {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
-          <StarRow count={5} size={22} />
-          <Typography sx={{ fontSize: 22, fontWeight: 700, color: 'white' }}>4.8/5</Typography>
+          <StarRow count={Math.round(summary.average || 5)} size={22} />
+          <Typography sx={{ fontSize: 22, fontWeight: 700, color: 'white' }}>{summary.average}/5</Typography>
           <Box sx={{ height: 24, width: '1px', bgcolor: '#444' }} />
-          <Typography sx={{ fontSize: 14, color: '#999' }}>Based on 500+ verified reviews</Typography>
+          <Typography sx={{ fontSize: 14, color: '#999' }}>Based on {summary.count || '0'} verified reviews</Typography>
         </Box>
 
         {/* Filters */}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, flexWrap: 'wrap', mt: 2 }}>
-          {REVIEW_FILTERS.map(({ id, label }) => (
+          {dynamicFilters.map(({ id, label }) => (
             <Box
               key={id}
               component="button"
@@ -153,14 +191,53 @@ export default function ReviewsPage() {
           ))}
         </Box>
 
-        {filteredReviews.length > 0 && (
+        {loading ? (
           <Grid container spacing={3} sx={{ mt: 2 }}>
-            {filteredReviews.map((r) => (
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Grid size={{ xs: 12, md: 4 }} key={i}>
+                <Skeleton variant="rectangular" height={280} sx={{ borderRadius: '20px', bgcolor: '#1A1A1A' }} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : formattedReviews.length > 0 ? (
+          <Grid container spacing={3} sx={{ mt: 2 }}>
+            {formattedReviews.map((r) => (
               <Grid size={{ xs: 12, md: 4 }} key={r.id} sx={{ display: 'flex' }}>
                 <ReviewCard review={r} />
               </Grid>
             ))}
           </Grid>
+        ) : (
+          <Box sx={{ py: 10, textAlign: 'center' }}>
+            <Typography sx={{ color: '#666', fontSize: 18 }}>
+              No reviews found for this category.
+            </Typography>
+          </Box>
+        )}
+
+        {totalPages > 1 && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+            <Pagination 
+              count={totalPages} 
+              page={currentPage} 
+              onChange={handlePageChange}
+              sx={{
+                '& .MuiPaginationItem-root': {
+                  color: '#888',
+                  borderColor: '#2A2A2A',
+                  '&.Mui-selected': {
+                    bgcolor: gold,
+                    color: 'black',
+                    '&:hover': { bgcolor: '#EAB308' }
+                  },
+                  '&:hover': {
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    color: 'white'
+                  }
+                }
+              }}
+            />
+          </Box>
         )}
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, flexWrap: 'wrap', pt: 2 }}>

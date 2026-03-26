@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Typography, InputBase, Grid } from '@mui/material';
+import { Box, Typography, InputBase, Grid, useTheme } from '@mui/material';
 import NoteAddOutlinedIcon    from '@mui/icons-material/NoteAddOutlined';
 import HourglassEmptyIcon     from '@mui/icons-material/HourglassEmptyOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -50,15 +50,16 @@ const METRIC_CONFIG = [
 ];
 
 const FILTER_CONFIG = [
-  { id: 'todas',       apiStatus: null,          label: 'All' },
-  { id: 'nuevas',      apiStatus: 'New',         label: 'New' },
-  { id: 'en_progreso', apiStatus: 'In Progress', label: 'In Progress' },
-  { id: 'completadas', apiStatus: 'Completed',   label: 'Completed' },
-  { id: 'canceladas',  apiStatus: 'Canceled',    label: 'Canceled' },
+  { id: 'all',         apiStatus: null,          label: 'All' },
+  { id: 'new',         apiStatus: 'New',         label: 'New' },
+  { id: 'in_progress', apiStatus: 'In Progress', label: 'In Progress' },
+  { id: 'completed',   apiStatus: 'Completed',   label: 'Completed' },
+  { id: 'canceled',    apiStatus: 'Canceled',    label: 'Canceled' },
 ];
 
 export default function SolicitudesPage() {
-  const [activeFilter, setActiveFilter] = useState('todas');
+  const theme = useTheme();
+  const [activeFilter, setActiveFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
   const { contactsData, tableState, fetchContacts, refreshContacts } = useContacts({ 
@@ -77,7 +78,7 @@ export default function SolicitudesPage() {
   // Mapear filtros dinámicamente
   const filters = FILTER_CONFIG.map(f => {
     let count = 0;
-    if (f.id === 'todas') {
+    if (f.id === 'all') {
       count = summary.reduce((acc, curr) => acc + curr.count, 0);
     } else {
       const apiMatch = summary.find(s => s.status === f.apiStatus);
@@ -96,18 +97,17 @@ export default function SolicitudesPage() {
         py: { xs: 3, md: 4 },
         flexGrow: 1,
         minHeight: '100%',
-        bgcolor: '#0A0A0A',
-        fontFamily: "'Inter', sans-serif",
-        color: 'white',
+        bgcolor: '#000000',
+        color: theme.palette.text.primary,
       }}
     >
       {/* Page header */}
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'space-between', gap: 2, flexShrink: 0 }}>
         <Box>
-          <Typography sx={{ fontSize: 28, fontWeight: 800, color: 'white' }}>
+          <Typography sx={{ fontSize: 28, fontWeight: 800, color: theme.palette.text.primary }}>
             Service Requests
           </Typography>
-          <Typography sx={{ fontSize: 14, color: '#777', mt: 0.5 }}>
+          <Typography sx={{ fontSize: 14, color: theme.palette.text.secondary, mt: 0.5 }}>
             Manage all customer service requests.
           </Typography>
         </Box>
@@ -120,24 +120,24 @@ export default function SolicitudesPage() {
               gap: 1,
               flex: { xs: 1, md: 'none' },
               borderRadius: '8px',
-              border: '1px solid #2A2A2A',
-              bgcolor: '#111111',
+              border: `1px solid ${theme.palette.divider}`,
+              bgcolor: '#0A0A0A',
               px: 1.5,
               py: 1,
               '&:focus-within': { borderColor: 'primary.main' },
               transition: 'border-color 0.2s',
             }}
           >
-            <SearchIcon sx={{ fontSize: 16, color: '#555', flexShrink: 0 }} />
+            <SearchIcon sx={{ fontSize: 16, color: theme.palette.text.disabled, flexShrink: 0 }} />
             <InputBase
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               sx={{
                 fontSize: 13,
-                color: 'white',
+                color: theme.palette.text.primary,
                 width: { xs: '100%', md: 160 },
-                '& input::placeholder': { color: '#555', opacity: 1 },
+                '& input::placeholder': { color: theme.palette.text.disabled, opacity: 1 },
               }}
             />
           </Box>
@@ -151,20 +151,21 @@ export default function SolicitudesPage() {
               width: 40,
               height: 40,
               borderRadius: '8px',
-              border: '1px solid #2A2A2A',
+              border: `1px solid ${theme.palette.divider}`,
               background: 'none',
               cursor: 'pointer',
-              color: '#888',
-              transition: 'color 0.15s',
-              '&:hover': { color: 'white' },
+              color: theme.palette.text.secondary,
+              transition: 'all 0.15s',
+              '&:hover': { 
+                color: theme.palette.text.primary,
+                bgcolor: 'rgba(255,255,255,0.05)'
+              },
             }}
           >
             <NotificationsNoneIcon sx={{ fontSize: 20 }} />
           </Box>
         </Box>
       </Box>
-
-      {/* Metrics Grid */}
       <Grid container spacing={{ xs: 1.5, sm: 2.5 }} sx={{ flexShrink: 0 }}>
         {metrics.map((m) => (
           <Grid size={{ xs: 6, sm: 6, lg: 3 }} key={m.label}>
@@ -172,8 +173,6 @@ export default function SolicitudesPage() {
           </Grid>
         ))}
       </Grid>
- 
-      {/* Filters */}
       <Box
         sx={{
           display: 'flex',
@@ -206,18 +205,18 @@ export default function SolicitudesPage() {
                 fontSize: { xs: 11, sm: 13 },
                 whiteSpace: 'nowrap',
                 fontWeight: active ? 700 : 500,
-                border: active ? 'none' : '1px solid #444',
+                border: active ? 'none' : `1px solid ${theme.palette.divider}`,
                 bgcolor: active ? 'primary.main' : 'transparent',
-                color: active ? 'primary.contrastText' : '#AAAAAA',
+                color: active ? 'primary.contrastText' : theme.palette.text.secondary,
                 cursor: 'pointer',
                 transition: 'all 0.15s',
-                '&:hover': { borderColor: '#666' },
+                '&:hover': { borderColor: theme.palette.text.disabled },
               }}
             >
               {label}
               <Typography
                 component="span"
-                sx={{ fontSize: { xs: 10, sm: 11 }, fontWeight: 700, color: active ? 'primary.contrastText' : '#888' }}
+                sx={{ fontSize: { xs: 10, sm: 11 }, fontWeight: 700, color: active ? 'primary.contrastText' : theme.palette.text.disabled }}
               >
                 {count}
               </Typography>

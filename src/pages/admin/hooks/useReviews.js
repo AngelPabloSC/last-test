@@ -4,17 +4,18 @@ import { storageService } from '@/services/storageService';
 import { API_CODES } from '@/constants/apiConstants';
 
 /**
- * Hook to manage the request list (Contacts) with server pagination.
+ * Hook to manage the review list with server pagination and filtering.
  * @param {object} params - Initial filtering and search parameters.
  */
-export const useContacts = ({ status = 'all', search = '' }) => {
+export const useReviews = ({ status = 'all', search = '' }) => {
   const { getFechData } = useFetchDataPromise();
-  const [contactsData, setContactsData] = useState({
+  const [reviewsData, setReviewsData] = useState({
     code: null,
     data: [],
     message: '',
     loading: true,
-    summary: []
+    summary: [],
+    averageRating: 0
   });
 
   const [tableState, setTableState] = useState({ 
@@ -23,19 +24,20 @@ export const useContacts = ({ status = 'all', search = '' }) => {
     perPage: 10 
   });
 
-  // Mapear filtros locales a valores de API
+  // Map local filters to API status values
   const getApiStatus = (localStatus) => {
     const map = {
-      'new': 'New',
-      'in_progress': 'In Progress',
-      'completed': 'Completed',
-      'canceled': 'Canceled'
+      'all': null,
+      'pending': 'pending', 
+      'published': 'published',
+      'rejected': 'rejected',
+      '5_stars': '5_stars'
     };
     return map[localStatus] || null;
   };
 
-  const fetchContacts = useCallback(async (page = 1, limit = 10, currentPage = 0) => {
-    setContactsData(prev => ({ ...prev, loading: true }));
+  const fetchReviews = useCallback(async (page = 1, limit = 10, currentPage = 0) => {
+    setReviewsData(prev => ({ ...prev, loading: true }));
     try {
       const idUser = storageService.getUser()?.id;
       const sessionToken = storageService.getSessionToken();
@@ -53,17 +55,18 @@ export const useContacts = ({ status = 'all', search = '' }) => {
       params.append('deviceId', deviceId);
 
       const response = await getFechData({
-        endPoint: `contacts?${params.toString()}`,
+        endPoint: `reviews/admin?${params.toString()}`,
         method: 'GET',
       });
 
       if (response?.code === API_CODES.OK) {
-        setContactsData({
+        setReviewsData({
           code: API_CODES.OK,
           data: response.data?.list || [],
           message: response.message || '',
           loading: false,
-          summary: response.data?.summary || []
+          summary: response.data?.summary || [],
+          averageRating: response.data?.averageRating || 0
         });
 
         setTableState({
@@ -72,15 +75,15 @@ export const useContacts = ({ status = 'all', search = '' }) => {
           perPage: limit
         });
       } else {
-        setContactsData(prev => ({
+        setReviewsData(prev => ({
           ...prev,
           code: API_CODES.ERR,
-          message: response?.message || 'Error loading contacts',
+          message: response?.message || 'Error loading reviews',
           loading: false
         }));
       }
     } catch (error) {
-      setContactsData(prev => ({
+      setReviewsData(prev => ({
         ...prev,
         code: API_CODES.ERR,
         message: 'Connection error',
@@ -89,15 +92,15 @@ export const useContacts = ({ status = 'all', search = '' }) => {
     }
   }, [status, search, getFechData]);
 
-  // Efecto inicial y cuando cambian filtros/búsqueda
+  // Initial fetch and on filter/search change
   useEffect(() => {
-    fetchContacts(1, tableState.perPage, 0);
+    fetchReviews(1, tableState.perPage, 0);
   }, [status, search]);
 
   return {
-    contactsData,
+    reviewsData,
     tableState,
-    fetchContacts,
-    refreshContacts: () => fetchContacts(tableState.currentPage + 1, tableState.perPage, tableState.currentPage)
+    fetchReviews,
+    refreshReviews: () => fetchReviews(tableState.currentPage + 1, tableState.perPage, tableState.currentPage)
   };
 };

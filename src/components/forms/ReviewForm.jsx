@@ -20,16 +20,6 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
 import { useReviewForm } from '@/hooks/useReviewForm';
 import ReviewSuccessDialog from '@/components/ui/ReviewSuccessDialog';
 
-const SERVICE_OPTIONS = [
-  'Roofing',
-  'Roof Repair',
-  'Siding',
-  'Gutters',
-  'Gutter Installation',
-  'Insulation',
-  'Other',
-];
-
 const INPUT_SX = {
   '& .MuiOutlinedInput-root': {
     bgcolor: 'rgba(255, 255, 255, 0.04)',
@@ -76,6 +66,7 @@ export default function ReviewForm() {
     status,
     resetStatus,
     dialogSuccess,
+    serviceTypes,
   } = useReviewForm();
 
   const confirmDialog = useDialog();
@@ -209,11 +200,11 @@ export default function ReviewForm() {
                 Service Type <span style={{ color: '#FF4444' }}>*</span>
               </Typography>
               <CustomSelect
-                name="service"
+                name="serviceTypeId"
                 register={register}
                 rules={{ required: validationRules.required }}
-                error={errors.service}
-                options={SERVICE_OPTIONS}
+                error={errors.serviceTypeId}
+                options={serviceTypes.map(s => ({ label: s.name, value: s.id }))}
                 placeholder="Select a service..."
                 size="medium"
                 sx={INPUT_SX}

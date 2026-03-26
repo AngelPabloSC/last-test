@@ -106,16 +106,16 @@ export default function ActiveSessionsDialog({
           </Box>
           <Box>
             <Typography sx={{ color: 'white', fontWeight: 800, fontSize: 18, lineHeight: 1.2 }}>
-              Sesiones y Dispositivos
+              Sessions & Devices
             </Typography>
             {!loading && !hasError && (
               <Typography sx={{ color: '#6B7280', fontSize: 12.5, mt: 0.25 }}>
-                {totalActive} {totalActive === 1 ? 'sesión activa' : 'sesiones activas'} actualmente
+                {totalActive} {totalActive === 1 ? 'active session' : 'active sessions'} currently
               </Typography>
             )}
             {hasError && (
               <Typography sx={{ color: '#F87171', fontSize: 12.5, mt: 0.25 }}>
-                Error al cargar sesiones
+                Error loading sessions
               </Typography>
             )}
           </Box>
@@ -154,16 +154,16 @@ export default function ActiveSessionsDialog({
               <ErrorIcon sx={{ fontSize: 30, color: '#F87171' }} />
             </Box>
             <Box>
-              <Typography sx={{ color: 'white', fontWeight: 700, mb: 1 }}>Algo salió mal</Typography>
+              <Typography sx={{ color: 'white', fontWeight: 700, mb: 1 }}>Something went wrong</Typography>
               <Typography sx={{ color: '#6B7280', fontSize: 14, maxWidth: 280, mx: 'auto' }}>
-                {sessionData.message || 'No pudimos recuperar la información de tus sesiones en este momento.'}
+                {sessionData.message || 'We could not retrieve your session information at this time.'}
               </Typography>
             </Box>
             <Button 
-              onClick={() => window.location.reload()} // O un retry handler si existiera
+              onClick={() => window.location.reload()} 
               sx={{ color: '#FFD700', textTransform: 'none', fontWeight: 600, mt: 1 }}
             >
-              Intentar de nuevo
+              Try again
             </Button>
           </Box>
         )}
@@ -182,7 +182,7 @@ export default function ActiveSessionsDialog({
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <DevicesIcon sx={{ fontSize: 14, color: '#4ADE80' }} />
                 <Typography sx={{ color: '#4ADE80', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  Sesiones Activas
+                  Active Sessions
                 </Typography>
               </Box>
             </Box>
@@ -190,7 +190,7 @@ export default function ActiveSessionsDialog({
             <Box sx={{ flexShrink: 0 }}>
               {activeSessions.length === 0 ? (
                 <Box sx={{ py: 4, px: 3, textAlign: 'center' }}>
-                  <Typography sx={{ color: '#6B7280', fontSize: 13 }}>No hay sesiones activas.</Typography>
+                  <Typography sx={{ color: '#6B7280', fontSize: 13 }}>No active sessions found.</Typography>
                 </Box>
               ) : (
                 activeSessions.map(session => (
@@ -211,7 +211,7 @@ export default function ActiveSessionsDialog({
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <HistoryIcon sx={{ fontSize: 14, color: '#9CA3AF' }} />
                     <Typography sx={{ color: '#9CA3AF', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Actividad de inicio de sesión reciente
+                      Recent Login Activity
                     </Typography>
                   </Box>
                 </Box>
@@ -243,7 +243,7 @@ export default function ActiveSessionsDialog({
               >
                 <InfoIcon sx={{ fontSize: 15, color: '#6B7280', flexShrink: 0, mt: 0.2 }} />
                 <Typography sx={{ color: '#6B7280', fontSize: 12, lineHeight: 1.6 }}>
-                  Revisar tus sesiones periódicamente te ayuda a mantener tu cuenta segura. Si ves un dispositivo que no reconoces, ciérralo de inmediato.
+                  Reviewing your sessions periodically helps keep your account secure. If you see a device you don't recognize, close it immediately.
                 </Typography>
               </Box>
             )}
@@ -281,7 +281,7 @@ export default function ActiveSessionsDialog({
               '&:hover': { bgcolor: '#2A2A2A', color: 'white' },
             }}
           >
-            Cerrar
+            Close
           </Button>
 
           {activeSessions.length > 0 ? (
@@ -310,12 +310,12 @@ export default function ActiveSessionsDialog({
                   : <LogOutIcon sx={{ fontSize: 15 }} />
               }
             >
-              {closingAll ? 'Cerrando todo...' : 'Cerrar todas las sesiones'}
+              {closingAll ? 'Closing all...' : 'Close all sessions'}
             </Button>
           ) : (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Typography sx={{ color: '#6B7280', fontSize: 12.5, fontWeight: 500 }}>
-                Sin sesiones activas
+                No active sessions
               </Typography>
             </Box>
           )}

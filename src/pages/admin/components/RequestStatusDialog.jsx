@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, Box, Typography, RadioGroup, FormControlLabel, Radio, TextField, InputAdornment } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, Box, Typography, RadioGroup, FormControlLabel, Radio, TextField, InputAdornment, useTheme } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function RequestStatusDialog({ open, onClose, data, onConfirm }) {
+  const theme = useTheme();
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -47,19 +48,19 @@ export default function RequestStatusDialog({ open, onClose, data, onConfirm }) 
         </Typography>
         
         <Box sx={{ mb: 3 }}>
-          <Typography sx={{ fontSize: 13, fontWeight: 700, mb: 1, color: '#aaa' }}>
+          <Typography sx={{ fontSize: 13, fontWeight: 700, mb: 1, color: theme.palette.text.disabled }}>
             NEW STATUS
           </Typography>
           <RadioGroup value={status} onChange={(e) => setStatus(e.target.value)}>
-            <Option value="New"         label="New / Nueva"             color="#FFD700" />
-            <Option value="In Progress" label="In Progress / En Proceso" color="#60A5FA" />
-            <Option value="Completed"   label="Completed / Completada"   color="#4ADE80" />
-            <Option value="Canceled"    label="Canceled / Cancelada"     color="#F87171" />
+            <Option value="New"         label="New"             color="#FFD700" />
+            <Option value="In Progress" label="In Progress" color="#60A5FA" />
+            <Option value="Completed"   label="Completed"   color="#4ADE80" />
+            <Option value="Canceled"    label="Canceled"    color="#F87171" />
           </RadioGroup>
         </Box>
 
         <Box>
-          <Typography sx={{ fontSize: 13, fontWeight: 700, mb: 1.5, color: '#aaa' }}>
+          <Typography sx={{ fontSize: 13, fontWeight: 700, mb: 1.5, color: theme.palette.text.disabled }}>
             UPDATE MESSAGE (Internal)
           </Typography>
           <TextField
@@ -83,8 +84,8 @@ export default function RequestStatusDialog({ open, onClose, data, onConfirm }) 
               '& .MuiOutlinedInput-root': {
                 fontSize: 13,
                 bgcolor: 'rgba(255,255,255,0.02)',
-                '& fieldset': { borderColor: '#333' },
-                '&:hover fieldset': { borderColor: '#444' },
+                '& fieldset': { borderColor: theme.palette.divider },
+                '&:hover fieldset': { borderColor: theme.palette.text.disabled },
                 '&.Mui-focused fieldset': { borderColor: 'primary.main' }
               }
             }}
@@ -120,6 +121,7 @@ export default function RequestStatusDialog({ open, onClose, data, onConfirm }) 
 }
 
 function Option({ value, label, color }) {
+  const theme = useTheme();
   return (
     <FormControlLabel 
       value={value} 
@@ -127,7 +129,7 @@ function Option({ value, label, color }) {
         <Radio 
           size="small"
           sx={{ 
-            color: '#444', 
+            color: theme.palette.text.disabled, 
             '&.Mui-checked': { color } 
           }} 
         />
@@ -141,7 +143,7 @@ function Option({ value, label, color }) {
         my: 0.5, 
         p: 1, 
         borderRadius: 1,
-        '&:hover': { bgcolor: 'rgba(255,255,255,0.03)' }
+        '&:hover': { bgcolor: 'rgba(255,255,255,0.05)' }
       }}
     />
   );

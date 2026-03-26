@@ -1,6 +1,6 @@
 // ─── LoginBrandingPanel.jsx ───────────────────────────────────────────────────
-// Responsabilidad única: panel izquierdo de la página de login.
-// Muestra branding, features y estadísticas. Solo presentacional, sin lógica.
+// Single responsibility: left panel of login page.
+// Shows branding, features and stats. Purely presentational, no logic.
 
 import { Box, Typography, Divider } from '@mui/material';
 import { useTheme, alpha } from '@mui/material/styles';

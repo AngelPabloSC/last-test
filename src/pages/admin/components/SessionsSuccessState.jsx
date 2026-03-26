@@ -35,10 +35,10 @@ export default function SessionsSuccessState({ onClose }) {
 
       <Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 0.75 }}>
         <Typography sx={{ color: 'white', fontWeight: 700, fontSize: 16 }}>
-          Sesiones cerradas
+          Sessions closed
         </Typography>
         <Typography sx={{ color: '#6B7280', fontSize: 13, lineHeight: 1.5 }}>
-          Todas las sesiones externas han sido cerradas correctamente.
+          All external sessions have been successfully closed.
         </Typography>
       </Box>
 
@@ -57,7 +57,7 @@ export default function SessionsSuccessState({ onClose }) {
           '&:hover': { bgcolor: '#2A2A2A' },
         }}
       >
-        Aceptar
+        Confirm
       </Button>
     </Box>
   );

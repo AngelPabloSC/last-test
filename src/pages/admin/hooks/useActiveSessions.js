@@ -185,10 +185,10 @@ export const useActiveSessions = () => {
         setClosedAll(true);
         setShowConfirm(false);
       } else {
-        showSnackbar(response?.message || 'No se pudieron cerrar las sesiones.', 'error');
+        showSnackbar(response?.message || 'Could not close sessions.', 'error');
       }
     } catch {
-      showSnackbar('Error al cerrar todas las sesiones.', 'error');
+      showSnackbar('Error closing all sessions.', 'error');
     } finally {
       setClosingAll(false);
     }

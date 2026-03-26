@@ -14,148 +14,41 @@ import ThumbUpOutlinedIcon           from '@mui/icons-material/ThumbUpOutlined';
 import CancelOutlinedIcon            from '@mui/icons-material/CancelOutlined';
 import BarChartOutlinedIcon          from '@mui/icons-material/BarChartOutlined';
 import VisibilityOutlinedIcon        from '@mui/icons-material/VisibilityOutlined';
+import EditOutlinedIcon              from '@mui/icons-material/EditOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import GlobalTable          from '@/components/common/GlobalTable';
 import MetricCard           from '@/pages/admin/components/MetricCard';
 import StatusBadge          from '@/pages/admin/components/StatusBadge';
 import ReviewDetailDialog  from '@/pages/admin/components/ReviewDetailDialog';
 import ConfirmActionDialog  from '@/pages/admin/components/ConfirmActionDialog';
+import ReviewStatusDialog   from '@/pages/admin/components/ReviewStatusDialog';
 import { useReviewDialogs } from '@/pages/admin/hooks/useReviewDialogs';
-
-
-const INITIAL_REVIEWS = [
-  {
-    id: 1,
-    client: 'María García',
-    email: 'maria.garcia@email.com',
-    source: 'Google',
-    avatar: 'MG',
-    service: 'Roofing',
-    review: 'Excelente trabajo en mi techo. Muy profesionales y cumplen los plazos. Totalmente recomendables.',
-    rating: 5,
-    status: 'pendiente',
-    date: '12 Dic 2024',
-  },
-  {
-    id: 2,
-    client: 'John Smith',
-    email: 'john.smith@email.com',
-    source: 'Google',
-    avatar: 'JS',
-    service: 'Roof Repair',
-    review: 'Gran servicio de reparación de techo. Rápidos, limpios y el precio fue muy justo por el trabajo.',
-    rating: 5,
-    status: 'publicada',
-    date: '10 Dic 2024',
-  },
-  {
-    id: 3,
-    client: 'Roberto López',
-    email: 'roberto.lopez@email.com',
-    source: 'Google',
-    avatar: 'RL',
-    service: 'Gutters',
-    review: 'Buen trabajo en los canalones, aunque tardaron un poco más de lo esperado. El resultado final fue bueno.',
-    rating: 4,
-    status: 'publicada',
-    date: '8 Dic 2024',
-  },
-  {
-    id: 4,
-    client: 'Sarah Johnson',
-    email: 'sarah.johnson@email.com',
-    source: 'Google',
-    avatar: 'SJ',
-    service: 'Siding',
-    review: 'Instalación de siding perfecta. Transformaron completamente el exterior de mi casa. Increíble.',
-    rating: 5,
-    status: 'publicada',
-    date: '6 Dic 2024',
-  },
-  {
-    id: 5,
-    client: 'David Chen',
-    email: 'david.chen@email.com',
-    source: 'Google',
-    avatar: 'DC',
-    service: 'Roofing',
-    review: 'Realmente feliz con los resultados de Nova Solutions. El equipo fue muy atento durante todo el proceso.',
-    rating: 3,
-    status: 'rechazada',
-    date: '5 Dic 2024',
-  },
-  {
-    id: 6,
-    client: 'Ana Martínez',
-    email: 'ana.martinez@email.com',
-    source: 'Google',
-    avatar: 'AM',
-    service: 'Insulation',
-    review: 'No me gustó el servicio de aislamiento. Tuvieron que volver tres veces para dejarlo correcto. Muy frustrante.',
-    rating: 2,
-    status: 'rechazada',
-    date: '4 Dic 2024',
-  },
-  {
-    id: 7,
-    client: 'Carlos Rosa',
-    email: 'carlos.rosa@email.com',
-    source: 'Google',
-    avatar: 'CR',
-    service: 'Roof Repair',
-    review: 'Muy buena calidad en la reparación. Detectaron problemas que otra empresa había pasado por alto.',
-    rating: 4,
-    status: 'pendiente',
-    date: '3 Dic 2024',
-  },
-  {
-    id: 8,
-    client: 'Lisa Thompson',
-    email: 'lisa.thompson@email.com',
-    source: 'Google',
-    avatar: 'LT',
-    service: 'Gutters',
-    review: 'Cálida atención al cliente, instalación perfecta de canalones. Se nota que son profesionales.',
-    rating: 4,
-    status: 'publicada',
-    date: '2 Dic 2024',
-  },
-  {
-    id: 9,
-    client: 'Michael Brown',
-    email: 'michael.brown@email.com',
-    source: 'Google',
-    avatar: 'MB',
-    service: 'Siding',
-    review: 'Excelente comunicación en todo momento y el trabajo quedó perfecto. 100% lo recomiendo.',
-    rating: 5,
-    status: 'pendiente',
-    date: '1 Dic 2024',
-  },
-];
+import { useReviews }       from '@/pages/admin/hooks/useReviews';
+import { useReviewActions } from '@/pages/admin/hooks/useReviewActions';
 
 
 const FILTER_TABS = [
-  { key: 'todas', label: 'Todas' },
-  { key: 'pendiente', label: 'Pendientes' },
-  { key: 'publicada', label: 'Publicadas' },
-  { key: 'rechazada', label: 'Rechazadas' },
-  { key: '5estrellas', label: '5 Estrellas' },
+  { key: 'all', label: 'All' },
+  { key: 'pending', label: 'Pending' },
+  { key: 'published', label: 'Published' },
+  { key: 'rejected', label: 'Rejected' },
+  { key: '5_stars', label: '5 Stars' },
 ];
 
 export default function AdminReviewsPage() {
-  const [reviews, setReviews] = useState(INITIAL_REVIEWS);
-  const [activeFilter, setActiveFilter] = useState('todas');
+  const [activeFilter, setActiveFilter] = useState('all');
   const [search, setSearch] = useState('');
 
-  const publishReview = (id) =>
-    setReviews((prev) => prev.map((r) => (r.id === id ? { ...r, status: 'publicada' } : r)));
+  const { reviewsData, tableState, fetchReviews, refreshReviews } = useReviews({ 
+    status: activeFilter, 
+    search 
+  });
 
-  const rejectReview = (id) =>
-    setReviews((prev) => prev.map((r) => (r.id === id ? { ...r, status: 'rechazada' } : r)));
+  const { updateReviewStatus, getReviewHistory } = useReviewActions();
 
-  const deleteReview = (id) =>
-    setReviews((prev) => prev.filter((r) => r.id !== id));
+  const rows = reviewsData.data || [];
+  const summary = reviewsData.summary || [];
+  const { count, currentPage, perPage } = tableState;
 
   const {
     detailReview,
@@ -165,51 +58,77 @@ export default function AdminReviewsPage() {
     openConfirm,
     closeConfirm,
     handleConfirmAction,
-  } = useReviewDialogs({ onPublish: publishReview, onReject: rejectReview, onDelete: deleteReview });
-
-  // ── Derived stats ──
-  const total = reviews.length;
-  const pendientes = reviews.filter((r) => r.status === 'pendiente').length;
-  const publicadas = reviews.filter((r) => r.status === 'publicada').length;
-  const rechazadas = reviews.filter((r) => r.status === 'rechazada').length;
-  const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / (total || 1)).toFixed(1);
-
-  // ── Filtering ──
-  const filtered = reviews.filter((r) => {
-    const matchSearch =
-      !search ||
-      r.client.toLowerCase().includes(search.toLowerCase()) ||
-      r.review.toLowerCase().includes(search.toLowerCase()) ||
-      r.service.toLowerCase().includes(search.toLowerCase());
-
-    const matchFilter =
-      activeFilter === 'todas' ||
-      (activeFilter === '5estrellas' ? r.rating === 5 : r.status === activeFilter);
-
-    return matchSearch && matchFilter;
+    statusDialog,
+    openStatusDialog,
+    closeStatusDialog,
+  } = useReviewDialogs({ 
+    onPublish: async (id, message) => {
+      const success = await updateReviewStatus(id, 'Published', message);
+      if (success) refreshReviews();
+    }, 
+    onReject: async (id, message) => {
+      const success = await updateReviewStatus(id, 'Rejected', message);
+      if (success) refreshReviews();
+    }
   });
 
+  const onConfirmStatusUpdate = async (newStatus, message) => {
+    const success = await updateReviewStatus(statusDialog.review.id, newStatus, message);
+    if (success) {
+      refreshReviews();
+      closeStatusDialog();
+    }
+  };
+
+  // ── Stats from API ──
+  const getStat = (status) => summary.find((s) => s.status.toLowerCase() === status.toLowerCase())?.count || 0;
+  
+  const pendingCount = getStat('New'); // API sends "New" for arrivals requiring attention
+  const publishedCount = getStat('Published');
+  const rejectedCount = getStat('Rejected');
+  const totalCount = summary.reduce((acc, curr) => acc + curr.count, 0);
+  const avgRating = reviewsData.averageRating ? Number(reviewsData.averageRating).toFixed(1) : '0.0';
+
   const tabCount = (key) => {
-    if (key === 'todas') return reviews.length;
-    if (key === '5estrellas') return reviews.filter((r) => r.rating === 5).length;
-    return reviews.filter((r) => r.status === key).length;
+    if (key === 'all') return totalCount;
+    if (key === 'pending') return pendingCount;
+    return getStat(key);
+  };
+
+  const tableOptions = {
+    serverSide: true,
+    count: count,
+    page: currentPage,
+    rowsPerPage: perPage,
+    rowsPerPageOptions: [10, 20, 50],
+    onTableChange: (action, tableState) => {
+      const { page, rowsPerPage } = tableState;
+      const apiPage = page + 1;
+      if (action === "changePage" || action === "changeRowsPerPage") {
+        fetchReviews(apiPage, rowsPerPage, page);
+      }
+    },
   };
 
   const columns = [
     {
       name: 'client',
-      label: 'Cliente',
+      label: 'Customer',
       options: {
         customBodyRenderLite: (dataIndex) => {
-          const row = filtered[dataIndex];
+          const row = rows[dataIndex];
+          if (!row) return '...';
+          const name = row.fullName || row.client || row.name || 'Unnamed';
+          const avatarLetter = name.charAt(0).toUpperCase();
+          const serviceName = row.serviceType?.name || row.service || 'N/A';
           return (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, minWidth: 160 }}>
               <Box sx={{ minWidth: 36, height: 36, borderRadius: '50%', bgcolor: 'rgba(255,215,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography sx={{ color: '#FFD700', fontSize: 13, fontWeight: 700 }}>{row.avatar}</Typography>
+                <Typography sx={{ color: '#FFD700', fontSize: 13, fontWeight: 700 }}>{avatarLetter}</Typography>
               </Box>
               <Box>
-                <Typography sx={{ color: 'white', fontSize: 13, fontWeight: 600 }}>{row.client}</Typography>
-                <Typography sx={{ color: '#888', fontSize: 11 }}>{row.source} · {row.service}</Typography>
+                <Typography sx={{ color: 'white', fontSize: 13, fontWeight: 600 }}>{name}</Typography>
+                <Typography sx={{ color: '#888', fontSize: 11 }}>{row.source || 'Google'} · {serviceName}</Typography>
               </Box>
             </Box>
           );
@@ -218,16 +137,18 @@ export default function AdminReviewsPage() {
     },
     {
       name: 'review',
-      label: 'Reseña',
+      label: 'Review',
       options: {
         customBodyRenderLite: (dataIndex) => {
-          const row = filtered[dataIndex];
+          const row = rows[dataIndex];
+          if (!row) return '...';
+          const displayDate = row.createdAt ? new Date(row.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A';
           return (
             <Box sx={{ maxWidth: { xs: 200, md: 320 } }}>
               <Typography noWrap sx={{ color: '#AAAAAA', fontSize: 13, textOverflow: 'ellipsis', overflow: 'hidden' }}>
                 {row.review}
               </Typography>
-              <Typography sx={{ color: '#666', fontSize: 11, mt: 0.5 }}>{row.date}</Typography>
+              <Typography sx={{ color: '#666', fontSize: 11, mt: 0.5 }}>{displayDate}</Typography>
             </Box>
           );
         },
@@ -237,37 +158,54 @@ export default function AdminReviewsPage() {
       name: 'rating',
       label: 'Rating',
       options: {
-        customBodyRenderLite: (dataIndex) => (
-          <Rating value={filtered[dataIndex].rating} readOnly size="small" sx={{ color: '#FFD700' }} />
-        ),
+        customBodyRenderLite: (dataIndex) => {
+           const row = rows[dataIndex];
+           return row ? <Rating value={Number(row.rating) || 0} readOnly size="small" sx={{ color: '#FFD700' }} /> : '...';
+        },
       },
     },
     {
       name: 'status',
-      label: 'Estado',
+      label: 'Status',
       options: {
-        customBodyRenderLite: (dataIndex) => <StatusBadge status={filtered[dataIndex].status} />,
+        customBodyRenderLite: (dataIndex) => {
+          const row = rows[dataIndex];
+          return row ? <StatusBadge status={row.status} /> : '...';
+        },
       },
     },
     {
       name: 'actions',
-      label: 'Acciones',
+      label: 'Actions',
       options: {
         empty: true,
         sort: false,
         searchable: false,
         customBodyRenderLite: (dataIndex) => {
-          const row = filtered[dataIndex];
+          const row = rows[dataIndex];
+          if (!row) return null;
           return (
-            <Tooltip title="Ver / Modificar">
-              <IconButton
-                onClick={() => openDetail(row)}
-                size="small"
-                sx={{ color: '#888', '&:hover': { color: 'white', bgcolor: 'rgba(255,255,255,0.08)' } }}
-              >
-                <VisibilityOutlinedIcon sx={{ fontSize: 18 }} />
-              </IconButton>
-            </Tooltip>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Tooltip title="View Details">
+                <IconButton
+                  onClick={() => openDetail(row)}
+                  size="small"
+                  sx={{ color: '#888', '&:hover': { color: 'white', bgcolor: 'rgba(255,255,255,0.08)' } }}
+                >
+                  <VisibilityOutlinedIcon sx={{ fontSize: 18 }} />
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Update Status">
+                <IconButton
+                  onClick={() => openStatusDialog(row)}
+                  size="small"
+                  sx={{ color: '#888', '&:hover': { color: '#FFD700', bgcolor: 'rgba(255,215,0,0.08)' } }}
+                >
+                  <EditOutlinedIcon sx={{ fontSize: 18 }} />
+                </IconButton>
+              </Tooltip>
+            </Box>
           );
         },
       }
@@ -284,14 +222,14 @@ export default function AdminReviewsPage() {
         py: { xs: 3, md: 4 },
         flexGrow: 1,
         minHeight: '100%',
-        bgcolor: '#0A0A0A',
+        bgcolor: '#000000',
       }}
     >
  
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'space-between', gap: 2, flexShrink: 0 }}>
         <Box>
-          <Typography variant="h5" sx={{ color: 'white', fontWeight: 800 }}>Gestión de Reviews</Typography>
-          <Typography sx={{ color: '#888', fontSize: 13, mt: 0.5 }}>Administra y modera las reseñas de tus clientes.</Typography>
+          <Typography variant="h5" sx={{ color: 'white', fontWeight: 800 }}>Reviews Management</Typography>
+          <Typography sx={{ color: '#888', fontSize: 13, mt: 0.5 }}>Manage and moderate your customer reviews.</Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, width: { xs: '100%', md: 'auto' } }}>
           {/* Search */}
@@ -302,8 +240,8 @@ export default function AdminReviewsPage() {
               gap: 1,
               flex: { xs: 1, md: 'none' },
               borderRadius: '8px',
-              border: '1px solid #2A2A2A',
-              bgcolor: '#111111',
+              border: '1px solid #1F1F1F',
+              bgcolor: '#0A0A0A',
               px: 1.5,
               py: 1,
               '&:focus-within': { borderColor: 'primary.main' },
@@ -312,7 +250,7 @@ export default function AdminReviewsPage() {
           >
             <SearchOutlinedIcon sx={{ fontSize: 16, color: '#555', flexShrink: 0 }} />
             <InputBase
-              placeholder="Buscar o filtrar..."
+              placeholder="Search or filter..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               sx={{
@@ -333,19 +271,19 @@ export default function AdminReviewsPage() {
               width: 40,
               height: 40,
               borderRadius: '8px',
-              border: '1px solid #2A2A2A',
-              background: 'none',
+              border: '1px solid #1F1F1F',
+              bgcolor: '#0A0A0A',
               cursor: 'pointer',
               color: '#888',
               transition: 'color 0.15s',
-              '&:hover': { color: 'white' },
+              '&:hover': { color: 'white', bgcolor: '#111' },
               position: 'relative'
             }}
           >
             <NotificationsNoneOutlinedIcon sx={{ fontSize: 20 }} />
-            {pendientes > 0 && (
+            {pendingCount > 0 && (
               <Box sx={{ position: 'absolute', top: -4, right: -4, minWidth: 16, height: 16, borderRadius: '50%', bgcolor: 'primary.main', display: 'flex', alignItems: 'center', justifyContent: 'center', px: 0.5 }}>
-                <Typography sx={{ color: 'black', fontSize: 9, fontWeight: 900 }}>{pendientes}</Typography>
+                <Typography sx={{ color: 'black', fontSize: 9, fontWeight: 900 }}>{pendingCount}</Typography>
               </Box>
             )}
           </Box>
@@ -356,37 +294,37 @@ export default function AdminReviewsPage() {
       <Grid container spacing={{ xs: 1.5, sm: 2.5 }} sx={{ flexShrink: 0 }}>
         <Grid size={{ xs: 6, sm: 6, lg: 3 }}>
           <MetricCard
-            label="Pendientes"
-            value={pendientes}
+            label="Pending"
+            value={pendingCount}
             Icon={ReportProblemOutlinedIcon}
-            change="Requieren atención"
+            change="Requires attention"
             changeColor="#FFD700"
           />
         </Grid>
         <Grid size={{ xs: 6, sm: 6, lg: 3 }}>
           <MetricCard
-            label="Publicadas"
-            value={publicadas}
+            label="Published"
+            value={publishedCount}
             Icon={ThumbUpOutlinedIcon}
-            change="Visibles al público"
+            change="Visible to public"
             changeColor="#4ADE80"
           />
         </Grid>
         <Grid size={{ xs: 6, sm: 6, lg: 3 }}>
           <MetricCard
-            label="Rechazadas"
-            value={rechazadas}
+            label="Rejected"
+            value={rejectedCount}
             Icon={CancelOutlinedIcon}
-            change="No publicadas"
+            change="Not published"
             changeColor="#F87171"
           />
         </Grid>
         <Grid size={{ xs: 6, sm: 6, lg: 3 }}>
           <MetricCard
-            label="Rating Promedio"
+            label="Average Rating"
             value={avgRating}
             Icon={BarChartOutlinedIcon}
-            change={`Sobre ${total} reseñas`}
+            change={`Across ${totalCount} reviews`}
             changeColor="#FFD700"
           />
         </Grid>
@@ -451,26 +389,28 @@ export default function AdminReviewsPage() {
           title={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <Typography sx={{ fontSize: 16, fontWeight: 700, color: 'white' }}>
-                Todas las Reviews
+                All Reviews
               </Typography>
               <Box sx={{ borderRadius: 9999, bgcolor: 'rgba(255,215,0,0.12)', px: 1.25, py: 0.5 }}>
                 <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'primary.main' }}>
-                  {filtered.length} Registros
+                  {count} Records
                 </Typography>
               </Box>
             </Box>
           }
-            data={filtered}
+            loading={reviewsData.loading}
+            data={rows}
             columns={columns}
+            options={tableOptions}
           />
         </Box>
 
       <ReviewDetailDialog
         review={detailReview}
         onClose={closeDetail}
-        onPublish={(review) => openConfirm('publish', review)}
-        onReject={(review) => openConfirm('reject', review)}
-        onDelete={(review) => openConfirm('delete', review)}
+        onPublish={(r) => openConfirm('publish', r)}
+        onReject={(r) => openConfirm('reject', r)}
+        getHistory={getReviewHistory}
       />
 
       <ConfirmActionDialog
@@ -479,6 +419,13 @@ export default function AdminReviewsPage() {
         review={confirmDialog.review}
         onConfirm={handleConfirmAction}
         onCancel={closeConfirm}
+      />
+
+      <ReviewStatusDialog
+        open={statusDialog.open}
+        onClose={closeStatusDialog}
+        data={statusDialog.review}
+        onConfirm={onConfirmStatusUpdate}
       />
     </Box>
   );

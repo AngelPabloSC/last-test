@@ -13,6 +13,11 @@ export const validationRules = {
     city:     { value: 30,  message: 'Maximum 30 characters allowed.' },
     text:     { value: 250, message: 'Maximum 250 characters allowed.' },
     password: { value: 16,  message: 'Maximum 16 characters allowed.' },
+    projectName: { value: 80,  message: 'Project name is too long (max 80 chars).' },
+    projectDescription: { value: 200, message: 'Description is too long (max 2000chars).' },
+    projectLocation: { value: 100, message: 'Location is too long (max 100 chars).' },
+    projectClient: { value: 100, message: 'Client name is too long (max 100 chars).' },
+    projectArea: { value: 50, message: 'Area description is too long (max 50 chars).' },
   },
 
   // ── Email ─────────────────────────────────────────────────────────────────

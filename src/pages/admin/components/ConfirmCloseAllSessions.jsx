@@ -23,8 +23,8 @@ export default function ConfirmCloseAllSessions({ onConfirm, onCancel, loading }
       <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.25 }}>
         <WarningIcon sx={{ color: '#F87171', fontSize: 16, flexShrink: 0, mt: 0.2 }} />
         <Typography sx={{ color: '#FCA5A5', fontSize: 13, lineHeight: 1.5 }}>
-          Esto cerrará <strong>todas las sesiones excepto la actual</strong>.
-          Los dispositivos deberán iniciar sesión de nuevo.
+          This will close <strong>all sessions except the current one</strong>.
+          Devices will need to log in again.
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', gap: 1.5 }}>
@@ -43,7 +43,7 @@ export default function ConfirmCloseAllSessions({ onConfirm, onCancel, loading }
             '&:hover': { borderColor: '#4B5563' },
           }}
         >
-          Cancelar
+          Cancel
         </Button>
         <Button
           onClick={onConfirm}
@@ -62,7 +62,7 @@ export default function ConfirmCloseAllSessions({ onConfirm, onCancel, loading }
           }}
           startIcon={loading ? <CircularProgress size={12} sx={{ color: 'white' }} /> : undefined}
         >
-          {loading ? 'Cerrando...' : 'Sí, cerrar todas'}
+          {loading ? 'Closing...' : 'Yes, close all'}
         </Button>
       </Box>
     </Box>

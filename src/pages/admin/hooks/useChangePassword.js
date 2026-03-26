@@ -85,19 +85,19 @@ export const useChangePassword = (onSuccess) => {
         setPasswordData({
           code:    API_CODES.OK,
           data:    response.data || {},
-          message: response.message || 'Contraseña actualizada con éxito.',
+          message: response.message || 'Password updated successfully.',
           loading: false,
         });
         showSnackbar('Password updated successfully', 'success');
         setOpenPassDialog(false);
         if (onSuccess) onSuccess();
       } else {
-        const msg = response?.message || 'Error al actualizar la contraseña.';
+        const msg = response?.message || 'Error updating password.';
         setPasswordData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
         showSnackbar(msg, 'error');
       }
     } catch (err) {
-      const msg = 'Error de conexión con el servidor.';
+      const msg = 'Server connection error.';
       setPasswordData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
       showSnackbar(msg, 'error');
     }

@@ -46,7 +46,7 @@ const GlobalTable = (props) => {
         MuiPaper: {
           styleOverrides: {
             root: {
-              backgroundColor: '#111', 
+              backgroundColor: '#000000', 
               backgroundImage: 'none',
               border: '1px solid #1F1F1F',
               borderRadius: '10px',
@@ -57,7 +57,7 @@ const GlobalTable = (props) => {
         MUIDataTableHeadCell: {
           styleOverrides: {
             root: {
-              backgroundColor: '#0A0A0A',
+              backgroundColor: '#000000',
               color: '#666',
               textTransform: 'uppercase',
               fontSize: '12px',
@@ -78,7 +78,7 @@ const GlobalTable = (props) => {
         MUIDataTableBodyCell: {
           styleOverrides: {
             root: {
-              backgroundColor: '#111',
+              backgroundColor: '#000000',
               color: '#fff',
               borderBottom: '1px solid #1F1F1F',
               padding: '14px 24px',
@@ -91,7 +91,7 @@ const GlobalTable = (props) => {
         MUIDataTableToolbar: {
           styleOverrides: {
             root: {
-              backgroundColor: '#111',
+              backgroundColor: '#000000',
               color: '#fff',
             },
             titleText: {

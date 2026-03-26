@@ -4,6 +4,8 @@ import SolicitudesPage       from '@/pages/admin/SolicitudesPage';
 import { SidebarProvider }   from '@/context/SidebarContext';
 import AdminReviewsPage from '../pages/admin/ReviewsPage';
 import AdminProfilePage from '../pages/admin/AdminProfilePage';
+import AdminGalleryPage from '../pages/admin/AdminGalleryPage';
+import CreateProjectPage from '../pages/admin/CreateProjectPage';
 
 // ─── Placeholder para rutas futuras ──────────────────────────────────────────
 const ComingSoon = ({ title }) => (
@@ -37,6 +39,9 @@ export const adminRoutes = [
     children: [
       { path: 'requests',     element: <SolicitudesPage /> },
       { path: 'reviews',      element: <AdminReviewsPage /> },
+      { path: 'gallery',      element: <AdminGalleryPage /> },
+      { path: 'gallery/new',  element: <CreateProjectPage /> },
+      { path: 'gallery/edit/:id', element: <CreateProjectPage /> },
       { path: 'profile',      element: <AdminProfilePage /> },
       { path: 'customers',    element: <ComingSoon title="Customers" /> },
       { path: 'settings',     element: <ComingSoon title="Settings" /> },

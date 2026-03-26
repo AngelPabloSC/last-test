@@ -143,9 +143,9 @@ export default function AdminProfilePage() {
 
   const [formData, setFormData] = useState({
     nombre:         user?.person?.names || user?.username || 'Angel Sarango',
-    rol:            user?.rol || 'Administrador',
+    rol:            user?.rol || 'Administrator',
     email:          user?.person?.email || user?.email || 'Admin@nova-solutions.us',
-    ubicacion:      user?.location || 'Quito, Ecuador',
+    ubicacion:      user?.location || 'Malibu, CA',
     telefono:       user?.person?.phone || '(518) 598-5156',
     identification: user?.person?.identificationNumber || '...',
     zona:           'Eastern Time (ET) UTC-5',
@@ -156,9 +156,9 @@ export default function AdminProfilePage() {
     if (user) {
       setFormData({
         nombre:         user?.person?.names || user?.username || 'Angel Sarango',
-        rol:            user?.rol || 'Administrador',
+        rol:            user?.rol || 'Administrator',
         email:          user?.person?.email || user?.email || 'Admin@nova-solutions.us',
-        ubicacion:      user?.location || 'Quito, Ecuador',
+        ubicacion:      user?.location || 'Malibu, CA',
         telefono:       user?.person?.phone || '(518) 598-5156',
         identification: user?.person?.identificationNumber || '...',
         zona:           'Eastern Time (ET) UTC-5',
@@ -443,7 +443,7 @@ export default function AdminProfilePage() {
                   <Box>
                     <Typography sx={{ fontSize: 14, fontWeight: 600 }}>Active Sessions</Typography>
                     <Typography sx={{ color: '#6B7280', fontSize: 12 }}>
-                      {activeSessions.length > 0 ? `${activeSessions.length} dispositivos` : sessionsLoading ? 'Detectando...' : 'Sin sesiones activas'}
+                      {activeSessions.length > 0 ? `${activeSessions.length} devices` : sessionsLoading ? 'Detecting...' : 'No active sessions'}
                     </Typography>
                   </Box>
                   <Button

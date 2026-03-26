@@ -8,6 +8,8 @@ import LeaveReviewPage from '@/pages/LeaveReviewPage';
 import TermsPrivacyPage from '@/pages/TermsPrivacyPage';
 import AdminLogin from '@/pages/AdminLogin';
 import GuestRoute from '@/routes/GuestRoute';
+import GalleryPage from '@/pages/GalleryPage';
+import GalleryDetailPage from '@/pages/GalleryDetailPage';
 import {
   ROOFING,
   ASPHALT_SHINGLE,
@@ -76,7 +78,8 @@ export const publicRoutes = [
       { path: 'Gutters/Gutter-Guards/Gutter-Cap',          element: <ServicePage data={GUTTER_CAP}        category="Gutters" /> },
       { path: 'Gutters/Gutter-Replacement',                element: <ServicePage data={GUTTER_REPLACEMENT} category="Gutters" /> },
       { path: 'Gutters/Gutter-Repairs',                    element: <ServicePage data={GUTTER_REPAIRS}    category="Gutters" /> },
-
+      { path: 'Gallery',                                   element: <GalleryPage /> },
+      { path: 'Gallery/:id',                               element: <GalleryDetailPage /> },
 
       { path: 'About', element: <AboutPage /> },
       { path: 'About/Contact-us', element: <ContactPage /> },

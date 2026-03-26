@@ -11,6 +11,8 @@ import {
   Button,
   Rating,
   CircularProgress,
+  TextField,
+  Divider,
 } from '@mui/material';
 import CloseIcon         from '@mui/icons-material/Close';
 import CheckCircleIcon   from '@mui/icons-material/CheckCircle';
@@ -21,10 +23,10 @@ import BlockIcon         from '@mui/icons-material/Block';
 
 const VARIANT_CONFIG = {
   publish: {
-    label:       'Publicar Review',
-    confirmText: 'Publicar Review',
-    loadingText: 'Publicando...',
-    noteText:    'Esta reseña será publicada en la sección de Reviews del sitio web.',
+    label:       'Publish Review',
+    confirmText: 'Publish Review',
+    loadingText: 'Publishing...',
+    noteText:    'This review will be published in the website\'s Reviews section.',
     noteColor:   '#4ADE80',
     noteBg:      'rgba(34,197,94,0.08)',
     noteBorder:  'rgba(34,197,94,0.25)',
@@ -33,28 +35,16 @@ const VARIANT_CONFIG = {
     btnHover:    '#16A34A',
   },
   reject: {
-    label:       'Rechazar Review',
-    confirmText: 'Rechazar Review',
-    loadingText: 'Rechazando...',
-    noteText:    'Esta reseña será marcada como rechazada y no será visible en el sitio web.',
+    label:       'Reject Review',
+    confirmText: 'Reject Review',
+    loadingText: 'Rejecting...',
+    noteText:    'This review will be marked as rejected and will not be visible on the website.',
     noteColor:   '#FBBF24',
     noteBg:      'rgba(251,191,36,0.08)',
     noteBorder:  'rgba(251,191,36,0.25)',
     NoteIcon:    BlockIcon,
     btnBg:       '#D97706',
     btnHover:    '#B45309',
-  },
-  delete: {
-    label:       'Eliminar Review',
-    confirmText: 'Eliminar',
-    loadingText: 'Eliminando...',
-    noteText:    'Esta acción es permanente. La reseña no podrá recuperarse una vez eliminada.',
-    noteColor:   '#F87171',
-    noteBg:      'rgba(239,68,68,0.08)',
-    noteBorder:  'rgba(239,68,68,0.25)',
-    NoteIcon:    WarningAmberIcon,
-    btnBg:       '#EF4444',
-    btnHover:    '#DC2626',
   },
 };
 
@@ -72,6 +62,7 @@ const VARIANT_CONFIG = {
  */
 export default function ConfirmActionDialog({ isOpen, variant = 'publish', review, onConfirm, onCancel }) {
   const [loading, setLoading] = useState(false);
+  const [adminMessage, setAdminMessage] = useState('');
 
   if (!isOpen || !review) return null;
 
@@ -80,8 +71,14 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
 
   const handleConfirm = async () => {
     setLoading(true);
-    await onConfirm(review);
+    await onConfirm(review, adminMessage);
     setLoading(false);
+    setAdminMessage('');
+  };
+
+  const handleCancel = () => {
+    setAdminMessage('');
+    onCancel();
   };
 
   return (
@@ -128,7 +125,7 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
             {config.label}
           </Typography>
           <IconButton
-            onClick={onCancel}
+            onClick={handleCancel}
             size="small"
             sx={{
               bgcolor: '#1A1A1A',
@@ -149,7 +146,7 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
           {/* Review seleccionada */}
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
             <Typography sx={{ color: '#6B7280', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-              Review Seleccionada
+              Selected Review
             </Typography>
             <Box
               sx={{
@@ -176,13 +173,13 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
                 }}
               >
                 <Typography sx={{ color: '#FFD700', fontWeight: 700, fontSize: 14 }}>
-                  {review.avatar}
+                  {(review.fullName || review.client || review.name || 'U').charAt(0).toUpperCase()}
                 </Typography>
               </Box>
               {/* Info */}
-              <Box sx={{ minWidth: 0 }}>
+               <Box sx={{ minWidth: 0 }}>
                 <Typography sx={{ color: 'white', fontSize: 14, fontWeight: 600, lineHeight: 1 }}>
-                  {review.client}
+                  {review.fullName || review.client || row.name || 'Unnamed'}
                 </Typography>
                 <Typography sx={{ color: '#6B7280', fontSize: 12, mt: 0.5 }}>
                   {review.source} · {review.service}
@@ -194,7 +191,7 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
           {/* Preview de la review */}
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
             <Typography sx={{ color: '#6B7280', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-              Preview de la Review
+              Review Preview
             </Typography>
 
             <Box
@@ -227,6 +224,7 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
                 bgcolor: config.noteBg,
                 border: `1px solid ${config.noteBorder}`,
                 borderRadius: '8px',
+                mb: 1,
               }}
             >
               <NoteIcon sx={{ fontSize: 15, color: config.noteColor, flexShrink: 0, mt: '1px' }} />
@@ -234,12 +232,47 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
                 {config.noteText}
               </Typography>
             </Box>
+
+            <Divider sx={{ borderColor: '#1F1F1F' }} />
+
+            {/* Comentario del Admin */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography sx={{ color: 'white', fontSize: 13, fontWeight: 600 }}>
+                  Reviewer Comment (Optional)
+                </Typography>
+                <Typography sx={{ color: adminMessage.length > 25 ? 'error.main' : '#4B5563', fontSize: 11, fontWeight: 700 }}>
+                  {adminMessage.length} / 25
+                </Typography>
+              </Box>
+              <TextField
+                fullWidth
+                multiline
+                rows={2}
+                placeholder="e.g. Validated and approved."
+                value={adminMessage}
+                onChange={(e) => setAdminMessage(e.target.value)}
+                error={adminMessage.length > 25}
+                slotProps={{
+                  input: {
+                    sx: {
+                      color: 'white',
+                      fontSize: 13,
+                      bgcolor: '#0A0A0A',
+                      borderColor: '#1F1F1F',
+                      '& fieldset': { borderColor: '#1F1F1F' },
+                      '&:hover fieldset': { borderColor: '#333' },
+                    }
+                  }
+                }}
+              />
+            </Box>
           </Box>
 
           {/* ── Actions ── */}
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1.5 }}>
             <Button
-              onClick={onCancel}
+              onClick={handleCancel}
               disabled={loading}
               sx={{
                 height: 36,
@@ -255,11 +288,11 @@ export default function ConfirmActionDialog({ isOpen, variant = 'publish', revie
                 '&.Mui-disabled': { opacity: 0.4 },
               }}
             >
-              Cancelar
+              Cancel
             </Button>
             <Button
               onClick={handleConfirm}
-              disabled={loading}
+              disabled={loading || adminMessage.length > 25}
               sx={{
                 height: 36,
                 px: 2.5,

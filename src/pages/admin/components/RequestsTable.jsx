@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -14,11 +14,6 @@ const STATUS_MAP = {
   'In Progress': { label: 'In Progress', bg: 'rgba(96,165,250,0.12)',  text: '#60A5FA' },
   'Completed':   { label: 'Completed',   bg: 'rgba(74,222,128,0.12)',  text: '#4ADE80' },
   'Canceled':    { label: 'Canceled',    bg: 'rgba(248,113,113,0.12)', text: '#F87171' },
-  // Compatibilidad con IDs locales por si el back devuelve lowercase
-  nueva:       { label: 'New',         bg: 'rgba(255,215,0,0.12)',   text: '#FFD700' },
-  en_progreso: { label: 'In Progress', bg: 'rgba(96,165,250,0.12)',  text: '#60A5FA' },
-  completada:  { label: 'Completed',   bg: 'rgba(74,222,128,0.12)',  text: '#4ADE80' },
-  cancelada:   { label: 'Canceled',    bg: 'rgba(248,113,113,0.12)', text: '#F87171' },
 };
 
 function StatusBadge({ status }) {
@@ -42,7 +37,8 @@ function StatusBadge({ status }) {
   );
 }
 
-const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContacts, filter = 'todas', search = '' }) => {
+const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContacts, filter = 'all', search = '' }) => {
+  const theme = useTheme();
   const rows = contactsData?.data || [];
 
   const {
@@ -85,8 +81,8 @@ const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContact
           const row = rows[dataIndex];
           if (!row) return '...';
           return (
-            <Typography sx={{ width: { xs: 120, sm: 180 }, fontSize: { xs: 12, sm: 13 }, fontWeight: 600, color: 'white' }}>
-              {row.names || row.name || 'Sin nombre'}
+            <Typography sx={{ width: { xs: 120, sm: 180 }, fontSize: { xs: 12, sm: 13 }, fontWeight: 600, color: theme.palette.text.primary }}>
+              {row.names || row.name || 'Unnamed'}
             </Typography>
           );
         },
@@ -101,8 +97,8 @@ const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContact
           if (!row) return '...';
           return (
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 0.25, width: { xs: 140, sm: 'auto' } }}>
-              <Typography sx={{ fontSize: { xs: 11, sm: 13 }, color: '#AAAAAA' }}>{row.email}</Typography>
-              <Typography sx={{ fontSize: { xs: 10, sm: 11 }, color: '#666' }}>{row.phone}</Typography>
+              <Typography sx={{ fontSize: { xs: 11, sm: 13 }, color: theme.palette.text.secondary }}>{row.email}</Typography>
+              <Typography sx={{ fontSize: { xs: 10, sm: 11 }, color: theme.palette.text.disabled }}>{row.phone}</Typography>
             </Box>
           );
         },
@@ -116,7 +112,7 @@ const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContact
           const row = rows[dataIndex];
           if (!row) return '...';
           return (
-            <Typography sx={{ width: { xs: 100, sm: 140 }, fontSize: { xs: 11, sm: 13 }, color: '#CCCCCC' }}>
+            <Typography sx={{ width: { xs: 100, sm: 140 }, fontSize: { xs: 11, sm: 13 }, color: theme.palette.text.secondary }}>
               {row.service || 'General'}
             </Typography>
           );
@@ -158,11 +154,11 @@ const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContact
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: '#888',
+                  color: theme.palette.text.disabled,
                   display: 'flex',
                   p: 0,
                   transition: 'color 0.15s',
-                  '&:hover': { color: 'white' },
+                  '&:hover': { color: theme.palette.text.primary },
                 }}
               >
                 <VisibilityOutlinedIcon sx={{ fontSize: 18 }} />
@@ -175,7 +171,7 @@ const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContact
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: '#888',
+                  color: theme.palette.text.disabled,
                   display: 'flex',
                   p: 0,
                   transition: 'color 0.15s',
@@ -196,7 +192,7 @@ const RequestsTable = ({ contactsData, tableState, fetchContacts, refreshContact
     <GlobalTable
       title={
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Typography sx={{ fontSize: 16, fontWeight: 700, color: 'white' }}>
+          <Typography sx={{ fontSize: 16, fontWeight: 700, color: theme.palette.text.primary }}>
             All Requests
           </Typography>
           <Box sx={{ borderRadius: 9999, bgcolor: 'rgba(255,215,0,0.12)', px: 1.25, py: 0.5 }}>

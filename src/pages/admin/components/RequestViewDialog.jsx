@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, IconButton, Typography, Box, Divider, Avatar, Skeleton } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, IconButton, Typography, Box, Divider, Avatar, Skeleton, useTheme } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const STATUS_COLORS = {
@@ -10,6 +10,7 @@ const STATUS_COLORS = {
 };
 
 export default function RequestViewDialog({ open, onClose, data, getHistory }) {
+  const theme = useTheme();
   const [history, setHistory] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
 
@@ -56,10 +57,10 @@ export default function RequestViewDialog({ open, onClose, data, getHistory }) {
           <Divider sx={{ my: 0.5 }} />
           
           <Box>
-            <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', mb: 1, textTransform: 'uppercase', letterSpacing: '1px' }}>
+            <Typography sx={{ fontSize: 11, fontWeight: 700, color: theme.palette.text.secondary, mb: 1, textTransform: 'uppercase', letterSpacing: '1px' }}>
               Project Description
             </Typography>
-            <Typography sx={{ fontSize: 13, p: 2, bgcolor: 'rgba(255,255,255,0.02)', border: '1px solid #1f1f1f', borderRadius: 1, minHeight: 60, color: '#ccc', lineHeight: 1.6 }}>
+            <Typography sx={{ fontSize: 13, p: 2, bgcolor: theme.palette.background.default, border: `1px solid ${theme.palette.divider}`, borderRadius: 1, minHeight: 60, color: theme.palette.text.secondary, lineHeight: 1.6 }}>
               {data.project || 'No description provided.'}
             </Typography>
           </Box>
@@ -68,7 +69,7 @@ export default function RequestViewDialog({ open, onClose, data, getHistory }) {
 
           {/* History Section */}
           <Box>
-            <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', mb: 2, textTransform: 'uppercase', letterSpacing: '1px' }}>
+            <Typography sx={{ fontSize: 11, fontWeight: 700, color: theme.palette.text.secondary, mb: 2, textTransform: 'uppercase', letterSpacing: '1px' }}>
               Status History & Activity
             </Typography>
             
@@ -95,6 +96,7 @@ export default function RequestViewDialog({ open, onClose, data, getHistory }) {
 }
 
 function HistoryItem({ item }) {
+  const theme = useTheme();
   const adminName = item.admin?.person?.names || item.admin?.username || 'Admin';
   const profilePic = item.admin?.person?.profilePicture;
   
@@ -103,10 +105,10 @@ function HistoryItem({ item }) {
       <Avatar src={profilePic} sx={{ width: 32, height: 32, fontSize: 14 }}>{adminName.charAt(0)}</Avatar>
       <Box sx={{ flex: 1 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#eee' }}>
+          <Typography sx={{ fontSize: 13, fontWeight: 600, color: theme.palette.text.primary }}>
             {adminName}
           </Typography>
-          <Typography sx={{ fontSize: 11, color: '#666' }}>
+          <Typography sx={{ fontSize: 11, color: theme.palette.text.disabled }}>
             {new Date(item.createdAt).toLocaleDateString()} {new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </Typography>
         </Box>
@@ -137,9 +139,10 @@ function StatusTinyBadge({ label }) {
 }
 
 function InfoRow({ label, value, isStatus }) {
+  const theme = useTheme();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, flex: 1 }}>
-      <Typography sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+      <Typography sx={{ fontSize: 11, fontWeight: 700, color: theme.palette.text.secondary, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
         {label}
       </Typography>
       {isStatus ? (
@@ -150,7 +153,7 @@ function InfoRow({ label, value, isStatus }) {
           </Typography>
         </Box>
       ) : (
-        <Typography sx={{ fontSize: 14, fontWeight: 500, color: '#eee' }}>
+        <Typography sx={{ fontSize: 14, fontWeight: 500, color: theme.palette.text.primary }}>
           {value || '-'}
         </Typography>
       )}

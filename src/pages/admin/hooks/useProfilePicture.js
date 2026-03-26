@@ -34,7 +34,7 @@ export const useProfilePicture = () => {
       });
 
       if (compressedFile.size > MAX_SIZE) {
-        showSnackbar('La imagen es demasiado pesada (máx 1.8MB).', 'warning');
+        showSnackbar('The image is too large (max 1.8MB).', 'warning');
         setPictureData(prev => ({ ...prev, loading: false }));
         return;
       }
@@ -59,7 +59,7 @@ export const useProfilePicture = () => {
         setPictureData({
           code: API_CODES.OK,
           data: response.data || {},
-          message: response.message || 'Foto actualizada con éxito.',
+          message: response.message || 'Photo updated successfully.',
           loading: false,
         });
         showSnackbar('Profile picture updated', 'success');
@@ -80,12 +80,12 @@ export const useProfilePicture = () => {
           }, false); 
         }
       } else {
-        const msg = response?.message || 'Error al subir la imagen.';
+        const msg = response?.message || 'Error uploading image.';
         setPictureData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
         showSnackbar(msg, 'error');
       }
     } catch (error) {
-      const msg = 'Error de conexión al subir la foto.';
+      const msg = 'Connection error while uploading photo.';
       setPictureData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
       showSnackbar(msg, 'error');
     }
@@ -108,7 +108,7 @@ export const useProfilePicture = () => {
         setPictureData({
           code: API_CODES.OK,
           data: response.data || {},
-          message: response.message || 'Foto eliminada con éxito.',
+          message: response.message || 'Photo removed successfully.',
           loading: false,
         });
         showSnackbar('Profile picture removed', 'success');
@@ -120,12 +120,12 @@ export const useProfilePicture = () => {
           user:         updatedUser
         }, false); // shouldNavigate = false
       } else {
-        const msg = response?.message || 'Error al eliminar la imagen.';
+        const msg = response?.message || 'Error removing image.';
         setPictureData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
         showSnackbar(msg, 'error');
       }
     } catch (error) {
-      const msg = 'Error de conexión al eliminar la foto.';
+      const msg = 'Connection error while removing photo.';
       setPictureData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
       showSnackbar(msg, 'error');
     }

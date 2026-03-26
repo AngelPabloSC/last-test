@@ -42,7 +42,7 @@ export const useUpdateProfile = (formData, setEditing) => {
         setProfileData({
           code:    API_CODES.OK,
           data:    response.data || {},
-          message: response.message || 'Perfil actualizado con éxito.',
+          message: response.message || 'Profile updated successfully.',
           loading: false,
         });
         showSnackbar('Profile updated successfully', 'success');
@@ -76,12 +76,12 @@ export const useUpdateProfile = (formData, setEditing) => {
         
         setEditing(false);
       } else {
-        const msg = response?.message || 'Error al actualizar el perfil.';
+        const msg = response?.message || 'Error updating profile.';
         setProfileData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
         showSnackbar(msg, 'error');
       }
     } catch (error) {
-      const msg = 'Error de conexión con el servidor.';
+      const msg = 'Server connection error.';
       setProfileData(prev => ({ ...prev, code: API_CODES.ERR, message: msg, loading: false }));
       showSnackbar(msg, 'error');
     }

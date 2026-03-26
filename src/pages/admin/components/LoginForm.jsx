@@ -1,6 +1,6 @@
 // ─── LoginForm.jsx ────────────────────────────────────────────────────────────
-// Responsabilidad única: panel derecho de la página de login.
-// Renderiza el formulario de autenticación y gestiona su estado visual.
+// Single responsibility: right panel of the login page.
+// Renders the authentication form and manages its visual state.
 
 import {
   Box,
@@ -26,7 +26,7 @@ import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import { validationRules } from '@/utils/validationRules';
 import CustomTextField    from '@/components/common/CustomTextField';
 
-// ── Estilos compartidos de inputs ─────────────────────────────────────────────
+// ── Shared input styles ────────────────────────────────────────────────────────
 const INPUT_SX = {
   '& .MuiOutlinedInput-root': {
     bgcolor: '#1A1A1A',
@@ -49,7 +49,7 @@ const INPUT_SX = {
   },
 };
 
-// ── Etiqueta de campo ─────────────────────────────────────────────────────────
+// ── Field label ────────────────────────────────────────────────────────────────
 function FieldLabel({ children }) {
   return (
     <Typography
