@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://nova-solutions.us/sitemap.xml
+
+# Disallow admin paths and login to avoid indexing private areas
+Disallow: /admin
+Disallow: /login
