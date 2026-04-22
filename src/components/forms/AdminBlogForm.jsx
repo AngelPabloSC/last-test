@@ -4,10 +4,15 @@ import {
   Paper, IconButton, Tooltip, InputAdornment,
   ToggleButton, ToggleButtonGroup, useTheme, CircularProgress
 } from '@mui/material';
-import { 
-  Save, ArrowBack, AddPhotoAlternate, Info, 
-  Person, Category, Delete, Visibility, VisibilityOff
-} from '@mui/icons-material';
+import Save             from '@mui/icons-material/Save';
+import ArrowBack        from '@mui/icons-material/ArrowBack';
+import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
+import Info             from '@mui/icons-material/Info';
+import Person           from '@mui/icons-material/Person';
+import Category         from '@mui/icons-material/Category';
+import Delete           from '@mui/icons-material/Delete';
+import Visibility       from '@mui/icons-material/Visibility';
+import VisibilityOff    from '@mui/icons-material/VisibilityOff';
 import { Controller } from 'react-hook-form';
 
 import { EditorContent } from '@tiptap/react';

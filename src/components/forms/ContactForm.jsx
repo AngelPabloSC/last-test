@@ -14,7 +14,6 @@ import GlobalErrorDialog   from '@/components/dialogs/GlobalErrorDialog';
 import FormTextField from '@/components/ui/FormTextField';
 import { validationRules } from '@/utils/validationRules';
 
-// ─── Shared input styles ──────────────────────────────────────────────────────
 const INPUT_SX = {
   '& .MuiOutlinedInput-root': {
     bgcolor: 'white',
@@ -74,7 +73,7 @@ export default function ContactForm() {
               lineHeight: 1.1,
             }}
           >
-            RENOVATIONS
+            RENOVATE
           </Typography>
           <Typography
             sx={{
@@ -89,7 +88,6 @@ export default function ContactForm() {
           </Typography>
         </Box>
 
-        {/* API-level error */}
         {status === 'error' && (
           <Alert severity="error" sx={{ py: 0.5, fontSize: '0.85rem' }}>
             {errorMsg}
@@ -112,7 +110,7 @@ export default function ContactForm() {
           sx={INPUT_SX}
         />
 
-        {/* Email */}
+        
         <FormTextField
           name="email"
           register={register}
@@ -177,7 +175,7 @@ export default function ContactForm() {
           />
         </Box>
 
-        {/* Project */}
+        
         <FormTextField
           name="project"
           register={register}
@@ -194,7 +192,7 @@ export default function ContactForm() {
           sx={INPUT_SX}
         />
 
-        {/* Terms */}
+
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <Checkbox
             size="small"

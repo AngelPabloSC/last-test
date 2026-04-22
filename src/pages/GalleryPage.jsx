@@ -18,7 +18,6 @@ export default function GalleryPage() {
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch Service Types for Tabs
   useEffect(() => {
     const fetchTabs = async () => {
       try {
@@ -26,14 +25,12 @@ export default function GalleryPage() {
         if (res?.code === API_CODES.OK) {
           setServiceTypes(res.data || []);
         }
-      } catch (err) {
-        console.error(err);
+      } catch {
       }
     };
     fetchTabs();
   }, [getFechData]);
 
-  // Stable fetch function – useCallback avoids re-creating it on every render
   const fetchProjectsData = useCallback(async (currentPage, filterId, reset = false) => {
     setIsLoading(true);
     try {
@@ -53,8 +50,7 @@ export default function GalleryPage() {
         setProjects((prev) => reset ? newProjects : [...prev, ...newProjects]);
         setTotal(response.data?.total || 0);
       }
-    } catch (err) {
-      console.error(err);
+    } catch {
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +66,6 @@ export default function GalleryPage() {
     fetchProjectsData(nextPage, activeFilterId, false);
   }, [page, activeFilterId, fetchProjectsData]);
 
-  // Memoized derived list – recomputes only when projects change
   const displayedProjects = useMemo(() => projects.map((p) => ({
     id: p.id,
     name: p.title || 'Untitled Project',
@@ -108,8 +103,7 @@ export default function GalleryPage() {
         </Box>
       </Box>
 
-      {/* ── FILTER TABS ────────────────────────────────────────────────── */}
-      <Box 
+      <Box
         sx={{ 
           display: 'flex', 
           justifyContent: 'center', 
@@ -171,10 +165,8 @@ export default function GalleryPage() {
         })}
       </Box>
 
-      {/* ── DYNAMIC GRID SEQUENCE ─────────────────────────────────────── */}
       <Box sx={{ px: { xs: 2, md: 10 }, maxWidth: 1600, mx: 'auto' }}>
         <Grid container spacing={3}>
-          {/* Block 1: Large Left | 2 Small Right (Stacked) */}
           {displayedProjects[0] && (
             <Grid size={{ xs: 12, md: 8 }}>
                <PublicProjectCard {...displayedProjects[0]} height={{ xs: 350, md: 624 }} />
@@ -189,7 +181,6 @@ export default function GalleryPage() {
             </Grid>
           )}
 
-          {/* Block 2 (Alternating): 2 Small Left (Stacked) | Large Right */}
           {(displayedProjects[3] || displayedProjects[4]) && (
             <Grid size={{ xs: 12, md: 4 }}>
                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, height: '100%' }}>
@@ -204,7 +195,6 @@ export default function GalleryPage() {
             </Grid>
           )}
 
-          {/* Row: 2 Mediums (6/6) */}
           {displayedProjects[6] && displayedProjects[7] && (
             <>
               <Grid size={{ xs: 12, md: 6 }}>
@@ -216,14 +206,12 @@ export default function GalleryPage() {
             </>
           )}
 
-          {/* Row: 3 Smalls (4/4/4) */}
           {displayedProjects.slice(8, 11).map((p) => (
              <Grid size={{ xs: 12, sm: 4 }} key={p.id}>
                 <PublicProjectCard {...p} height={{ xs: 300, md: 350 }} />
              </Grid>
           ))}
 
-          {/* Remaining */}
           {displayedProjects.slice(11).map((p) => (
              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={p.id}>
                 <PublicProjectCard {...p} height={{ xs: 300, md: 350 }} />
@@ -240,7 +228,6 @@ export default function GalleryPage() {
         )}
       </Box>
 
-      {/* ── PAGINATION ───────────────────────────────────────────────── */}
       {Math.ceil(total / 8) > 1 && (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}>
           <Pagination 
@@ -270,8 +257,7 @@ export default function GalleryPage() {
         </Box>
       )}
 
-      {/* ── CTA SECTION ───────────────────────────────────────────────── */}
-      <Box 
+      <Box
         sx={{ 
           position: 'relative', 
           height: 480, 

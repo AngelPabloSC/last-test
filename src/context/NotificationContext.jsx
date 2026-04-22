@@ -12,17 +12,11 @@ export const NotificationProvider = ({ children }) => {
   const { getFechData } = useFetchDataPromise();
   const { showSnackbar } = useSnackbar();
 
-  // Service Requests State
   const [newCount, setNewCount] = useState(0);
   const [newRequests, setNewRequests] = useState([]);
-  
-  // Reviews State
   const [pendingReviewsCount, setPendingReviewsCount] = useState(0);
   const [pendingReviews, setPendingReviews] = useState([]);
-  
   const [loading, setLoading] = useState(false);
-
-  // Global Dialogs State
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
 
@@ -48,7 +42,6 @@ export const NotificationProvider = ({ children }) => {
         })
       ]);
 
-      // Process Contacts
       if (contactsRes?.code === API_CODES.OK) {
         setNewRequests(contactsRes.data?.list || []);
         const summary = contactsRes.data?.summary || [];
@@ -56,16 +49,14 @@ export const NotificationProvider = ({ children }) => {
         setNewCount(newStatus ? newStatus.count : 0);
       }
 
-      // Process Reviews
       if (reviewsRes?.code === API_CODES.OK) {
         setPendingReviews(reviewsRes.data?.list || []);
         const summary = reviewsRes.data?.summary || [];
-        const pendingStatus = summary.find(s => s.status === 'New'); // API seems to use "New" in summary too
+        const pendingStatus = summary.find(s => s.status === 'New');
         setPendingReviewsCount(pendingStatus ? pendingStatus.count : 0);
       }
 
-    } catch (error) {
-      console.error('Error fetching notifications:', error);
+    } catch {
     } finally {
       setLoading(false);
     }
@@ -75,7 +66,6 @@ export const NotificationProvider = ({ children }) => {
     fetchNotificationData();
   }, [fetchNotificationData]);
 
-  // Request Actions
   const openRequestDetail = useCallback((request) => {
     setSelectedRequest(request);
     setIsDetailOpen(true);
@@ -94,7 +84,7 @@ export const NotificationProvider = ({ children }) => {
         additionalData: { status: newStatus, message: message || '' }
       });
 
-      if (response?.code === API_CODES.OK || response?.code === 'OK') {
+      if (response?.code === API_CODES.OK) {
         showSnackbar(response.message || 'Status updated successfully!', 'success');
         if (selectedRequest?.id === id) {
           setSelectedRequest(prev => ({ ...prev, status: newStatus }));
@@ -105,8 +95,7 @@ export const NotificationProvider = ({ children }) => {
         showSnackbar(response?.message || 'Failed to update status', 'error');
         return false;
       }
-    } catch (error) {
-      console.error('Error updating status:', error);
+    } catch {
       showSnackbar('Connection error while updating status', 'error');
       return false;
     }
@@ -124,7 +113,6 @@ export const NotificationProvider = ({ children }) => {
     }
   };
 
-  // Review Actions
   const openReviewDetail = useCallback((review) => {
     setSelectedReview(review);
     setIsReviewDetailOpen(true);

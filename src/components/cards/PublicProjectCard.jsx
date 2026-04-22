@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function PublicProjectCard({ id, name, category, img, className = '', height = '100%' }) {
+const PublicProjectCard = React.memo(function PublicProjectCard({ id, name, category, img, className = '', height = '100%' }) {
   const theme = useTheme();
   
   return (
@@ -31,6 +31,7 @@ export default function PublicProjectCard({ id, name, category, img, className =
         component="img"
         src={img}
         alt={name}
+        loading="lazy"
         sx={{
           width: '100%',
           height: '100%',
@@ -78,8 +79,6 @@ export default function PublicProjectCard({ id, name, category, img, className =
           {category}
         </Typography>
       </Box>
-
-      {/* Subtle Interactive Border on Hover */}
       <Box 
         sx={{
           position: 'absolute',
@@ -94,4 +93,6 @@ export default function PublicProjectCard({ id, name, category, img, className =
       />
     </Box>
   );
-}
+});
+
+export default PublicProjectCard;

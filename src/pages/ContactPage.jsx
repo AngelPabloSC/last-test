@@ -87,7 +87,7 @@ function ContactHero() {
             {[
               'Nova Solutions — Family Owned & Operated',
               'Made in USA — Transferable Lifetime Warranty',
-              'BBB Accredited · Trusted Since 2012',
+              'BBB Accredited',
             ].map((text) => (
               <Box key={text} sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <CheckCircleIcon sx={{ fontSize: 18, color: gold, flexShrink: 0 }} />

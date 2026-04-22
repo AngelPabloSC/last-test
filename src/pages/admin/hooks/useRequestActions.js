@@ -25,7 +25,7 @@ export function useRequestActions() {
         }
       });
 
-      if (response?.code === API_CODES.OK || response?.code === 'OK') {
+      if (response?.code === API_CODES.OK) {
         showSnackbar(response.message || 'Status updated successfully!', 'success');
         statusDialog.handleCloseDialog();
         return true;
@@ -33,8 +33,7 @@ export function useRequestActions() {
         showSnackbar(response?.message || 'Failed to update status', 'error');
         return false;
       }
-    } catch (error) {
-      console.error('Error updating status:', error);
+    } catch {
       showSnackbar('Connection error while updating status', 'error');
       return false;
     }
@@ -47,8 +46,7 @@ export function useRequestActions() {
         method: 'GET'
       });
       return response?.data || [];
-    } catch (error) {
-      console.error('Error fetching history:', error);
+    } catch {
       return [];
     }
   };

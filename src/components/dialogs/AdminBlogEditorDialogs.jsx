@@ -3,13 +3,6 @@ import {
   Dialog, DialogTitle, DialogContent, 
   DialogActions, Button, TextField 
 } from '@mui/material';
-
-/**
- * LinkDialog
- * 
- * Specialized dialog for Tiptap rich text link selection.
- * Remains local or in a rich-text specific category.
- */
 export const LinkDialog = ({ open, onClose, onConfirm, onRemove, url, setUrl }) => (
   <Dialog 
     open={open} 

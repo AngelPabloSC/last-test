@@ -94,7 +94,7 @@ export default function ServiceHero({ hero }) {
               'Nova Solutions — Family Owned & Operated',
               'Transferable Lifetime Warranty',
               'Made in USA · GAF Master Elite Certified',
-              'BBB Accredited · Trusted Since 2012',
+              'BBB Accredited',
             ].map((item) => (
               <Box key={item} sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <CheckCircleIcon sx={{ fontSize: 18, color: gold, flexShrink: 0 }} />
@@ -112,11 +112,11 @@ export default function ServiceHero({ hero }) {
             >
               Schedule Free Inspection
             </Button>
-            <Typography sx={{ color: '#888', fontSize: 14 }}>or call (518) 598-5156</Typography>
+            <Typography sx={{ color: '#eae6e6ff', fontSize: 18, fontWeight: 'bold' }}>or call (518) 598-5156</Typography>
           </Box>
         </Box>
 
-     
+
       </Box>
     </Box>
   );

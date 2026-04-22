@@ -54,7 +54,7 @@ export default function AdminGalleryDetailDialog({ open, onClose, project }) {
       }}
     >
       <Box sx={{ position: 'relative' }}>
-        {/* Header Image / Hero */}
+
         <Box sx={{ position: 'relative', height: 300, overflow: 'hidden' }}>
           <Box
             component="img"

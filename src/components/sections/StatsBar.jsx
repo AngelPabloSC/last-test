@@ -15,8 +15,8 @@ export default function StatsBar({ totalProjects = 0, averageRating = "4.8", rat
   const satisfactionRate = Math.round((parseFloat(averageRating) / 5) * 100);
 
   const stats = [
-    { icon: HomeRepairServiceIcon, value: totalProjects > 0 ? `${animatedTotal}+` : "500+",  label: "Projects Completed" },
-    { icon: StarIcon,              value: "5+",    label: "Years of Excellence" },
+    { icon: HomeRepairServiceIcon, value: totalProjects > 0 ? `${animatedTotal + 14}+` : "500+",  label: "Projects Completed" },
+    { icon: StarIcon,              value: "10+",    label: "Years of Excellence" },
     { icon: VerifiedIcon,          value: `${averageRating}/5`, label: "Average Rating" },
     { icon: ShieldIcon,            value: `${satisfactionRate}%`,  label: "Satisfaction Rate" },
   ];

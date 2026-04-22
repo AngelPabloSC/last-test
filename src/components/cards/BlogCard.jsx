@@ -1,16 +1,11 @@
-import { Box, Typography, Card, CardMedia, CardContent, CardActionArea } from '@mui/material';
+import { memo } from 'react';
+import { Box, Typography, Card, CardMedia, CardContent } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ArrowForward } from '@mui/icons-material';
+import ArrowForward from '@mui/icons-material/ArrowForward';
 
-/**
- * BlogCard Component
- * @param {Object} post - Blog post data
- * @param {boolean} featured - If true, displays as a large horizontal card
- */
-const BlogCard = ({ post, featured = false }) => {
+const BlogCard = memo(function BlogCard({ post, featured = false }) {
   const { id, title, description, photo, author, date, createdAt } = post;
   
-  // Format date
   const displayDate = date || new Date(createdAt).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'short',
@@ -36,8 +31,9 @@ const BlogCard = ({ post, featured = false }) => {
               height="100%"
               image={photo || 'https://via.placeholder.com/800x450?text=Nova+Solutions'}
               alt={title}
-              sx={{ 
-                minHeight: { xs: 250, md: 450 }, 
+              loading="lazy"
+              sx={{
+                minHeight: { xs: 250, md: 450 },
                 transition: 'transform 0.4s ease',
                 objectFit: 'cover'
               }}
@@ -122,6 +118,7 @@ const BlogCard = ({ post, featured = false }) => {
             height="240"
             image={photo || 'https://via.placeholder.com/400x250?text=Nova+Solutions'}
             alt={title}
+            loading="lazy"
             sx={{ transition: 'transform 0.4s ease', objectFit: 'cover' }}
           />
         </Link>
@@ -175,6 +172,6 @@ const BlogCard = ({ post, featured = false }) => {
       </CardContent>
     </Card>
   );
-};
+});
 
 export default BlogCard;

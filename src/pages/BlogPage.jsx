@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Box, Typography, Container, Grid, TextField, InputAdornment, CircularProgress, Pagination } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import Search from '@mui/icons-material/Search';
 import { useFetchDataPromise } from '@/hooks/useFetchDataPromise';
 import { API_CODES } from '@/constants/apiConstants';
 import BlogCard from '@/components/cards/BlogCard';
@@ -36,7 +36,6 @@ export default function BlogPage() {
           setTotal(response.data?.total || 0);
         }
       } catch (error) {
-        console.error('Error fetching blogs:', error);
       } finally {
         setLoading(false);
       }
@@ -84,7 +83,6 @@ export default function BlogPage() {
             Articles, tutorials and updates from the Nova team
           </Typography>
 
-          {/* SEARCH BAR */}
           <Box sx={{ maxWidth: 600, mx: 'auto' }}>
             <TextField
               fullWidth

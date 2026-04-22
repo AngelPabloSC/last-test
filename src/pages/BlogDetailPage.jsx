@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Box, Typography, Container, CircularProgress, IconButton, Divider } from '@mui/material';
-import { ArrowBack, Person, CalendarMonth } from '@mui/icons-material';
+import ArrowBack      from '@mui/icons-material/ArrowBack';
+import Person        from '@mui/icons-material/Person';
+import CalendarMonth from '@mui/icons-material/CalendarMonth';
 import { useFetchDataPromise } from '@/hooks/useFetchDataPromise';
 import { API_CODES } from '@/constants/apiConstants';
 import SEO from '@/components/ui/SEO';
@@ -25,8 +27,7 @@ export default function BlogDetailPage() {
         if (response?.code === API_CODES.OK) {
           setPost(response.data || null);
         }
-      } catch (error) {
-        console.error('Error fetching blog detail:', error);
+      } catch {
       } finally {
         setLoading(false);
       }
@@ -70,7 +71,6 @@ export default function BlogDetailPage() {
         description={post.description || `Read about ${post.title} on the Nova Solutions Restoration blog. Expert tips and updates on home restoration.`}
         keywords={`${post.title}, roofing blog, siding tips, construction news, Nova Solutions Restoration`}
       />
-      {/* ── HERO SECTION ───────────────────────────────────────────────── */}
       <Box sx={{ position: 'relative', height: { xs: 400, md: 600 }, width: '100%', mb: 8 }}>
         <Box 
           component="img"
@@ -110,7 +110,6 @@ export default function BlogDetailPage() {
         </Container>
       </Box>
 
-      {/* ── CONTENT BODY ───────────────────────────────────────────────── */}
       <Container maxWidth="md">
         <Typography 
           variant="h5" 
@@ -159,7 +158,6 @@ export default function BlogDetailPage() {
 
         <Divider sx={{ my: 10, borderColor: 'rgba(255,255,255,0.1)' }} />
 
-        {/* AUTHOR BIO / FOOTER */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, p: 4, bgcolor: '#0A0A0A', borderRadius: '16px', border: '1px solid #1F1F1F' }}>
            <Box sx={{ width: 64, height: 64, borderRadius: '50%', bgcolor: 'primary.main', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 24, color: 'black' }}>
               {post.author?.[0] || 'N'}

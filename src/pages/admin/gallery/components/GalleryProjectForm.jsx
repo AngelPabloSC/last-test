@@ -20,11 +20,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-import { 
-  Delete, AddPhotoAlternate, Info, 
-  SquareFoot, CalendarMonth, LocationOn, Person,
-  Star, StarBorder
-} from '@mui/icons-material';
+import Delete           from '@mui/icons-material/Delete';
+import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
+import Info             from '@mui/icons-material/Info';
+import SquareFoot       from '@mui/icons-material/SquareFoot';
+import CalendarMonth    from '@mui/icons-material/CalendarMonth';
+import LocationOn       from '@mui/icons-material/LocationOn';
+import Person           from '@mui/icons-material/Person';
+import Star             from '@mui/icons-material/Star';
+import StarBorder       from '@mui/icons-material/StarBorder';
 import { Controller } from 'react-hook-form';
 import { validationRules } from '@/utils/validationRules';
 import { useGalleryProjectForm } from '../../hooks/useGalleryProjectForm';

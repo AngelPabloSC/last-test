@@ -19,15 +19,13 @@ import {
   DialogContent,
   useMediaQuery,
 } from '@mui/material';
-import {
-  Menu as MenuIcon,
-  Close as CloseIcon,
-  Mail,
-  Phone,
-  ExpandMore,
-  ExpandLess,
-  ChevronRight,
-} from '@mui/icons-material';
+import MenuIcon    from '@mui/icons-material/Menu';
+import CloseIcon   from '@mui/icons-material/Close';
+import Mail        from '@mui/icons-material/Mail';
+import Phone       from '@mui/icons-material/Phone';
+import ExpandMore  from '@mui/icons-material/ExpandMore';
+import ExpandLess  from '@mui/icons-material/ExpandLess';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useTheme } from '@mui/material/styles';
 import { useLocation, Link } from 'react-router-dom';
 import { headerMenu } from '../../data/navigation/menu';

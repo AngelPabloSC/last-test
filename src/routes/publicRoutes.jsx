@@ -1,17 +1,19 @@
+import { lazy } from 'react';
 import Layout from '@/components/layout/Layout';
-import Landing from '@/pages/Landing';
-import ServicePage from '@/pages/ServicePage';
-import AboutPage from '@/pages/AboutPage';
-import ContactPage from '@/pages/ContactPage';
-import ReviewsPage from '@/pages/ReviewsPage';
-import LeaveReviewPage from '@/pages/LeaveReviewPage';
-import TermsPrivacyPage from '@/pages/TermsPrivacyPage';
-import AdminLogin from '@/pages/AdminLogin';
 import GuestRoute from '@/routes/GuestRoute';
-import GalleryPage from '@/pages/GalleryPage';
-import GalleryDetailPage from '@/pages/GalleryDetailPage';
-import BlogPage from '@/pages/BlogPage';
-import BlogDetailPage from '@/pages/BlogDetailPage';
+
+const Landing          = lazy(() => import('@/pages/Landing'));
+const ServicePage      = lazy(() => import('@/pages/ServicePage'));
+const AboutPage        = lazy(() => import('@/pages/AboutPage'));
+const ContactPage      = lazy(() => import('@/pages/ContactPage'));
+const ReviewsPage      = lazy(() => import('@/pages/ReviewsPage'));
+const LeaveReviewPage  = lazy(() => import('@/pages/LeaveReviewPage'));
+const TermsPrivacyPage = lazy(() => import('@/pages/TermsPrivacyPage'));
+const AdminLogin       = lazy(() => import('@/pages/AdminLogin'));
+const GalleryPage      = lazy(() => import('@/pages/GalleryPage'));
+const GalleryDetailPage = lazy(() => import('@/pages/GalleryDetailPage'));
+const BlogPage         = lazy(() => import('@/pages/BlogPage'));
+const BlogDetailPage   = lazy(() => import('@/pages/BlogDetailPage'));
 import {
   ROOFING,
   ASPHALT_SHINGLE,

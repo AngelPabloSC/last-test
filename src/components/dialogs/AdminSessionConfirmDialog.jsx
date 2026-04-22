@@ -1,9 +1,6 @@
-// ─── ConfirmCloseAllSessions.jsx ──────────────────────────────────────────────
-// Warning panel shown before closing all sessions except the current one.
-
 import React from 'react';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import { WarningAmberOutlined as WarningIcon } from '@mui/icons-material';
+import WarningIcon from '@mui/icons-material/WarningAmberOutlined';
 
 export default function AdminSessionConfirmDialog({ open, onClose, onConfirm, loading }) {
   return (

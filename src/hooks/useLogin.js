@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useFetchDataPromise } from '@/hooks/useFetchDataPromise';
 import { useLoginContext } from '@/context/LoginContext';
 import { API_CODES } from '@/constants/apiConstants';
+import { encryptPassword } from '@/utils/cryptoService';
 
 const getDeviceId = () => {
   let deviceId = localStorage.getItem('deviceId');
@@ -40,12 +41,15 @@ export const useLogin = () => {
   const onSubmit = async (data) => {
     setErrorMsg('');
     try {
+      const baseUrl = import.meta.env.VITE_URL_FETCH;
+      const encryptedPassword = await encryptPassword(data.password, baseUrl);
+
       const response = await getFechData({
         endPoint:       'admin/login',
         method:         'POST',
-        additionalData: { 
-          username: data.email, 
-          password: data.password,
+        additionalData: {
+          username: data.email,
+          password: encryptedPassword,
           deviceId: getDeviceId()
         },
       });
@@ -57,7 +61,6 @@ export const useLogin = () => {
         return;
       }
 
-      // Handle "Remember Me"
       if (data.rememberMe) {
         localStorage.setItem('nova_remembered_email', data.email);
       } else {

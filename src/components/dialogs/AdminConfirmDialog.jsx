@@ -1,14 +1,9 @@
-// ─── ConfirmActionDialog.jsx ──────────────────────────────────────────────────
-// Dialog de confirmación antes de ejecutar una acción sobre una review.
-// Muestra un preview de la reseña seleccionada para evitar acciones accidentales.
-// Estilo: dark (basado en el modelo PublicarReviewDialog del equipo).
-
 import { useState } from 'react';
 import {
   Box,
   Typography,
   IconButton,
-  Button,
+  Button, 
   Rating,
   CircularProgress,
   TextField,
@@ -18,9 +13,6 @@ import CloseIcon         from '@mui/icons-material/Close';
 import CheckCircleIcon   from '@mui/icons-material/CheckCircle';
 import WarningAmberIcon  from '@mui/icons-material/WarningAmber';
 import BlockIcon         from '@mui/icons-material/Block';
-
-// ─────────────────────────────────────────────────────────────────────────────
-
 const VARIANT_CONFIG = {
   publish: {
     label:       'Publish Review',
@@ -48,18 +40,7 @@ const VARIANT_CONFIG = {
   },
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
 
-/**
- * ConfirmActionDialog
- *
- * Props:
- *  - isOpen    {boolean}            — controla la visibilidad
- *  - variant   {'publish'|'delete'} — tipo de acción a confirmar
- *  - review    {object}             — review seleccionada { id, client, avatar, source, service, rating, review, date }
- *  - onConfirm {function}           — async fn llamada al confirmar (recibe review)
- *  - onCancel  {function}           — llamada al cancelar / cerrar
- */
 export default function AdminConfirmDialog({ isOpen, variant = 'publish', review, onConfirm, onCancel }) {
   const [loading, setLoading] = useState(false);
   const [adminMessage, setAdminMessage] = useState('');
@@ -96,7 +77,7 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
         backdropFilter: 'blur(4px)',
       }}
     >
-      {/* Card */}
+     
       <Box
         onClick={(e) => e.stopPropagation()}
         sx={{
@@ -110,7 +91,7 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
           overflow: 'hidden',
         }}
       >
-        {/* ── Header ── */}
+   
         <Box
           sx={{
             display: 'flex',
@@ -159,7 +140,7 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
                 borderRadius: '12px',
               }}
             >
-              {/* Avatar */}
+
               <Box
                 sx={{
                   width: 40,
@@ -187,8 +168,6 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
               </Box>
             </Box>
           </Box>
-
-          {/* Preview de la review */}
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
             <Typography sx={{ color: '#6B7280', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
               Review Preview
@@ -213,8 +192,6 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
                 {review.date} · {review.source}
               </Typography>
             </Box>
-
-            {/* Nota informativa */}
             <Box
               sx={{
                 display: 'flex',
@@ -235,7 +212,6 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
 
             <Divider sx={{ borderColor: '#1F1F1F' }} />
 
-            {/* Comentario del Admin */}
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Typography sx={{ color: 'white', fontSize: 13, fontWeight: 600 }}>
@@ -269,7 +245,7 @@ export default function AdminConfirmDialog({ isOpen, variant = 'publish', review
             </Box>
           </Box>
 
-          {/* ── Actions ── */}
+
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1.5 }}>
             <Button
               onClick={handleCancel}

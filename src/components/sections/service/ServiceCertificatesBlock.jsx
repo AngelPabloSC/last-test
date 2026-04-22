@@ -5,7 +5,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import StarIcon from '@mui/icons-material/Star';
 
 const CERTS = [
-  { Icon: EmojiEventsIcon, title: 'GAF Certified Plus', sub: 'Top 3% of contractors', url: 'https://www.gaf.ca/en-ca/roofing-contractors/residential/usa/ny/albany/nova-solutions-1151568' },
+  { Icon: EmojiEventsIcon, title: 'GAF  Certified Plus', sub: 'Top 3% of contractors', url: 'https://www.gaf.ca/en-ca/roofing-contractors/residential/usa/ny/albany/nova-solutions-1151568' },
   { Icon: VerifiedIcon, title: 'Owens Corning', sub: 'Preferred contractor' },
   { Icon: StarIcon, title: 'BBB Accredited', sub: 'A+ rated business', url: 'https://www.bbb.org/us/ny/albany/profile/residential-roofing/nova-solutions-home-improvement-0041-236028882' },
 ];

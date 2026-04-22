@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import { ChevronLeft } from '@mui/icons-material';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useBlog } from './hooks/useBlog';
 import BlogForm from './blog/components/BlogForm';
@@ -33,7 +33,6 @@ const BlogFormPage = () => {
     }
   }, [id, isEdit, getBlogById, showSnackbar, navigate]);
 
-  // useCallback: stable refs passed as props to BlogForm avoid child re-renders
   const handleSubmit = useCallback(async (formData) => {
     setSubmitting(true);
     try {
@@ -73,7 +72,6 @@ const BlogFormPage = () => {
         showSnackbar(resp.message || 'Error saving article', 'error');
       }
     } catch (err) {
-      console.error('Submit error:', err);
       showSnackbar('Error processing article data', 'error');
     } finally {
       setSubmitting(false);

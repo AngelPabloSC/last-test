@@ -13,21 +13,19 @@ import {
   Divider,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import {
-  Search as SearchIcon,
-  NotificationsNone as BellIcon,
-  EditOutlined as EditIcon,
-  MailOutline as MailIcon,
-  PhoneOutlined as PhoneIcon,
-  LocationOnOutlined as MapPinIcon,
-  AccessTime as ClockIcon,
-  ShieldOutlined as ShieldIcon,
-  VisibilityOutlined as EyeIcon,
-  CheckCircleOutline as CheckCircleIcon,
-  StarsOutlined as StarIcon,
-  ErrorOutline as AlertCircleIcon,
-  HighlightOff as XCircleIcon,
-} from '@mui/icons-material';
+import SearchIcon     from '@mui/icons-material/Search';
+import BellIcon       from '@mui/icons-material/NotificationsNone';
+import EditIcon       from '@mui/icons-material/EditOutlined';
+import MailIcon       from '@mui/icons-material/MailOutline';
+import PhoneIcon      from '@mui/icons-material/PhoneOutlined';
+import MapPinIcon     from '@mui/icons-material/LocationOnOutlined';
+import ClockIcon      from '@mui/icons-material/AccessTime';
+import ShieldIcon     from '@mui/icons-material/ShieldOutlined';
+import EyeIcon        from '@mui/icons-material/VisibilityOutlined';
+import CheckCircleIcon from '@mui/icons-material/CheckCircleOutline';
+import StarIcon       from '@mui/icons-material/StarsOutlined';
+import AlertCircleIcon from '@mui/icons-material/ErrorOutline';
+import XCircleIcon    from '@mui/icons-material/HighlightOff';
 import { useLoginContext } from '@/context/LoginContext';
 import { useChangePassword } from './hooks/useChangePassword';
 import { useActiveSessions } from './hooks/useActiveSessions';
@@ -37,10 +35,8 @@ import { useNotificationPreferences } from './hooks/useNotificationPreferences';
 import { useRecentActivity } from './hooks/useRecentActivity';
 import AdminPasswordDialog from '@/components/dialogs/AdminPasswordDialog';
 import AdminSessionListDialog from '@/components/dialogs/AdminSessionListDialog';
-import { 
-  CameraAlt as CameraIcon, 
-  Close as CloseIcon 
-} from '@mui/icons-material';
+import CameraIcon from '@mui/icons-material/CameraAlt';
+import CloseIcon  from '@mui/icons-material/Close';
 import { useRef } from 'react';
 
 // ─── Activity Item Component ──────────────────────────────────────────────────

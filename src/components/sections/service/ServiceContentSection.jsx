@@ -23,7 +23,7 @@ export default function ServiceContentSection({ heading, body, image, imagePos =
       </Typography>
       {body && (
         <Typography 
-          sx={{ color: '#777777', fontSize: 17, lineHeight: 1.8 }}
+          sx={{ color: '#777777', fontSize: 20, lineHeight: 1.8 }}
           dangerouslySetInnerHTML={{ __html: body }}
         />
       )}

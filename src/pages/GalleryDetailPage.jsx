@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Box, Typography, Grid, Container, Button, Divider, useTheme, Chip, CircularProgress } from '@mui/material';
-import { 
-  ArrowBack, SquareFoot, CalendarMonth, LocationOn, Person
-} from '@mui/icons-material';
+import ArrowBack      from '@mui/icons-material/ArrowBack';
+import SquareFoot    from '@mui/icons-material/SquareFoot';
+import CalendarMonth from '@mui/icons-material/CalendarMonth';
+import LocationOn    from '@mui/icons-material/LocationOn';
+import Person        from '@mui/icons-material/Person';
 import { useFetchDataPromise } from '@/hooks/useFetchDataPromise';
 import { API_CODES } from '@/constants/apiConstants';
 import PublicProjectCard from '@/components/cards/PublicProjectCard';
@@ -23,7 +25,6 @@ export default function GalleryDetailPage() {
     const fetchProjectAndRelated = async () => {
       setIsLoading(true);
       try {
-        // Since there is no /id endpoint, we fetch the list and find it
         const listResponse = await getFechData({ endPoint: `projects?limit=100&status=Visible`, method: 'GET' });
         
         if (listResponse?.code === API_CODES.OK) {
@@ -32,8 +33,6 @@ export default function GalleryDetailPage() {
           
           if (currentProject) {
             setProject(currentProject);
-            
-            // Find related projects from the same response
             const filteredRelated = allProjects
               .filter(p => String(p.id) !== String(id) && p.serviceTypeId === currentProject.serviceTypeId)
               .slice(0, 3);
@@ -45,8 +44,7 @@ export default function GalleryDetailPage() {
         } else {
           setProject(null);
         }
-      } catch (err) {
-        console.error('Error fetching projects list:', err);
+      } catch {
         setProject(null);
       } finally {
         setIsLoading(false);
@@ -55,7 +53,6 @@ export default function GalleryDetailPage() {
     
     if (id) {
        fetchProjectAndRelated();
-       // scroll to top on params id change
        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [id, getFechData]);
@@ -108,7 +105,6 @@ export default function GalleryDetailPage() {
         description={`Detailed view of our project: ${details.name}. A ${details.category} project by Nova Solutions Restoration in the Capital Region.`}
         keywords={`${details.name}, roofing project, siding project, ${details.category}, Nova Solutions Restoration gallery`}
       />
-      {/* ── CINEMATIC HERO ────────────────────────────────────────────── */}
       <Box sx={{ position: 'relative', height: { xs: 500, md: 700 }, width: '100%', overflow: 'hidden' }}>
         <Box 
           component="img"
@@ -158,7 +154,6 @@ export default function GalleryDetailPage() {
         </Container>
       </Box>
 
-      {/* ── ABOUT PROJECT ─────────────────────────────────────────────── */}
       <Container sx={{ py: 10 }}>
         <Typography variant="h3" sx={{ fontWeight: 800, mb: 4, fontSize: { xs: 28, md: 36 } }}>
           About This Project
@@ -168,7 +163,6 @@ export default function GalleryDetailPage() {
         </Typography>
       </Container>
 
-      {/* ── PROJECT GALLERY ───────────────────────────────────────────── */}
       {details.gallery.length > 0 && (
         <Container sx={{ py: 6 }}>
           <Typography variant="h3" sx={{ fontWeight: 800, mb: 4, fontSize: { xs: 28, md: 36 } }}>
@@ -201,7 +195,6 @@ export default function GalleryDetailPage() {
         </Container>
       )}
 
-      {/* ── RELATED PROJECTS ──────────────────────────────────────────── */}
       {related.length > 0 && (
         <Container sx={{ py: 10 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 6 }}>
@@ -237,7 +230,6 @@ export default function GalleryDetailPage() {
         </Container>
       )}
 
-      {/* ── CTA ───────────────────────────────────────────────────────── */}
       <Box sx={{ py: 12, textAlign: 'center', borderTop: '1px solid #1A1A1A', position: 'relative', overflow: 'hidden' }}>
         <Typography variant="overline" sx={{ color: 'primary.main', fontWeight: 900, letterSpacing: 4 }}>READY TO BUILD?</Typography>
         <Typography variant="h2" sx={{ fontWeight: 900, fontSize: { xs: 40, md: 64 }, my: 2 }}>Start Your Own Project</Typography>

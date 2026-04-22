@@ -12,15 +12,13 @@ import {
   IconButton,
   CircularProgress,
 } from '@mui/material';
-import {
-  ShieldOutlined as ShieldIcon,
-  LogoutOutlined as LogOutIcon,
-  Close as CloseIcon,
-  History as HistoryIcon,
-  Devices as DevicesIcon,
-  InfoOutlined as InfoIcon,
-  ErrorOutline as ErrorIcon,
-} from '@mui/icons-material';
+import ShieldIcon  from '@mui/icons-material/ShieldOutlined';
+import LogOutIcon  from '@mui/icons-material/LogoutOutlined';
+import CloseIcon   from '@mui/icons-material/Close';
+import HistoryIcon from '@mui/icons-material/History';
+import DevicesIcon from '@mui/icons-material/Devices';
+import InfoIcon    from '@mui/icons-material/InfoOutlined';
+import ErrorIcon   from '@mui/icons-material/ErrorOutline';
   
 import AdminActiveSessionRow from '@/components/dialogs/AdminActiveSessionRow';
 import AdminSessionSuccessState from '@/components/dialogs/AdminSessionSuccessState';

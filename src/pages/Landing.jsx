@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Box, Typography, Grid, Button, CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link as RouterLink } from "react-router-dom";
@@ -9,7 +10,6 @@ import StepsAccordion from "@/components/sections/StepsAccordion";
 import OneCallSection from "@/components/sections/OneCallSection";
 import AboutNovaSection from "@/components/sections/AboutNovaSection";
 import CtaSection from "@/components/sections/CtaSection";
-import SuppliersSwiper from "@/components/media/SuppliersSwiper";
 import SplitSection from "@/components/sections/SplitSection";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import WaterIcon from "@mui/icons-material/Water";
@@ -18,6 +18,8 @@ import { useLandingProjects, useAnimatedCounter } from '@/hooks/useLandingProjec
 import { usePublicReviews } from '@/hooks/usePublicReviews';
 import SEO from '@/components/ui/SEO';
 
+const SuppliersSwiper = lazy(() => import('@/components/media/SuppliersSwiper'));
+
 export default function Landing() {
   const theme = useTheme();
 
@@ -25,7 +27,7 @@ export default function Landing() {
   const { recentProjects, totalProjects, isLoading } = useLandingProjects(6);
   
   // Fetch public reviews summary for dynamic stats
-  const { summary } = usePublicReviews({ limit: 1 });
+  const { summary } = usePublicReviews({ limit: 1, fetchServices: false });
   
   // Custom Hook for the counter animation (triggers on scroll)
   const { count: animatedTotal, ref: counterRef } = useAnimatedCounter(totalProjects, 2500);
@@ -281,8 +283,10 @@ export default function Landing() {
       {/* 10. CTA */}
       <CtaSection />
 
-      {/* 11. Suppliers */}
-      <SuppliersSwiper />
+      {/* 11. Suppliers — lazy: Swiper no pertenece a la ruta crítica */}
+      <Suspense fallback={null}>
+        <SuppliersSwiper />
+      </Suspense>
     </Box>
   );
 }

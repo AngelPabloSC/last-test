@@ -11,11 +11,11 @@ export const ROOFING = {
         image: IMGS.heroBg,
         breadcrumb: ["Home", "Roofing"],
         badgeText: "Top-Rated Company",
-        headline: "Trusted Roofing Company in Capital Region",
+        headline: "Your Trusted Roofing Company in the Capital Region",
     },
     sections: [
         {
-            heading: "Trusted Roofing Company in Capital Region",
+            heading: "Trusted Roofing Company in The Capital Region",
             body: `At <strong>Nova Solutions</strong>, we proudly serve Capital Region homeowners with expert roofing services you can trust. Unlike some companies that install new shingles over old ones — a shortcut that can <strong>void your manufacturer's warranty</strong> — we follow exact manufacturer specifications to ensure your roof is built to last. Our commitment to quality means your investment is protected and your home stays structurally sound.<br><br>For years, our experienced team has delivered <strong>professional roof repair and roof replacement</strong> services across Capital Region and the surrounding areas. We don't stop until your roof is stronger than ever and you're fully satisfied with the results. Don't just take our word for it — check out our online reviews! You'll see we're known for <strong>fast service, excellent customer care</strong>, and getting the job done right the first time.<br><br>Call us today and discover how easy and stress-free your <strong>Capital Region roofing project</strong> can be!`,
             certificates: true
         },

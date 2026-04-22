@@ -20,23 +20,21 @@ import {
   Popover,
   Divider
 } from '@mui/material';
-import {
-  Delete,
-  AddPhotoAlternate,
-  Person as User,
-  FormatBold as Bold,
-  FormatItalic as Italic,
-  FormatUnderlined as UnderlineIcon,
-  FormatStrikethrough as StrikeIcon,
-  FormatListBulleted as ListIcon,
-  FormatListNumbered as ListOrdered,
-  FormatQuote as QuoteIcon,
-  Code as CodeIcon,
-  Link as LinkIcon,
-  HorizontalRule as Minus,
-  Save,
-  TitleOutlined
-} from '@mui/icons-material';
+import Delete           from '@mui/icons-material/Delete';
+import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
+import User            from '@mui/icons-material/Person';
+import Bold            from '@mui/icons-material/FormatBold';
+import Italic       from '@mui/icons-material/FormatItalic';
+import UnderlineIcon from '@mui/icons-material/FormatUnderlined';
+import StrikeIcon   from '@mui/icons-material/FormatStrikethrough';
+import ListIcon     from '@mui/icons-material/FormatListBulleted';
+import ListOrdered  from '@mui/icons-material/FormatListNumbered';
+import QuoteIcon    from '@mui/icons-material/FormatQuote';
+import CodeIcon     from '@mui/icons-material/Code';
+import LinkIcon     from '@mui/icons-material/Link';
+import Minus        from '@mui/icons-material/HorizontalRule';
+import Save         from '@mui/icons-material/Save';
+import TitleOutlined from '@mui/icons-material/TitleOutlined';
 import { EditorContent } from '@tiptap/react';
 import { Controller } from 'react-hook-form';
 import { validationRules } from '@/utils/validationRules';

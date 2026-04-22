@@ -1,7 +1,3 @@
-// ─── LoginBrandingPanel.jsx ───────────────────────────────────────────────────
-// Single responsibility: left panel of login page.
-// Shows branding, features and stats. Purely presentational, no logic.
-
 import { Box, Typography, Divider } from '@mui/material';
 import { useTheme, alpha } from '@mui/material/styles';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -110,8 +106,6 @@ export default function AdminLoginHero() {
             Access requests, reviews, emails, and Nova Solutions settings in real time.
           </Typography>
         </Box>
-
-        {/* Features */}
         <Box sx={{ mt: 6, display: 'flex', flexDirection: 'column', gap: 2.5 }}>
           {FEATURES.map((feat) => (
             <Box key={feat} sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -120,8 +114,6 @@ export default function AdminLoginHero() {
             </Box>
           ))}
         </Box>
-
-        {/* Stats */}
         <Box sx={{ mt: 8, display: 'flex', gap: '60px' }}>
           {STATS.map((s) => (
             <Box key={s.label} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
@@ -132,8 +124,6 @@ export default function AdminLoginHero() {
             </Box>
           ))}
         </Box>
-
-        {/* Footer */}
         <Typography sx={{ mt: 'auto', mb: 5, textAlign: 'center', fontSize: '11px', color: '#555555' }}>
           Powered by Nova Solutions · © 2026
         </Typography>

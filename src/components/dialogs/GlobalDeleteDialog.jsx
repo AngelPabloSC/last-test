@@ -10,7 +10,7 @@ import {
   Typography,
   CircularProgress
 } from '@mui/material';
-import { DeleteForever as DeleteIcon } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/DeleteForever';
 
 /**
  * GlobalDeleteDialog

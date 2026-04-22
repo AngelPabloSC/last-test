@@ -11,11 +11,9 @@ import {
   DialogActions,
   InputAdornment,
 } from '@mui/material';
-import {
-  LockOutlined as LockIcon,
-  VisibilityOutlined as EyeIcon,
-  VisibilityOffOutlined as EyeOffIcon,
-} from '@mui/icons-material';
+import LockIcon   from '@mui/icons-material/LockOutlined';
+import EyeIcon    from '@mui/icons-material/VisibilityOutlined';
+import EyeOffIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 export default function AdminPasswordDialog({ 
   open, 

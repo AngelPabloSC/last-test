@@ -1,9 +1,7 @@
-// ─── SessionsSuccessState.jsx ─────────────────────────────────────────────────
-// Shown in the dialog body after all sessions have been closed successfully.
 
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import { CheckCircleOutline as CheckIcon } from '@mui/icons-material';
+import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function SessionsSuccessState({ onClose }) {
   return (

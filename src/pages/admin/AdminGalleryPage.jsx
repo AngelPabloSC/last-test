@@ -9,15 +9,13 @@ import {
   Tooltip,
   Grid
 } from '@mui/material';
-import { 
-  Add as Plus, 
-  Visibility as Eye, 
-  Edit, 
-  Image as ImageIcon,
-  AssessmentOutlined as AssessmentIcon,
-  CheckCircleOutlined as CheckIcon,
-  ModeEditOutlineOutlined as EditIcon
-} from '@mui/icons-material';
+import Plus          from '@mui/icons-material/Add';
+import Eye           from '@mui/icons-material/Visibility';
+import Edit          from '@mui/icons-material/Edit';
+import ImageIcon     from '@mui/icons-material/Image';
+import AssessmentIcon from '@mui/icons-material/AssessmentOutlined';
+import CheckIcon     from '@mui/icons-material/CheckCircleOutlined';
+import EditIcon      from '@mui/icons-material/ModeEditOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useGallery } from './hooks/useGallery';
 import AdminDataTable from '@/components/tables/AdminDataTable';

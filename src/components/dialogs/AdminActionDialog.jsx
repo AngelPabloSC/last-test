@@ -4,10 +4,6 @@ import {
   DialogActions, Button 
 } from '@mui/material';
 
-/**
- * CONFIGURATION MAPPER
- * Add new modules here to keep them symmetric.
- */
 const DIALOG_CONFIG = {
   blog: {
     itemType: 'article',
@@ -27,10 +23,6 @@ const DIALOG_CONFIG = {
   }
 };
 
-/**
- * StatusToggleDialog
- * Unified dialog for "Visible/Hidden" status changes.
- */
 export const StatusToggleDialog = ({ open, onClose, onConfirm, pendingStatus, context = 'blog' }) => {
   const config = DIALOG_CONFIG[context] || DIALOG_CONFIG.blog;
   

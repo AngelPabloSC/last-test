@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRoutes, useLocation } from 'react-router-dom';
 import router from '@/routes/index';
 
@@ -15,7 +15,9 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
-      {routes}
+      <Suspense fallback={null}>
+        {routes}
+      </Suspense>
     </>
   );
 };

@@ -3,15 +3,11 @@ import { useFetchDataPromise } from '@/hooks/useFetchDataPromise';
 import { useSnackbar } from '@/context/SnackbarContext';
 import { API_CODES } from '@/constants/apiConstants';
 
-/**
- * Hook to manage review actions: status updates and history.
- */
 export const useReviewActions = () => {
   const { getFechData } = useFetchDataPromise();
   const { showSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
 
-  // Update status (PUT /reviews/:id/status)
   const updateReviewStatus = useCallback(async (id, status, message = '') => {
     setLoading(true);
     try {
@@ -36,7 +32,6 @@ export const useReviewActions = () => {
     }
   }, [getFechData, showSnackbar]);
 
-  // Fetch history (GET /reviews/:id/history)
   const getReviewHistory = useCallback(async (id) => {
     try {
       const response = await getFechData({
@@ -48,8 +43,7 @@ export const useReviewActions = () => {
         return response.data || [];
       }
       return [];
-    } catch (error) {
-      console.error('Error fetching review history:', error);
+    } catch {
       return [];
     }
   }, [getFechData]);

@@ -7,7 +7,7 @@ export const TRUST_ITEMS = [
 
 export const STATS = [
   { value: '500+', label: 'Projects Completed' },
-  { value: '5+', label: 'Years of Excellence' },
+  { value: '10+', label: 'Years of Excellence' },
   { value: '4.5/5', label: 'Average Rating' },
   { value: '100%', label: 'Satisfaction Rate' },
 ];

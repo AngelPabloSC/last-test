@@ -1,14 +1,16 @@
-import AdminSidebarLayout    from '@/components/layout/AdminSidebarLayout';
-import ProtectSidebarRouter  from '@/routes/ProtectSidebarRouter';
-import SolicitudesPage       from '@/pages/admin/SolicitudesPage';
-import { SidebarProvider }   from '@/context/SidebarContext';
-import AdminReviewsPage from '../pages/admin/ReviewsPage';
-import AdminProfilePage from '../pages/admin/AdminProfilePage';
-import AdminGalleryPage from '../pages/admin/AdminGalleryPage';
-import CreateProjectPage from '../pages/admin/CreateProjectPage';
-import AdminBlogPage from '../pages/admin/AdminBlogPage';
-import BlogFormPage from '../pages/admin/BlogFormPage';
-import EmailsPage       from '../pages/admin/EmailsPage';
+import { lazy } from 'react';
+import AdminSidebarLayout   from '@/components/layout/AdminSidebarLayout';
+import ProtectSidebarRouter from '@/routes/ProtectSidebarRouter';
+import { SidebarProvider }  from '@/context/SidebarContext';
+
+const SolicitudesPage  = lazy(() => import('@/pages/admin/SolicitudesPage'));
+const AdminReviewsPage = lazy(() => import('../pages/admin/ReviewsPage'));
+const AdminProfilePage = lazy(() => import('../pages/admin/AdminProfilePage'));
+const AdminGalleryPage = lazy(() => import('../pages/admin/AdminGalleryPage'));
+const CreateProjectPage = lazy(() => import('../pages/admin/CreateProjectPage'));
+const AdminBlogPage    = lazy(() => import('../pages/admin/AdminBlogPage'));
+const BlogFormPage     = lazy(() => import('../pages/admin/BlogFormPage'));
+const EmailsPage       = lazy(() => import('../pages/admin/EmailsPage'));
 
 
 const ComingSoon = ({ title }) => (

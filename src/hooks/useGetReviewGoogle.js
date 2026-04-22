@@ -8,45 +8,42 @@ const AVATAR_COLORS = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8E24AA', '#
 export function useGetReviewGoogle() {
   const [state, setState] = useState({
     googleReviews: [],
-    googleRating: 4.8, // Fallback defaults
-    googleTotal: 247,  // Fallback defaults
+    googleRating: 4.8,
+    googleTotal: 247,
     loading: true,
     error: null,
   });
 
   useEffect(() => {
     let script = document.getElementById('google-maps-places-script');
-    
+
     const fetchReviews = async () => {
       try {
-        // Modern Place API usage (suppresses the PlacesService deprecation warning)
         const { Place } = await window.google.maps.importLibrary("places");
-        
+
         const place = new Place({
           id: placeId,
           requestedLanguage: 'en',
         });
-        
+
         await place.fetchFields({
           fields: ['displayName', 'rating', 'userRatingCount', 'reviews']
         });
-        
+
         let formatted = [];
-        console.log(place.reviews)
         if (place.reviews && place.reviews.length > 0) {
            formatted = place.reviews.map((r, i) => ({
-              id: i, // The new API doesn't always expose time the same way
+              id: i,
               name: r.authorAttribution?.displayName || 'Google User',
               initial: r.authorAttribution?.displayName ? r.authorAttribution.displayName.charAt(0).toUpperCase() : 'G',
               avatarColor: AVATAR_COLORS[i % AVATAR_COLORS.length],
               rating: r.rating,
               text: r.text || '',
               url: r.oh || r.authorAttribution?.uri || r.authorUrl || '#',
-              // Relative time is no longer a simple string, using publishTime
               date: r.publishTime ? new Date(r.publishTime).toLocaleDateString() : 'Recently',
            }));
         }
-        
+
         setState(prev => ({
           ...prev,
           googleRating: place.rating || prev.googleRating,
@@ -55,17 +52,13 @@ export function useGetReviewGoogle() {
           loading: false
         }));
       } catch (err) {
-        console.error('Error executing google.maps.places.Place:', err);
-        // If it's an INVALID_REQUEST, log it so the user knows about the ID issue
         setState(prev => ({ ...prev, error: err.message, loading: false }));
       }
     };
 
     if (!script) {
-      // Setup dynamic maps loading using modern callback methodology
       script = document.createElement('script');
       script.id = 'google-maps-places-script';
-      // Load strictly version v=weekly instead of relying on legacy loaders
       window.initGoogleMaps = () => { fetchReviews(); };
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGoogleMaps&v=weekly&loading=async`;
       script.async = true;

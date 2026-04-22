@@ -19,7 +19,6 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
 
   const fileInputRef = useRef(null);
 
-  // Fetch Service Types
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
@@ -27,8 +26,7 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
         if (response?.code === API_CODES.OK) {
           setServiceTypes(response.data?.data || response.data || []);
         }
-      } catch (error) {
-        console.error('Error fetching service types:', error);
+      } catch {
       }
     };
     fetchServiceTypes();
@@ -103,7 +101,6 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
     handleSubmit(onSubmit)();
   };
 
-  // Image Management
   const confirmImageDelete = async () => {
     const { img, idx } = deleteImageDialog.dialogContent;
     setIsDeletingImage(true);
@@ -119,7 +116,6 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
         newImages.splice(idx, 1);
         setValue('images', newImages);
 
-        // Handle cover index on delete
         if (formValues.coverImageIndex === idx) {
           setValue('coverImageIndex', 0);
         } else if (formValues.coverImageIndex > idx) {
@@ -139,7 +135,6 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
   const handleSetCover = async (idx) => {
     setValue('coverImageIndex', idx);
 
-    // Si el proyecto existe, mandamos el reordenamiento al servidor
     if (isEdit && initialData.id) {
       const currentImages = formValues.images || [];
       const existingImages = currentImages.filter((img) => img.id);
@@ -205,7 +200,7 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
       .slice(0, remainingSlots)
       .filter((file) => {
         const isImage = ['image/png', 'image/jpeg', 'image/webp'].includes(file.type);
-        const isUnderLimit = file.size <= 2 * 1024 * 1024; // 2MB
+        const isUnderLimit = file.size <= 2 * 1024 * 1024;
         if (!isUnderLimit) hasHeavyFile = true;
         return isImage && isUnderLimit;
       });
@@ -216,7 +211,7 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
 
     const newImageObjects = validFiles.map((file) => ({
       file,
-      url: URL.createObjectURL(file), // create local preview
+      url: URL.createObjectURL(file),
       isNew: true,
     }));
 

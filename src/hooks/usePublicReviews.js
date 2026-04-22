@@ -2,11 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { useFetchDataPromise } from '@/hooks/useFetchDataPromise';
 import { API_CODES } from '@/constants/apiConstants';
 
-/**
- * Hook to manage public review data with server-side pagination and category filtering.
- * @param {object} params - pagination and filter parameters
- */
-export const usePublicReviews = ({ serviceTypeId = 'all', limit = 6 }) => {
+export const usePublicReviews = ({ serviceTypeId = 'all', limit = 6, fetchServices = true }) => {
   const { getFechData } = useFetchDataPromise();
   const [serviceTypes, setServiceTypes] = useState([]);
   const [data, setData] = useState({
@@ -28,14 +24,13 @@ export const usePublicReviews = ({ serviceTypeId = 'all', limit = 6 }) => {
       if (response?.code === API_CODES.OK) {
         setServiceTypes(response.data || []);
       }
-    } catch (error) {
-      console.error('Error fetching service types:', error);
+    } catch {
     }
   }, [getFechData]);
 
   useEffect(() => {
-    fetchServiceTypes();
-  }, [fetchServiceTypes]);
+    if (fetchServices) fetchServiceTypes();
+  }, [fetchServiceTypes, fetchServices]);
 
   const fetchReviews = useCallback(async (page = 1) => {
     setData(prev => ({ ...prev, loading: true, error: null }));
@@ -45,7 +40,6 @@ export const usePublicReviews = ({ serviceTypeId = 'all', limit = 6 }) => {
       params.append('page', page);
       params.append('limit', limit);
       
-      // If not "all", send the numeric serviceTypeId
       if (serviceTypeId !== 'all') {
         params.append('serviceTypeId', serviceTypeId);
       }
@@ -81,7 +75,6 @@ export const usePublicReviews = ({ serviceTypeId = 'all', limit = 6 }) => {
     }
   }, [serviceTypeId, limit, getFechData]);
 
-  // Refetch when category changes
   useEffect(() => {
     fetchReviews(1);
   }, [serviceTypeId, fetchReviews]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import { ChevronLeft } from '@mui/icons-material';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useGallery } from './hooks/useGallery';
 import GalleryProjectForm from './gallery/components/GalleryProjectForm';

@@ -39,8 +39,7 @@ export function useReviewForm() {
       if (response?.code === API_CODES.OK) {
         setServiceTypes(response.data || []);
       }
-    } catch (error) {
-      console.error('Error fetching service types:', error);
+    } catch {
     }
   }, [getFechData]);
 

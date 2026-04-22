@@ -1,6 +1,3 @@
-// ─── ActiveSessionRow.jsx ─────────────────────────────────────────────────────
-// Single row showing one session with device info and a close button.
-
 import React from 'react';
 import {
   Box,
@@ -8,13 +5,9 @@ import {
   Button,
   CircularProgress,
 } from '@mui/material';
-import {
-  DesktopWindowsOutlined as MonitorIcon,
-  SmartphoneOutlined as SmartphoneIcon,
-  DevicesOtherOutlined as OtherDeviceIcon,
-} from '@mui/icons-material';
-
-// ── Device Icon ────────────────────────────────────────────────────────────────
+import MonitorIcon     from '@mui/icons-material/DesktopWindowsOutlined';
+import SmartphoneIcon  from '@mui/icons-material/SmartphoneOutlined';
+import OtherDeviceIcon from '@mui/icons-material/DevicesOtherOutlined';
 function DeviceIcon({ type, color, bg }) {
   let Icon = MonitorIcon;
   if (type === 'smartphone') Icon = SmartphoneIcon;
@@ -62,15 +55,11 @@ export default function ActiveSessionRow({ session, onClose, closingId }) {
         color={session.iconColor ?? '#FFD700'}
         bg={session.iconBg ?? '#FFD70018'}
       />
-
-      {/* Info */}
       <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
           <Typography sx={{ color: 'white', fontSize: 13, fontWeight: 600, lineHeight: 1.3 }}>
             {session.device} — {session.browser}
           </Typography>
-          
-          {/* Current badge */}
           {session.isCurrent && (
             <Box
               component="span"
@@ -95,7 +84,7 @@ export default function ActiveSessionRow({ session, onClose, closingId }) {
           {session.ip} · {session.location}
         </Typography>
 
-        {/* State indicator */}
+    
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mt: 0.25 }}>
           <Box
             component="span"
@@ -118,8 +107,6 @@ export default function ActiveSessionRow({ session, onClose, closingId }) {
           </Typography>
         </Box>
       </Box>
-
-      {/* Close button — only for Active and Non-Current sessions */}
       {session.isActive && !session.isCurrent && (
         <Button
           onClick={() => onClose(session.id)}

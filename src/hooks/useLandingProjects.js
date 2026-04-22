@@ -76,8 +76,7 @@ export function useLandingProjects(limit = 6) {
           setRecentProjects(response.data?.data || []);
           setTotalProjects(response.data?.total || 0);
         }
-      } catch (err) {
-        console.error('Error fetching recent projects:', err);
+      } catch {
       } finally {
         if (isMounted) setIsLoading(false);
       }
