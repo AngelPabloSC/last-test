@@ -200,13 +200,13 @@ export const useGalleryProjectForm = ({ initialData = {}, onSubmit, onStatusChan
       .slice(0, remainingSlots)
       .filter((file) => {
         const isImage = ['image/png', 'image/jpeg', 'image/webp'].includes(file.type);
-        const isUnderLimit = file.size <= 2 * 1024 * 1024;
+        const isUnderLimit = file.size <= 5 * 1024 * 1024;
         if (!isUnderLimit) hasHeavyFile = true;
         return isImage && isUnderLimit;
       });
 
     if (hasHeavyFile) {
-      showSnackbar('One or more files exceed the 2MB limit and were not uploaded.', 'error');
+      showSnackbar('One or more files exceed the 5MB limit and were not uploaded.', 'error');
     }
 
     const newImageObjects = validFiles.map((file) => ({

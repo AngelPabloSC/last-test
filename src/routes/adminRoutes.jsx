@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 import AdminSidebarLayout   from '@/components/layout/AdminSidebarLayout';
 import ProtectSidebarRouter from '@/routes/ProtectSidebarRouter';
 import { SidebarProvider }  from '@/context/SidebarContext';
@@ -42,6 +43,7 @@ export const adminRoutes = [
       </ProtectSidebarRouter>
     ),
     children: [
+      { index: true,          element: <Navigate to="/admin/requests" replace /> },
       { path: 'requests',     element: <SolicitudesPage /> },
       { path: 'reviews',      element: <AdminReviewsPage /> },
       { path: 'gallery',      element: <AdminGalleryPage /> },

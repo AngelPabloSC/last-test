@@ -14,17 +14,8 @@ export const headerMenu = [
           
             { name: 'Roof Installation', link: '/Roofing/Roof-installation' },
             { name: 'Asphalt shingle', link: '/Roofing/Asphalt-Single' },
-            {
-                name: 'insurance Claims', link: '/Roofing/Insurance-Claims',
-                children: [
-                    
-                    { name: 'Roof Inspection', link: '/Roofing-Repair/Roof-Inspection' },
-                    { name: 'Storm Damage', link: '/Roofing-Repair/Storm-Damage' },
-                    { name: 'Hail Damage', link: '/Roofing-Repair/Hail-Damage' },
-                ],
-            },
+           
             { name: 'Metal ', link: '/Roofing/Metal-Roofing' },
-            { name: 'Commercial', link: '/Roofing/Commercial' },
             {
                 name: 'Roof Repair',
                 link: '/Roofing-Repair',
@@ -32,6 +23,17 @@ export const headerMenu = [
                 
                     { name: 'Roof Inspection', link: '/Roofing-Repair/Roof-Inspection' },
 
+                ],
+            },
+            { name: 'Commercial', link: '/Roofing/Commercial' },
+            
+             {
+                name: 'insurance Claims', link: '/Roofing/Insurance-Claims',
+                children: [
+                    
+                    { name: 'Roof Inspection', link: '/Roofing-Repair/Roof-Inspection' },
+                    { name: 'Storm Damage', link: '/Roofing-Repair/Storm-Damage' },
+                    { name: 'Hail Damage', link: '/Roofing-Repair/Hail-Damage' },
                 ],
             },
         ],
@@ -43,9 +45,8 @@ export const headerMenu = [
         link: '/Siding',
         showArrow: true,
         children: [
-    
-            { name: 'Vinyl Siding', link: '/Siding/Vinyl-Siding' },
             { name: 'Siding Replacement', link: '/Siding/Siding-Replacement' },
+            { name: 'Vinyl Siding', link: '/Siding/Vinyl-Siding' },
             { name: 'fiber Cement Siding', link: '/Siding/fiber-Cement-Siding' },
         ],
     },

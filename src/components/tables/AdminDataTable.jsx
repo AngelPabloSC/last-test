@@ -32,7 +32,7 @@ const AdminDataTable = (props) => {
     onRowSelectionChange,
     textLabels: {
       body: {
-        noMatch: loading ? 'Cargando solicitudes...' : 'No se encontraron registros',
+        noMatch: loading ? 'Loading...' : 'No records found',
       }
     },
     ...options,
