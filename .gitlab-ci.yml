@@ -1,0 +1,50 @@
+image: node:18
+
+stages:
+  - build
+  - deploy
+
+variables:
+  PUPPETEER_CACHE_DIR: "$CI_PROJECT_DIR/node_modules/.cache/puppeteer"
+
+build:
+  stage: build
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+      - node_modules/.cache/puppeteer/
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq
+      libglib2.0-0 libnss3 libatk1.0-0 libatk-bridge2.0-0
+      libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1
+      libxfixes3 libxrandr2 libgbm1 libasound2
+  script:
+    - echo "→ Instalando dependencias"
+    - npm install
+    - echo "→ Compilando proyecto React/Vite + prerendering"
+    - npm run build
+    - echo "→ Build completo"
+    - tar -czf build.tar.gz dist/
+  artifacts:
+    paths:
+      - build.tar.gz
+    expire_in: 1 hour
+
+deploy_to_ec2:
+  stage: deploy
+  only:
+    - main
+  script:
+    - echo "→ Preparando SSH"
+    - mkdir -p ~/.ssh
+    - echo "$EC2_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+
+    - echo "→ Enviando build a EC2"
+    - scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa build.tar.gz "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH"
+
+    - echo "→ Descomprimiendo y desplegando en EC2"
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$REMOTE_USER@$REMOTE_HOST" "bash ~/deploy.sh"

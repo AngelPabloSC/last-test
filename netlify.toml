@@ -1,7 +1,0 @@
-[build.environment]
-  PUPPETEER_CACHE_DIR = "node_modules/.cache/puppeteer"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
