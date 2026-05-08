@@ -4,9 +4,11 @@ set -e
 # ─────────────────────────────────────────────────
 # Configuración — ajusta estas variables según tu EC2
 # ─────────────────────────────────────────────────
-APP_DIR="/var/www/html"          # Directorio raíz que sirve Nginx
-BACKUP_DIR="/var/www/backup"     # Directorio de respaldo (opcional)
-BUILD_FILE="$HOME/build.tar.gz"  # Ruta donde llega el archivo vía SCP
+APP_DIR="/var/www/html"
+BACKUP_DIR="/var/www/backup"
+BUILD_FILE="$HOME/build.tar.gz"
+NGINX_CONF="/etc/nginx/sites-available/nova-solutions"
+DOMAIN="nova-solutions.us"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "→ Iniciando deploy React/Vite"
@@ -18,11 +20,11 @@ if [ ! -f "$BUILD_FILE" ]; then
   exit 1
 fi
 
-# 2. Backup del build actual (por si hay que hacer rollback)
+# 2. Backup del build actual
 if [ -d "$APP_DIR" ]; then
   echo "→ Haciendo backup del build anterior..."
   mkdir -p "$BACKUP_DIR"
-  rm -rf "$BACKUP_DIR/dist"
+  rm -rf "$BACKUP_DIR"/*
   cp -r "$APP_DIR/." "$BACKUP_DIR/"
   echo "✓ Backup guardado en $BACKUP_DIR"
 fi
@@ -38,11 +40,48 @@ echo "→ Ajustando permisos..."
 chmod -R 755 "$APP_DIR"
 chown -R www-data:www-data "$APP_DIR" 2>/dev/null || chown -R nginx:nginx "$APP_DIR" 2>/dev/null || true
 
-# 5. Recargar Nginx de forma graceful
+# 5. Escribir config de Nginx con SPA fallback
+echo "→ Configurando Nginx..."
+sudo tee "$NGINX_CONF" > /dev/null <<EOF
+server {
+    listen 80;
+    listen [::]:80;
+    server_name $DOMAIN www.$DOMAIN;
+    root $APP_DIR;
+    index index.html;
+
+    # Rutas prerendereadas y SPA fallback
+    # Intenta: archivo exacto → ruta/index.html → /index.html (React Router)
+    location / {
+        try_files \$uri \$uri/index.html \$uri.html /index.html;
+    }
+
+    # Cache de 1 año para assets con hash (Vite genera nombres únicos)
+    location ~* \.(js|css|woff2|woff|ttf|otf|ico|png|jpg|jpeg|svg|webp|gif)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files \$uri =404;
+    }
+
+    # Sin cache para index.html (siempre sirve la versión más nueva)
+    location = /index.html {
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+}
+EOF
+
+# Activar config si no está enlazada
+if [ ! -L /etc/nginx/sites-enabled/nova-solutions ]; then
+  sudo ln -s "$NGINX_CONF" /etc/nginx/sites-enabled/nova-solutions
+  echo "✓ Config de Nginx activada"
+fi
+
+# 6. Validar y recargar Nginx
 echo "→ Recargando Nginx..."
 sudo nginx -t && sudo nginx -s reload
+echo "✓ Nginx recargado"
 
-# 6. Limpiar archivo temporal
+# 7. Limpiar archivo temporal
 rm -f "$BUILD_FILE"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

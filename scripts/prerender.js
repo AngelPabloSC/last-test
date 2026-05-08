@@ -36,6 +36,7 @@ const ROUTES = [
   '/About',
   '/About/Contact-us',
   '/privacy-policy',
+  '/404',
 ];
 
 const PORT = 5174;

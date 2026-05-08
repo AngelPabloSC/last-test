@@ -14,6 +14,7 @@ const GalleryPage      = lazy(() => import('@/pages/GalleryPage'));
 const GalleryDetailPage = lazy(() => import('@/pages/GalleryDetailPage'));
 const BlogPage         = lazy(() => import('@/pages/BlogPage'));
 const BlogDetailPage   = lazy(() => import('@/pages/BlogDetailPage'));
+const NotFoundPage     = lazy(() => import('@/pages/NotFoundPage'));
 import {
   ROOFING,
   ASPHALT_SHINGLE,
@@ -94,6 +95,8 @@ export const publicRoutes = [
       { path: 'blog', element: <BlogPage /> },
       { path: 'blog/:id', element: <BlogDetailPage /> },
       { path: 'privacy-policy', element: <TermsPrivacyPage /> },
+
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ];

@@ -64,10 +64,29 @@
     <meta name="twitter:image" content="https://res.cloudinary.com/driyxelzh/image/upload/v1775667087/Captura_de_pantalla_2026-04-08_a_la_s_12.50.15_p.m._ybqs2p.png" />
     <meta name="twitter:image:alt" content="Nova Solutions company logo" />
 
+    <style>
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        z-index: 99999;
+        transition: opacity 0.25s ease;
+      }
+    </style>
   </head>
   <body>
+    <div id="page-loader"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener('load', function () {
+        var loader = document.getElementById('page-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(function () { loader.remove(); }, 250);
+        }
+      });
+    </script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
   </body>
 </html>
