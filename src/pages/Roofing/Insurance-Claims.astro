@@ -1,0 +1,63 @@
+---
+import SectionInfo from "../../components/sections/SectionInfo.astro";
+import Layout from "../../layouts/Layout.astro";
+import suppliers from "../../json/suppliers.json";
+import Footer from "../../components/layout/Footer.astro";
+import { LinkServices } from "../../data/services/roofing-links";
+import MoreServices from "../../components/services/moreServices.astro";
+import RelationServices from "../../components/services/relationServices.astro";
+import TrustOur from "../../components/sections/trustOur.astro";
+import CertificatesAffiliations from "../../components/sections/CertificatesAffiliations.astro";
+import InsureProcces from "../../components/sections/InsureProcces.astro";
+---
+
+<Layout
+  title="Roofing Insurance Claims in Capital Region | Nova Solutions"
+  description="Nova Solutions specializes in roofing insurance claims in Capital Region. With over 5 years of experience, our skilled team helps homeowners navigate insurance claims for roof repairs and restoration, ensuring quality service and customer satisfaction."
+/>
+
+  <SectionInfo heading={"Insurance Claims​"} sliders={suppliers} />
+
+<div class="max-w-6xl mx-auto px-4 my-16">
+  <div class="breadcrumb text-sm text-gray-600 flex items-center">
+    <a href="/" class="hover:text-primary">Home</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+
+    <a href="/Roofing" class="hover:text-primary">Roofing</a>
+    <iconify-icon
+      icon="mingcute:arrows-right-line"
+      class="mx-2 text-gray-400 text-lg"></iconify-icon>
+    <span class="font-semibold text-black"> Insurance Claims</span>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-2xl font-bold text-black text-center lg:text-left mt-10">
+        Capital Region Roofing Insurance Claims
+      </h1>
+      <p class="text-1xl text-black mt-4 leading-relaxed">
+        With over 5 years in business and many team members boasting more than 7
+        years of experience in construction and restoration, <strong
+          >Nova Solutions</strong
+        > is your trusted partner for roofing insurance claims in <strong
+          >Capital Region
+        </strong>. Every member of our team is committed to delivering the
+        highest quality service, workmanship, and customer care.
+      </p>
+    </div>
+    <section class="flex-1 text-primary">
+      <CertificatesAffiliations />
+    </section>
+  </div>
+</div>
+
+<InsureProcces />
+
+<TrustOur />
+
+<RelationServices title="Related Roofing Services" services={LinkServices} />
+<MoreServices />
+
+<Footer />

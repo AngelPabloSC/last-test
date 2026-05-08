@@ -1,0 +1,100 @@
+---
+
+import FormsServices from "../forms/FormsServices.astro";
+import Swiper from "../media/swiper.astro";
+
+const {
+  bagroundImage = "https://res.cloudinary.com/driyxelzh/image/upload/f_auto,q_auto,c_scale,w_1920/v1744252247/banner1_akffxu.jpg",
+} = Astro.props;
+const { heading = "#1 Roofer for Albany " } = Astro.props;
+const { sliders = [] } = Astro.props;
+---
+
+<div
+  class="relative bg-cover bg-center min-h-[55vh] text-white mt-[190px] md:mt-[120px] clip-bottom pb-20 md:pb-32"
+  style={`background-image:url(${bagroundImage})`}
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-tr from-black via-black/60 to-transparent opacity-100 z-[1]"
+  >
+  </div>
+
+  <div
+    class="relative z-[2] flex flex-col lg:flex-row justify-between items-start gap-8 px-6 py-10 lg:px-20"
+  >
+    
+    <div class="flex-1 min-w-[300px] text-left m-auto text-input-text">
+      <h2
+        class="text-xl lg:text-2xl font-semibold tracking-wide mb-2 text-primary"
+      >
+        One Call Does it all!
+      </h2>
+      <h1 class="text-3xl lg:text-5xl font-Azonix  font-bold leading-tight mb-6">
+        {heading}
+      </h1>
+
+      <ul class="list-none space-y-2 text-lg text-white">
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Nova Solutions
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Made in USA - Family Owned & Operated
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          Transferable Lifetime Warranty
+        </li>
+        <li class="flex items-center">
+          <iconify-icon
+            icon="material-symbols:check-box"
+            width="34"
+            height="34"
+            class="text-primary mr-2"></iconify-icon>
+          BBB Accredited
+        </li>
+      </ul>
+
+      <div class="mt-6 flex justify-center lg:justify-start">
+        <div
+          class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
+        >
+          <Swiper slides={sliders} />
+        </div>
+      </div>
+
+      <a
+        href="tel:+15185985156"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center bg-white text-blue-600 hover:text-blue-800 transition-colors font-semibold rounded-lg px-6 py-3 mt-6 shadow-md"
+      >
+        <iconify-icon icon="material-symbols:call" class="mr-2 text-blue-600"
+        ></iconify-icon>
+        Call Us
+      </a>
+    </div>
+    <div class="form-box">
+      <FormsServices />
+    </div>
+  </div>
+</div>
+<style>
+
+  .clip-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+</style>

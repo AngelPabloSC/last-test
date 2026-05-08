@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionInfo from "../../components/sections/SectionInfo.astro";
+import suppliers from "../../json/suppliers.json";
+import roofingGallery from "../../data/gallery/roofing";
+import siding from "../../data/gallery/siding";
+import ImageGallery from "../../components/media/ImageGallery.astro";
+import Footer from "../../components/layout/Footer.astro";
+---
+
+<Layout
+  title="Photo Gallery | Nova Solutions"
+  description="Nova Solutions is the #1 roofing company for estate and estares. We offer a wide range of roofing services, including roof repair, roof replacement, and roof installation. Our team of experienced professionals is dedicated to providing the highest quality service and workmanship."
+>
+  <div class="mt-[130px] md:mt-[95px]">
+    <SectionInfo sliders={suppliers} />
+  </div>
+  <div class="max-w-6xl mx-auto px-4">
+    
+    <div
+      class="text-sm text-gray-600 flex flex-wrap items-center justify-center lg:justify-start mb-6"
+    >
+      <a href="/" class="hover:text-primary">Home</a>
+      <iconify-icon
+        icon="mingcute:arrows-right-line"
+        class="mx-2 text-gray-400 text-lg"></iconify-icon>
+      <a href="/About" class="font-semibold hover:text-primary">About Us</a>
+      <iconify-icon
+        icon="mingcute:arrows-right-line"
+        class="mx-2 text-gray-400 text-lg"></iconify-icon>
+      <span class="font-semibold text-black">Photo Gallery</span>
+    </div>
+
+    
+    <h1 class="text-3xl font-bold text-primary text-center mb-8">
+      Photo Gallery
+    </h1>
+
+    <div id="roofing-gallery" class="tab-content mt-6">
+      <ImageGallery gallery={roofingGallery} />
+    </div>
+    <div id="siding-gallery" class="tab-content my-10">
+      <ImageGallery gallery={siding} />
+    </div>
+
+    <div id="Gutters-gallery" class="tab-content my-10">
+      <ImageGallery gallery={siding} />
+    </div>
+  </div>
+  <Footer />
+</Layout>
