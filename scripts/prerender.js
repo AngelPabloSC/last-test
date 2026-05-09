@@ -35,6 +35,10 @@ const ROUTES = [
   '/Gutters/Gutter-Repairs',
   '/About',
   '/About/Contact-us',
+  '/Gallery',
+  '/Reviews',
+  '/Leave-Review',
+  '/blog',
   '/privacy-policy',
   '/404',
 ];

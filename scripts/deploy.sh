@@ -67,6 +67,15 @@ server {
     location = /index.html {
         add_header Cache-Control "no-cache, no-store, must-revalidate";
     }
+
+    # Rutas del admin y login nunca se cachean (requieren auth dinámica)
+    location ~* ^/(login|admin) {
+        try_files \$uri \$uri/index.html /index.html;
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+
+    # 404 del servidor → React Router lo maneja con su propia página 404
+    error_page 404 /index.html;
 }
 EOF
 
