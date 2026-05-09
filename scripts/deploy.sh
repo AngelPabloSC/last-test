@@ -40,30 +40,40 @@ echo "→ Ajustando permisos..."
 sudo chmod -R 755 "$APP_DIR"
 sudo chown -R www-data:www-data "$APP_DIR" 2>/dev/null || sudo chown -R nginx:nginx "$APP_DIR" 2>/dev/null || true
 
-# 5. Escribir config de Nginx con SPA fallback
+# 5. Escribir config de Nginx con SSL y SPA fallback
 echo "→ Configurando Nginx..."
+SSL_CERT="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
+SSL_KEY="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
+
 sudo tee "$NGINX_CONF" > /dev/null <<EOF
 server {
     listen 80;
     listen [::]:80;
     server_name $DOMAIN www.$DOMAIN;
+    return 301 https://\$host\$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name $DOMAIN www.$DOMAIN;
+
+    ssl_certificate $SSL_CERT;
+    ssl_certificate_key $SSL_KEY;
+
     root $APP_DIR;
     index index.html;
 
-    # Rutas prerendereadas y SPA fallback
-    # Intenta: archivo exacto → ruta/index.html → /index.html (React Router)
     location / {
         try_files \$uri \$uri/index.html \$uri.html /index.html;
     }
 
-    # Cache de 1 año para assets con hash (Vite genera nombres únicos)
     location ~* \.(js|css|woff2|woff|ttf|otf|ico|png|jpg|jpeg|svg|webp|gif)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
         try_files \$uri =404;
     }
 
-    # Sin cache para index.html (siempre sirve la versión más nueva)
     location = /index.html {
         add_header Cache-Control "no-cache, no-store, must-revalidate";
     }
