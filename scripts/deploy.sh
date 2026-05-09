@@ -79,6 +79,16 @@ server {
 }
 EOF
 
+# Desactivar configs que puedan competir con el mismo server_name
+sudo rm -f /etc/nginx/sites-enabled/default
+for conf in /etc/nginx/sites-enabled/*; do
+  name=$(basename "$conf")
+  if [ "$name" != "nova-solutions" ] && sudo grep -q "$DOMAIN" "$conf" 2>/dev/null; then
+    sudo rm -f "$conf"
+    echo "→ Eliminado config conflictivo: $name"
+  fi
+done
+
 # Activar config si no está enlazada
 if [ ! -L /etc/nginx/sites-enabled/nova-solutions ]; then
   sudo ln -s "$NGINX_CONF" /etc/nginx/sites-enabled/nova-solutions
