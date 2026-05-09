@@ -79,8 +79,16 @@ const server = app.listen(PORT, async () => {
       // Wait to ensure React's useEffect has injected meta tags
       await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const html = await page.content();
-      
+      let html = await page.content();
+
+      // Puppeteer fires window.load which removes #page-loader from the DOM.
+      // Re-inject it so the server-sent HTML always has the white overlay,
+      // preventing fixed/sticky elements (e.g. ButtonMovil) from flashing
+      // before React hydrates on the client.
+      if (!html.includes('id="page-loader"')) {
+        html = html.replace('<div id="root">', '<div id="page-loader"></div><div id="root">');
+      }
+
       // Map route to output file path
       let filePath = path.join(DIST_DIR, route);
       
