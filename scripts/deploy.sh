@@ -86,10 +86,10 @@ if [ ! -L /etc/nginx/sites-enabled/nova-solutions ]; then
   echo "✓ Config de Nginx activada"
 fi
 
-# 6. Validar y recargar Nginx
-echo "→ Recargando Nginx..."
-sudo nginx -t && sudo nginx -s reload
-echo "✓ Nginx recargado"
+# 6. Validar y (re)iniciar Nginx
+echo "→ Reiniciando Nginx..."
+sudo nginx -t && sudo systemctl reload-or-restart nginx
+echo "✓ Nginx reiniciado"
 
 # 7. Limpiar archivo temporal
 rm -f "$BUILD_FILE"
