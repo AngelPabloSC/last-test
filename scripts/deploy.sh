@@ -7,8 +7,6 @@ set -e
 APP_DIR="/var/www/html"
 BACKUP_DIR="/var/www/backup"
 BUILD_FILE="$HOME/build.tar.gz"
-NGINX_CONF="/etc/nginx/sites-available/nova-solutions"
-DOMAIN="nova-solutions.us"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "→ Iniciando deploy React/Vite"
@@ -40,68 +38,12 @@ echo "→ Ajustando permisos..."
 sudo chmod -R 755 "$APP_DIR"
 sudo chown -R www-data:www-data "$APP_DIR" 2>/dev/null || sudo chown -R nginx:nginx "$APP_DIR" 2>/dev/null || true
 
-# 5. Escribir config de Nginx con SSL y SPA fallback
-echo "→ Configurando Nginx..."
-SSL_CERT="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
-SSL_KEY="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
-
-sudo tee "$NGINX_CONF" > /dev/null <<EOF
-server {
-    listen 80;
-    listen [::]:80;
-    server_name $DOMAIN www.$DOMAIN;
-    return 301 https://\$host\$request_uri;
-}
-
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    server_name $DOMAIN www.$DOMAIN;
-
-    ssl_certificate $SSL_CERT;
-    ssl_certificate_key $SSL_KEY;
-
-    root $APP_DIR;
-    index index.html;
-
-    location / {
-        try_files \$uri \$uri/index.html \$uri.html /index.html;
-    }
-
-    location ~* \.(js|css|woff2|woff|ttf|otf|ico|png|jpg|jpeg|svg|webp|gif)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-        try_files \$uri =404;
-    }
-
-    location = /index.html {
-        add_header Cache-Control "no-cache, no-store, must-revalidate";
-    }
-}
-EOF
-
-# Desactivar configs que puedan competir con el mismo server_name
-sudo rm -f /etc/nginx/sites-enabled/default
-for conf in /etc/nginx/sites-enabled/*; do
-  name=$(basename "$conf")
-  if [ "$name" != "nova-solutions" ] && sudo grep -q "$DOMAIN" "$conf" 2>/dev/null; then
-    sudo rm -f "$conf"
-    echo "→ Eliminado config conflictivo: $name"
-  fi
-done
-
-# Activar config si no está enlazada
-if [ ! -L /etc/nginx/sites-enabled/nova-solutions ]; then
-  sudo ln -s "$NGINX_CONF" /etc/nginx/sites-enabled/nova-solutions
-  echo "✓ Config de Nginx activada"
-fi
-
-# 6. Validar y (re)iniciar Nginx
+# 5. Validar y (re)iniciar Nginx
 echo "→ Reiniciando Nginx..."
 sudo nginx -t && sudo systemctl reload-or-restart nginx
 echo "✓ Nginx reiniciado"
 
-# 7. Limpiar archivo temporal
+# 6. Limpiar archivo temporal
 rm -f "$BUILD_FILE"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
