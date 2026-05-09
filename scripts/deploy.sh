@@ -23,22 +23,22 @@ fi
 # 2. Backup del build actual
 if [ -d "$APP_DIR" ]; then
   echo "→ Haciendo backup del build anterior..."
-  mkdir -p "$BACKUP_DIR"
-  rm -rf "$BACKUP_DIR"/*
-  cp -r "$APP_DIR/." "$BACKUP_DIR/"
+  sudo mkdir -p "$BACKUP_DIR"
+  sudo rm -rf "$BACKUP_DIR"/*
+  sudo cp -r "$APP_DIR/." "$BACKUP_DIR/"
   echo "✓ Backup guardado en $BACKUP_DIR"
 fi
 
 # 3. Limpiar directorio y descomprimir nuevo build
 echo "→ Descomprimiendo nuevo build..."
-mkdir -p "$APP_DIR"
-rm -rf "$APP_DIR"/*
-tar -xzf "$BUILD_FILE" -C "$APP_DIR" --strip-components=1
+sudo mkdir -p "$APP_DIR"
+sudo rm -rf "$APP_DIR"/*
+sudo tar -xzf "$BUILD_FILE" -C "$APP_DIR" --strip-components=1
 
 # 4. Ajustar permisos para Nginx
 echo "→ Ajustando permisos..."
-chmod -R 755 "$APP_DIR"
-chown -R www-data:www-data "$APP_DIR" 2>/dev/null || chown -R nginx:nginx "$APP_DIR" 2>/dev/null || true
+sudo chmod -R 755 "$APP_DIR"
+sudo chown -R www-data:www-data "$APP_DIR" 2>/dev/null || sudo chown -R nginx:nginx "$APP_DIR" 2>/dev/null || true
 
 # 5. Escribir config de Nginx con SPA fallback
 echo "→ Configurando Nginx..."
