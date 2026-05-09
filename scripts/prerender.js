@@ -89,6 +89,9 @@ const server = app.listen(PORT, async () => {
         html = html.replace('<div id="root">', '<div id="page-loader"></div><div id="root">');
       }
 
+      // Mark which route was pre-rendered so main.jsx only hydrates on route match
+      html = html.replace('<div id="root"', `<div id="root" data-prerendered-route="${route}"`);
+
       // Map route to output file path
       let filePath = path.join(DIST_DIR, route);
       

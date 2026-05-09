@@ -25,7 +25,10 @@ const app = (
 
 )
 
-if (container.hasChildNodes()) {
+const prerenderedRoute = container.getAttribute('data-prerendered-route');
+const isMatchingPrerender = prerenderedRoute === window.location.pathname;
+
+if (container.hasChildNodes() && isMatchingPrerender) {
   hydrateRoot(container, app)
 } else {
   createRoot(container).render(app)
