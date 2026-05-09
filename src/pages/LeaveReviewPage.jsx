@@ -11,18 +11,18 @@ import SEO from '@/components/ui/SEO';
 const BENEFITS = [
   {
     icon: PeopleIcon,
-    title: 'Ayuda a otros propietarios',
-    desc: 'Permite que familias tomen decisiones informadas.',
+    title: 'Help other homeowners',
+    desc: 'Let families make informed decisions with confidence.',
   },
   {
     icon: TrendingUpIcon,
-    title: 'Mejora nuestros servicios',
-    desc: 'Tu feedback nos guía para ofrecer mejor calidad.',
+    title: 'Improve our services',
+    desc: 'Your feedback guides us to deliver even better quality.',
   },
   {
     icon: EmojiEventsIcon,
-    title: 'Reconoce el trabajo excepcional',
-    desc: 'Tu reseña motiva a nuestro equipo a seguir dando lo mejor.',
+    title: 'Recognize exceptional work',
+    desc: 'Your review motivates our team to keep giving their best.',
   },
 ];
 
@@ -36,17 +36,17 @@ function LeftInfoPanel() {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
         <Box sx={{ width: 2, height: 16, borderRadius: 1, bgcolor: gold }} />
         <Typography sx={{ color: gold, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: 'uppercase' }}>
-          Tu Experiencia
+          Your Experience
         </Typography>
       </Box>
 
       {/* Heading */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
         <Typography component="h2" sx={{ color: 'white', fontSize: { xs: '1.8rem', md: '2.2rem' }, fontWeight: 800, lineHeight: 1.1 }}>
-          ¿Por qué tu reseña importa?
+          Why does your review matter?
         </Typography>
         <Typography sx={{ color: '#9CA3AF', fontSize: 15, lineHeight: 1.6 }}>
-          Tu opinión ayuda a otros propietarios a elegir con confianza y nos permite seguir mejorando.
+          Your opinion helps other homeowners choose with confidence and allows us to keep improving.
         </Typography>
       </Box>
 
@@ -76,15 +76,15 @@ function LeftInfoPanel() {
           ))}
         </Box>
         <Typography sx={{ color: '#D1D5DB', fontSize: 14, lineHeight: 1.6, fontStyle: 'italic' }}>
-          "Nova Solutions renovó mi techo en tiempo récord. El equipo fue profesional y el resultado superó mis expectativas."
+          "Nova Solutions replaced my roof in record time. The team was professional and the result exceeded my expectations."
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, pt: 1 }}>
           <Box sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: `${gold}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Typography sx={{ color: gold, fontSize: 14, fontWeight: 800 }}>M</Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography sx={{ color: 'white', fontSize: 14, fontWeight: 700 }}>María García</Typography>
-            <Typography sx={{ color: '#6B7280', fontSize: 12 }}>Cliente verificada · Roofing</Typography>
+            <Typography sx={{ color: 'white', fontSize: 14, fontWeight: 700 }}>Maria Garcia</Typography>
+            <Typography sx={{ color: '#6B7280', fontSize: 12 }}>Verified customer · Roofing</Typography>
           </Box>
         </Box>
       </Box>
